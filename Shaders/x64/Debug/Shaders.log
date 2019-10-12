@@ -1,0 +1,23 @@
+﻿  Buffer.cpp
+  Debug.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_opengl3.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Debug.h(4,10): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
+  imgui_impl_sdl.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\imgui\imgui_impl_opengl3.cpp(101,10): fatal error C1083: Cannot open include file: '../glad/glad.h': No such file or directory
+  imgui_widgets.cpp
+  Input.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\imgui\imgui_impl_sdl.cpp(47,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Interface.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Input.h(2,10): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Interface.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  main.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Debug.h(4,10): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
+  Screen.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\main.cpp(3,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Shader.cpp
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Screen.h(7,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Generating Code...
+C:\Users\Sioyth\Google Drive\Shaders\Shaders\Debug.h(4,10): fatal error C1083: Cannot open include file: 'glm.hpp': No such file or directory
