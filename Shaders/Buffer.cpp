@@ -1,23 +1,47 @@
 #include "Buffer.h"
 #include "Shader.h"
+#include "Debug.h"
 
-GLuint Buffer::s_shaderProgram = Shader::Instance()->GetShaderProgram();
+GLuint Buffer::s_shaderProgram = 0;
 
-void Buffer::BufferData(const GLvoid* data, const GLchar* name, GLint size, GLenum type, GLboolean normalized, GLsizei stride)
+Buffer::Buffer()
 {
-	GLint var = glGetAttribLocation(s_shaderProgram, name);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW);
-	glVertexAttribPointer(var, size, type, normalized, stride, 0);
-	glEnableVertexAttribArray(var);
+	
+}
+
+void Buffer::BufferData(const GLvoid* data, GLsizeiptr dataSize, const GLchar* name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLenum mode)
+{
+	// TEMPORARY SOLUTION
+	s_shaderProgram = Shader::GetShaderProgram();
+
+	m_attributes[name] = glGetAttribLocation(s_shaderProgram, name);
+
+	if (m_attributes[name] == -1)
+	{
+		Debug::ErrorLog(name);
+	}
+	else
+	{
+		glBufferData(GL_ARRAY_BUFFER, dataSize, data, mode);
+		glVertexAttribPointer(m_attributes[name], size, type, normalized, stride, 0);
+		glEnableVertexAttribArray(m_attributes[name]);
+	}
 }
 
 void Buffer::BindBuffer(std::string bufferName)
 {
-	// Bind (selects) buffer 
-	glBindBuffer(GL_ARRAY_BUFFER, m_buffers[bufferName]);
+	if (m_buffers.find(bufferName) == m_buffers.end())
+	{
+		Debug::ErrorLog("Buffer Object doesn't exist, can't be binded!");
+	}
+	else
+	{
+		// Bind (selects) buffer 
+		glBindBuffer(GL_ARRAY_BUFFER, m_buffers[bufferName]);
 
-	// Enable Variables for use
-	glEnableVertexAttribArray(m_buffers[bufferName]);
+		//// Enable Variables for use
+		//glEnableVertexAttribArray(m_buffers[bufferName]);
+	}
 
 }
 
@@ -34,5 +58,37 @@ void Buffer::CreateBuffer(std::string bufferName)
 
 void Buffer::UnbindBuffer()
 {
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void Buffer::BindVertexArray()
+{
+	glBindVertexArray(m_VAO);
+}
+
+void Buffer::UnbindVertexArray()
+{
 	glBindVertexArray(0);
+}
+
+void Buffer::CreateVertexArray()
+{
+	glGenVertexArrays(1, &m_VAO);
+}
+
+void Buffer::BindElementBuffer()
+{
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+}
+
+void Buffer::CreateElementBuffer(GLsizeiptr dataSize, const GLvoid* data, GLenum mode)
+{
+	glGenBuffers(1, &m_EBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, mode);
+}
+
+void Buffer::UnbindElementBuffer()
+{
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

@@ -2,10 +2,18 @@
 #include "Debug.h"
 #include <fstream>
 
-Shader* Shader::Instance()
+GLuint Shader::s_shaderProgram;
+bool Shader::s_isProgramCreated = false;
+
+Shader::Shader()
 {
-	static Shader* s_Shader = new Shader;
-	return s_Shader;
+	// -------------------------------------------# Checks if program is already created
+
+	if (!s_isProgramCreated)
+	{
+		CreateShaderProgram();
+	}
+
 }
 
 void Shader::CreateShader(std::string vertShader, std::string fragShader)
@@ -22,24 +30,24 @@ void Shader::CreateShader(std::string vertShader, std::string fragShader)
 
 	// -------------------------------------------# Attach Shaders
 
-	glAttachShader(m_shaderProgram, m_vertexShader);
-	glAttachShader(m_shaderProgram, m_fragmentShader);
+	glAttachShader(s_shaderProgram, m_vertexShader);
+	glAttachShader(s_shaderProgram, m_fragmentShader);
 
 	// -------------------------------------------# Linking Shader Program
 
-	glLinkProgram(m_shaderProgram);
+	glLinkProgram(s_shaderProgram);
 
 	//Enable Shader Program
-	glUseProgram(m_shaderProgram);
+	glUseProgram(s_shaderProgram);
 
 	GLint linkResult;
-	glGetProgramiv(m_shaderProgram, GL_LINK_STATUS, &linkResult);
+	glGetProgramiv(s_shaderProgram, GL_LINK_STATUS, &linkResult);
 
 	if (linkResult == GL_FALSE)
 	{
 		GLchar error[1000];
 		GLsizei length = 1000;
-		glGetProgramInfoLog(m_shaderProgram, 1000, &length, error);
+		glGetProgramInfoLog(s_shaderProgram, 1000, &length, error);
 
 		std::string errorLog = std::string(error);
 		Debug::ErrorLog("Link Error: \n\n" + errorLog);
@@ -75,15 +83,27 @@ GLuint Shader::CompileShader(GLuint shaderID, const std::string& shaderCode)
 	return id;
 }
 
+void Shader::BindUniform(const std::string& name)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+	{
+		m_uniforms[name] = glGetUniformLocation(s_shaderProgram, (const GLchar*) name.c_str());
+	}
+}
+
 void Shader::CreateShaderProgram()
 {
 	// -------------------------------------------# Create Shader Program
 
-	m_shaderProgram = glCreateProgram();
+	s_shaderProgram = glCreateProgram();
 
-	if (m_shaderProgram == 0)
+	if (s_shaderProgram == 0)
 	{
 		Debug::ErrorLog("Shader program couldn't be created!");
+	}
+	else 
+	{
+		s_isProgramCreated = true;
 	}
 
 }
@@ -120,9 +140,21 @@ std::string Shader::ReadShader(const std::string &shader)
 
 }
 
-GLuint Shader::GetShaderProgram()
+Buffer& Shader::GetBuffer()
 {
-	return m_shaderProgram;
+	return m_buffer;
+}
+
+const GLuint& Shader::GetShaderProgram()
+{
+	if (!s_isProgramCreated)
+	{
+		Debug::ErrorLog("Shader Program Not created!!");
+	}
+	else
+	{
+		return s_shaderProgram;
+	}
 }
 
 void Shader::ShutdownShaders()

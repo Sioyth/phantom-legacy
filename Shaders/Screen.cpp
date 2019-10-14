@@ -47,7 +47,7 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor);
 
 		// Create application window
-		m_window = SDL_CreateWindow("The First Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, widht, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+		m_window = SDL_CreateWindow("Phantom Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, widht, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 		
 		if (!m_window)
 		{
