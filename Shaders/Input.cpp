@@ -22,6 +22,18 @@ glm::vec2 Input::GetMousePosition()
 	return m_mousePosition;
 }
 
+bool Input::KeyDown(std::string key)
+{
+	if (m_keys.find(key) == m_keys.end())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 void Input::PollEvents()
 {
 	SDL_Event events;

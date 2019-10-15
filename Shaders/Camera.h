@@ -10,7 +10,7 @@
 //// Ortographic view
 //proj = glm::ortho(0.0f, (float)width, 0.0f, (float)height);
 
-class Camera : GameObject
+class Camera : public GameObject
 {
 public:
 

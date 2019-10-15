@@ -17,6 +17,7 @@ bool IsGameEngineRunning = true;
 
 int main(int argc, char* args[])
 {
+
 	// -------------------------------------------#  Initilize the Screen
 
 	Screen::Instance()->Initialize(1280, 720, 4, 6, true);
@@ -72,6 +73,8 @@ int main(int argc, char* args[])
 
 		// -------------------------------------------# Code
 
+		//if (Input.KeyDown("W"));
+
 		if (keyStates[SDL_SCANCODE_W])
 		{
 			position.z += 0.01f;
@@ -115,11 +118,6 @@ int main(int argc, char* args[])
 	}
 
 	// -------------------------------------------# Shut Down
-
-	
-
-	//glDisableVertexAttribArray(vertex);
-	//glDisableVertexAttribArray(color);
 
 	Screen::Instance()->ShutDown();
 
