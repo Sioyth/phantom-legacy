@@ -167,4 +167,58 @@ void Shader::ShutdownShaders()
 	glDeleteProgram(m_shaderProgramID);*/
 }
 
+void Shader::BindBuffer(std::string bufferName)
+{
+	m_buffer.BindBuffer(bufferName);
+}
+
+void Shader::CreateBuffer(std::string bufferName)
+{
+	m_buffer.CreateBuffer(bufferName);
+}
+
+void Shader::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode)
+{
+	m_buffer.BufferData(data, dataSize, name, size, type, normalized, stride, mode);
+}
+
+void Shader::UnbindBuffer()
+{
+	m_buffer.UnbindBuffer();
+}
+
+void Shader::BindVertexArray()
+{
+	m_buffer.BindVertexArray();
+}
+
+void Shader::UnbindVertexArray()
+{
+	m_buffer.UnbindVertexArray();
+}
+
+void Shader::CreateVertexArray()
+{
+	m_buffer.CreateVertexArray();
+}
+
+void Shader::BindElementBuffer()
+{
+	m_buffer.BindElementBuffer();
+}
+
+void Shader::ElementBufferData()
+{
+}
+
+void Shader::CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode)
+{
+	m_buffer.CreateElementBuffer(dataSize, data, mode);
+}
+
+void Shader::UnbindElementBuffer()
+{
+	m_buffer.UnbindElementBuffer();
+}
+
 

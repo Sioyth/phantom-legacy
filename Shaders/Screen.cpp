@@ -14,7 +14,8 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 	m_widht = widht;
 	m_height = height;
 
-	// Initialize SDL.
+	// -------------------------------------------# Initialize SDL.
+
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 	{
 		std::cout << "SDL didn't initilize" << std::endl;
@@ -22,17 +23,20 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 	}
 	else
 	{
-		// Set buffer RGBA component
+		// -------------------------------------------# Set buffer RGBA component
+
 		SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
 
-		// turn on double buffering
+		// -------------------------------------------# turn on double buffering
+
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-		// set OpenGL to compatibility mode
+		// -------------------------------------------# set OpenGL to compatibility mode
+
 		if (mode)
 		{
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
@@ -42,11 +46,13 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 		}
 
-		// set OpenGL version
+		// -------------------------------------------# set OpenGL version
+
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, major);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, minor);
 
-		// Create application window
+		// -------------------------------------------# Create application window
+
 		m_window = SDL_CreateWindow("Phantom Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, widht, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 		
 		if (!m_window)
@@ -55,7 +61,8 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 			return;
 		}
 
-		// create the OpenGL context
+		// -------------------------------------------# create the OpenGL context
+
 		m_context = SDL_GL_CreateContext(m_window);
 
 		if (!m_context)
@@ -64,14 +71,16 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 			return;
 		}
 
-		// Initiliaze Glad
+		// -------------------------------------------# Initiliaze Glad
+
 		if (!gladLoadGL())
 		{
 			// CHANGE TO THE LOG CLASS
 			std::cout << "Error initializing Glad" << std::endl;
 		}
 
-		// Setup Dear ImGui context
+		// -------------------------------------------# Setup Dear ImGui context
+
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 
@@ -89,8 +98,8 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 
 void Screen::ClearBuffers()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Screen::SwapBuffers()

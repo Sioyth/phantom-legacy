@@ -9,13 +9,13 @@ Buffer::Buffer()
 	
 }
 
-void Buffer::BufferData(const GLvoid* data, GLsizeiptr dataSize, const GLchar* name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLenum mode)
+void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode)
 {
 	// TEMPORARY SOLUTION
 	s_shaderProgram = Shader::GetShaderProgram();
 
 	m_attributes[name] = glGetAttribLocation(s_shaderProgram, name);
-
+	
 	if (m_attributes[name] == -1)
 	{
 		Debug::ErrorLog(name);
@@ -81,7 +81,7 @@ void Buffer::BindElementBuffer()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 }
 
-void Buffer::CreateElementBuffer(GLsizeiptr dataSize, const GLvoid* data, GLenum mode)
+void Buffer::CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode)
 {
 	glGenBuffers(1, &m_EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);

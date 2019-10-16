@@ -1,29 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Shaders.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Camera.cpp
-  CameraEditor.cpp
-  Cube.cpp
-  Input.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(53,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(53,36): warning C4244:         with
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(53,36): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(53,36): warning C4244:             T=float
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(53,36): warning C4244:         ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(54,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(54,36): warning C4244:         with
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(54,36): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(54,36): warning C4244:             T=float
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(54,36): warning C4244:         ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(78,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(78,36): warning C4244:         with
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(78,36): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(78,36): warning C4244:             T=float
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(78,36): warning C4244:         ]
   main.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(79,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(79,36): warning C4244:         with
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(79,36): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(79,36): warning C4244:             T=float
-C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(79,36): warning C4244:         ]
-  Generating Code...
 C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe

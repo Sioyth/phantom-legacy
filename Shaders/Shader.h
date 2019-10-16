@@ -31,6 +31,32 @@ public:
 
 public:
 
+	// -------------------------------------------# VBO
+
+	// TODO avoid doing copies
+	void BindBuffer(std::string bufferName);
+	void CreateBuffer(std::string bufferName);
+	void BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode);
+	void UnbindBuffer();
+
+	// -------------------------------------------# VAO
+
+	void BindVertexArray();
+	void UnbindVertexArray();
+	void CreateVertexArray();
+
+	// -------------------------------------------# EBO
+
+	void BindElementBuffer();
+	void ElementBufferData();
+	void CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode);
+
+	void UnbindElementBuffer();
+
+	// -------------------------------------------#
+
+public:
+
 	Buffer& GetBuffer();
 	static const GLuint& GetShaderProgram();
 

@@ -41,20 +41,20 @@ Cube::Cube()
 
 	m_shader.CreateShader("Main.vert", "Main.frag");
 
-	m_shader.GetBuffer().CreateVertexArray();
-	m_shader.GetBuffer().BindVertexArray();
+	m_shader.CreateVertexArray();
+	m_shader.BindVertexArray();
 
-	m_shader.GetBuffer().CreateBuffer("vertexVBO");
-	m_shader.GetBuffer().BindBuffer("vertexVBO");
-	m_shader.GetBuffer().BufferData(vertices3d, sizeof(vertices3d), "vertexIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
-	m_shader.GetBuffer().UnbindBuffer();
+	m_shader.CreateBuffer("vertexVBO");
+	m_shader.BindBuffer("vertexVBO");
+	m_shader.BufferData(vertices3d, sizeof(vertices3d), "vertexIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.UnbindBuffer();
 
-	m_shader.GetBuffer().CreateBuffer("colorVBO");
-	m_shader.GetBuffer().BindBuffer("colorVBO");
-	m_shader.GetBuffer().BufferData(colors3d, sizeof(colors3d), "colorIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
-	m_shader.GetBuffer().UnbindBuffer();
+	m_shader.CreateBuffer("colorVBO");
+	m_shader.BindBuffer("colorVBO");
+	m_shader.BufferData(colors3d, sizeof(colors3d), "colorIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.UnbindBuffer();
 
-	m_shader.GetBuffer().CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
+	m_shader.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
 	//m_shader.GetBuffer().UnbindVertexArray();
 

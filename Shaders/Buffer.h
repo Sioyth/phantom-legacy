@@ -13,7 +13,7 @@ public:
 
 	void BindBuffer(std::string bufferName);
 	void CreateBuffer(std::string bufferName);
-	void BufferData(const GLvoid* data, GLsizeiptr dataSize, const GLchar* name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLenum mode);
+	void BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode);
 
 	void UnbindBuffer();
 
@@ -27,7 +27,7 @@ public:
 
 	void BindElementBuffer();
 	void ElementBufferData();
-	void CreateElementBuffer(GLsizeiptr dataSize, const GLvoid* data, GLenum mode);
+	void CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode);
 	void UnbindElementBuffer();
 
 private:
