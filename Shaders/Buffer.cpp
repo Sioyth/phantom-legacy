@@ -28,6 +28,11 @@ void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GL
 	}
 }
 
+void Buffer::BufferSubData(GLenum target, const GLintptr& offset, const GLsizeiptr& size, const GLvoid* data)
+{
+	glBufferSubData(target, offset, size, data);
+}
+
 void Buffer::BindBuffer(std::string bufferName)
 {
 	if (m_buffers.find(bufferName) == m_buffers.end())

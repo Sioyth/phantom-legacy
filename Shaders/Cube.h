@@ -7,6 +7,7 @@ public:
 
 	Cube();
 
-	void Render();
+	virtual void Render();
+	virtual void Create();
 };
 

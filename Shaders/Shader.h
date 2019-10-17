@@ -1,4 +1,5 @@
 #pragma once
+#include <glm.hpp>
 #include <map>
 #include <string>
 
@@ -26,6 +27,8 @@ public:
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y);
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z);
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+
+	void SendUniformData(const std::string& name, GLsizei count, GLboolean transpose, const glm::mat4& matrix);
 
 	void ShutdownShaders();
 

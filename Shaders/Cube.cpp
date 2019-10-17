@@ -3,6 +3,10 @@
 Cube::Cube()
 {
 
+}
+
+void Cube::Create()
+{
 	GLfloat vertices3d[] = { -0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f,
 							  0.5f, -0.5f, 0.5f, -0.5f, -0.5f, 0.5f,
 							 -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f,
@@ -56,11 +60,14 @@ Cube::Cube()
 
 	m_shader.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
-	//m_shader.GetBuffer().UnbindVertexArray();
-
+	m_shader.UnbindVertexArray();
 }
 
 void Cube::Render()
 {
+	m_shader.BindVertexArray();
+	m_shader.BindUniform("model");
+	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	m_shader.UnbindVertexArray();
 }

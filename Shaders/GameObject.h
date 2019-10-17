@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 
+#include <glm.hpp>
+#include "glad/glad.h"
+
 #include "Shader.h"
 #include "Transform.h"
 
@@ -14,6 +17,8 @@ public:
 
 	virtual void Render();
 	virtual void Update();
+
+	virtual void Create();
 
 	Shader& GetShader();
 

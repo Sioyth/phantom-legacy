@@ -157,6 +157,18 @@ const GLuint& Shader::GetShaderProgram()
 	}
 }
 
+void Shader::SendUniformData(const std::string& name, GLsizei count, GLboolean transpose, const glm::mat4& matrix)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+	{
+		Debug::ErrorLog(name + " Uniform couldn't be finded!");
+	}
+	else
+	{
+		glUniformMatrix4fv(m_uniforms[name], count, transpose, &matrix[0][0]);
+	}
+}
+
 void Shader::ShutdownShaders()
 {
 	/*glDetachShader(m_shaderProgramID, m_vertexShaderID);

@@ -3,13 +3,6 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
-// TODO IMPLEMENT 2D MODE.
-//// Enable Depth for 3d so quads don't overlap.
-//glEnable(GL_DEPTH_TEST);
-//
-//// Ortographic view
-//proj = glm::ortho(0.0f, (float)width, 0.0f, (float)height);
-
 class Camera : public GameObject
 {
 public:
@@ -18,7 +11,20 @@ public:
 
 public:
 
-	void LookAt();
+	enum Origin2D{ TOP_LEFT, BOTTOM_LEFT};
+
+public:
+
+	virtual void Update();
+
+public:
+
+	void SetOrthoView();
+	void SetPerspectiveView();
+
+public:
+
+	void CalulateLookAt();
 	void Projection();
 
 public:
@@ -28,14 +34,17 @@ public:
 
 protected:
 
-	float m_fov;
-	float m_farClip;
-	float m_nearClip;
-	float m_aspectRatio;
+	GLfloat m_fov;
+	GLfloat m_farClip;
+	GLfloat m_nearClip;
+	GLfloat m_velocity;
+	GLfloat m_aspectRatio;
+	GLfloat m_sensitivity;
 
-	glm::vec3 m_target;
+	glm::vec3 m_up;
+	glm::vec3 m_forward;
 
-	glm::mat4 m_proj;
-	glm::mat4 m_lookAt; //  View Matrix
+	glm::mat4 m_viewMatrix; 
+	glm::mat4 m_projectionMatrix;
 };
 

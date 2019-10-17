@@ -11,7 +11,7 @@ KeyState Input::GetKeyStates()
 	return m_keyStates;
 }
 
-glm::vec2 Input::GetMouseMotion()
+glm::ivec2 Input::GetMouseMotion()
 {
 	return m_mouseMotion;
 	
@@ -81,7 +81,7 @@ void Input::PollEvents()
 			case SDL_MOUSEMOTION:
 			{
 				m_mouseMotion.x = events.motion.xrel;
-				m_mouseMotion.x = events.motion.yrel;
+				m_mouseMotion.y = events.motion.yrel;
 
 				break;
 			}

@@ -33,6 +33,7 @@ public:
 
 public:
 
+	void SetDepthTest(bool flag);
 	void SetBackgroundColor(glm::vec4 bgcolor);
 	void SetBackgroundColor(float r, float g, float b, float a);
 
@@ -52,6 +53,8 @@ private:
 
 	int m_widht;
 	int m_height;
+
+	bool m_depthTest;
 
 	glm::vec4 m_backgroundColor;
 };

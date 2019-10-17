@@ -10,9 +10,9 @@ Screen* Screen::Instance()
 
 void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 {
-	
 	m_widht = widht;
 	m_height = height;
+	m_depthTest = true;
 
 	// -------------------------------------------# Initialize SDL.
 
@@ -99,7 +99,16 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 void Screen::ClearBuffers()
 {
 	glClearColor(m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (m_depthTest)
+	{
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+	else
+	{
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
 }
 
 void Screen::SwapBuffers()
@@ -138,6 +147,11 @@ int Screen::GetScreenWidth()
 int Screen::GetScreenHeight()
 {
 	return m_height;
+}
+
+void Screen::SetDepthTest(bool flag)
+{
+	m_depthTest = flag;
 }
 
 void Screen::SetBackgroundColor(glm::vec4 bgcolor)

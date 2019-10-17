@@ -71,7 +71,7 @@ public:
 
 	KeyState GetKeyStates();
 
-	glm::vec2 GetMouseMotion();
+	glm::ivec2 GetMouseMotion();
 	glm::vec2 GetMousePosition();
 
 public:
@@ -89,7 +89,7 @@ private:
 	bool m_IsKeyPressed;
 
 	KeyState m_keyStates;
-	glm::vec2 m_mouseMotion;
+	glm::ivec2 m_mouseMotion;
 	glm::vec2 m_mousePosition;
 
 	std::map<std::string, int> m_keys;

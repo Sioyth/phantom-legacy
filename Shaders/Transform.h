@@ -24,6 +24,7 @@ public:
 	const glm::vec3& GetRotation();
 	const glm::vec3& GetScale();
 
+	const glm::mat4x4& GetTransformMatrix();
 
 private:
 

@@ -13,6 +13,10 @@ void GameObject::Update()
 {
 }
 
+void GameObject::Create()
+{
+}
+
 Shader& GameObject::GetShader()
 {
 	return m_shader;
