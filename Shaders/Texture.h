@@ -17,7 +17,7 @@ public:
 public:
 
 	void BindTexture();
-	bool LoadTexture();
+	bool LoadTexture(const std::string& filename, const std::string& textureName);
 	void UnbindTexture();
 	void UnloadTexture();
 

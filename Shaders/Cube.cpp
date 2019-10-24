@@ -67,7 +67,7 @@ void Cube::Create()
 
 	
 
-	m_texture.LoadTexture();
+	//m_texture.LoadTexture();
 
 	m_shader.CreateVertexArray();
 	m_shader.BindVertexArray();

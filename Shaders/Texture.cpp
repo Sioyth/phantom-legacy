@@ -19,13 +19,13 @@ void Texture::BindTexture()
 	glBindTexture(GL_TEXTURE_2D, m_ID);
 }
 
-bool Texture::LoadTexture()
+bool Texture::LoadTexture(const std::string& filename, const std::string& textureName)
 {
 	// -------------------------------------------#  load the raw image file into RAM
 
 	// load the raw image data from file and store in Ram
 	SDL_Surface* textureData = nullptr;
-	textureData = IMG_Load("Textures/Water_2.jpg");
+	textureData = IMG_Load(filename.c_str());
 
 	// if image date could not be load, return false;
 	if (!textureData)
@@ -50,11 +50,18 @@ bool Texture::LoadTexture()
 	glBindTexture(GL_TEXTURE_2D, m_ID);
 	{
 		// Set default filtering
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); // GL_LINEAR
+		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // GL_LINEAR_MIPMAP_LINEAR
+
+		// set wrap mode
+		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // GL_CLAMP_TO_EDGE
 
 		//create the texture object in VRAM extracted above
 		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, pixels);
+
+		// create mipmaps textures
+		glGenerateMipmap(GL_TEXTURE_2D);
 
 	}
 
@@ -65,7 +72,7 @@ bool Texture::LoadTexture()
 	SDL_FreeSurface(textureData);
 
 	// add new texture image to the map
-	(*s_textureMap)["Crate"] = *this;
+	(*s_textureMap)[textureName] = *this;
 	//s_textureMap->insert(std::pair<std::string, Texture>("CRATE", *this));
 
 	return true;

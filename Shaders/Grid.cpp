@@ -149,12 +149,6 @@ void Grid::Create()
 	GLfloat color[]{ m_color.r, m_color.g, m_color.b,
 				     m_color.r, m_color.g, m_color.b };*/
 
-
-
-	
-
-
-
 	m_totalVertices = offset / BYTERS_PER_VERTEX;
 
 }

@@ -32,7 +32,7 @@ void Quad::Create()
 
 	m_shader.CreateShader("Main.vert", "Main.frag");
 
-	m_texture.LoadTexture();
+	m_texture.LoadTexture("Textures/Water_2.jpg", "Water");
 
 	m_shader.CreateVertexArray();
 	m_shader.BindVertexArray();
@@ -66,12 +66,12 @@ void Quad::Render()
 {
 	m_shader.SendUniformData("isTextured", 1);
 
-	m_texture.BindTexture();
 
+	m_texture.BindTexture();
 	m_shader.BindVertexArray();
 	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	m_shader.DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	m_shader.UnbindVertexArray();
-
 	m_texture.UnbindTexture();
+
 }
