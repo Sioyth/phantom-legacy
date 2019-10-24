@@ -9,11 +9,10 @@
 #include "Screen.h"
 #include "Interface.h"
 
-#include "Cube.h"
-#include "CameraEditor.h"
-#include "Grid.h"
 #include "SceneManager.h"
 #include "DefaultScene.h"
+
+#include <SDL_image.h>
 
 GLfloat time = 0;
 bool IsGameEngineRunning = true;
@@ -54,7 +53,7 @@ int main(int argc, char* args[])
 
 	// attach to fbo
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
-
+	
 	// -------------------------------------------#  Main loop
 
 	while (IsGameEngineRunning)
@@ -72,8 +71,6 @@ int main(int argc, char* args[])
 
 		// Draws all the GUI and UI
 		Interface::Instance()->DrawUi();
-
-
 
 		//-------------------------------------------# Update and Render Scene
 

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Shaders">
-      <UniqueIdentifier>{32924e44-cf25-411d-881e-64b97b9a9f19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Shaders">
       <UniqueIdentifier>{ef075554-04ca-4e37-b81f-47871e4f81e9}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,15 @@
     </Filter>
     <Filter Include="Header Files\Core\Graphics">
       <UniqueIdentifier>{24f4eeac-384e-4192-bcd9-16a771d778f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{776daa3c-0312-4a18-b89a-8e1e3476f349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{7df7da0e-cb11-4c48-a817-cca768c4815c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{32924e44-cf25-411d-881e-64b97b9a9f19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,13 +123,19 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Core\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DefaultScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -188,13 +200,19 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files\Core\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DefaultScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

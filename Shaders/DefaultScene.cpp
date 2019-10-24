@@ -18,7 +18,8 @@ DefaultScene::DefaultScene()
 		m_gameObjects[i].Create();
 	}*/
 
-	m_cube.Create();
+	m_quad.Create();
+	//m_cube.Create();
 	m_grid.Create();
 
 	// -------------------------------------------#  Create Camera Perspective
@@ -38,7 +39,8 @@ void DefaultScene::Render()
 {
 	// -------------------------------------------# Render Game Objects
 
+	m_quad.Render();
 	m_grid.Render();
-	m_cube.Render();
+	//m_cube.Render();
 	
 }

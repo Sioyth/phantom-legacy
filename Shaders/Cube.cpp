@@ -43,7 +43,31 @@ void Cube::Create()
 						   20, 21, 23, 23, 21, 22
 	};
 
-	m_shader.CreateShader("Main.vert", "Main.frag");
+	GLfloat UVs[] = {
+		   0, 0.66f,
+			0.25f, 0.66f,
+			0, 0.33f,
+			0.25f, 0.33f,
+
+			0.5f, 0.66f,
+			0.5f, 0.33f,
+			0.75f, 0.66f,
+			0.75f, 0.33f,
+
+			1, 0.66f,
+			1, 0.33f,
+
+			0.25f, 1,
+			0.5f, 1,
+
+			0.25f, 0,
+			0.5f, 0,  
+					  };
+
+
+	
+
+	m_texture.LoadTexture();
 
 	m_shader.CreateVertexArray();
 	m_shader.BindVertexArray();
@@ -58,6 +82,11 @@ void Cube::Create()
 	m_shader.BufferData(colors3d, sizeof(colors3d), "colorIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
 	m_shader.UnbindBuffer();
 
+	m_shader.CreateBuffer("TextureVBO");
+	m_shader.BindBuffer("TextureVBO");
+	m_shader.BufferData(UVs, sizeof(UVs), "textureIn", 2, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.UnbindBuffer();
+
 	m_shader.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
 	m_shader.UnbindVertexArray();
@@ -65,9 +94,13 @@ void Cube::Create()
 
 void Cube::Render()
 {
+	m_texture.BindTexture();
+
 	m_shader.BindVertexArray();
 	m_shader.BindUniform("model");
 	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	m_shader.DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	m_shader.UnbindVertexArray();
+
+	m_texture.UnbindTexture();
 }

@@ -161,6 +161,10 @@ void Grid::Create()
 
 void Grid::Render()
 {
+
+	m_shader.BindUniform("isTextured");
+	m_shader.SendUniformData("isTextured", 0);
+
 	m_shader.BindVertexArray();
 	m_shader.BindUniform("model");
 	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());

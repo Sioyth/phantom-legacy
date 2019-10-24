@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject.h"
+#include "Texture.h"
 
 class Cube : public GameObject
 {
@@ -9,5 +10,9 @@ public:
 
 	virtual void Render();
 	virtual void Create();
+
+private:
+
+	Texture m_texture;
 };
 
