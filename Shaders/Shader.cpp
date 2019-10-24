@@ -194,6 +194,11 @@ void Shader::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GL
 	m_buffer.BufferData(data, dataSize, name, size, type, normalized, stride, mode);
 }
 
+void Shader::BufferSubData(GLenum target, const GLintptr& offset, const GLsizeiptr& size, const GLvoid* data)
+{
+	m_buffer.BufferSubData(target, offset, size, data);
+}
+
 void Shader::UnbindBuffer()
 {
 	m_buffer.UnbindBuffer();
@@ -214,6 +219,11 @@ void Shader::CreateVertexArray()
 	m_buffer.CreateVertexArray();
 }
 
+void Shader::DrawVertexArray(GLenum mode, GLint first, const GLsizei& count)
+{
+	m_buffer.DrawVertexArray(mode, first, count);
+}
+
 void Shader::BindElementBuffer()
 {
 	m_buffer.BindElementBuffer();
@@ -226,6 +236,11 @@ void Shader::ElementBufferData()
 void Shader::CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode)
 {
 	m_buffer.CreateElementBuffer(dataSize, data, mode);
+}
+
+void Shader::DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices)
+{
+	m_buffer.DrawElements(mode, count, type, indices);
 }
 
 void Shader::UnbindElementBuffer()

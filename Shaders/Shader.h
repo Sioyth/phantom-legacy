@@ -40,6 +40,8 @@ public:
 	void BindBuffer(std::string bufferName);
 	void CreateBuffer(std::string bufferName);
 	void BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode);
+	void BufferSubData(GLenum target, const GLintptr& offset, const GLsizeiptr& size, const GLvoid* data);
+
 	void UnbindBuffer();
 
 	// -------------------------------------------# VAO
@@ -47,13 +49,14 @@ public:
 	void BindVertexArray();
 	void UnbindVertexArray();
 	void CreateVertexArray();
+	void DrawVertexArray(GLenum mode, GLint first, const GLsizei& count);
 
 	// -------------------------------------------# EBO
 
 	void BindElementBuffer();
 	void ElementBufferData();
 	void CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode);
-
+	void DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices);
 	void UnbindElementBuffer();
 
 	// -------------------------------------------#

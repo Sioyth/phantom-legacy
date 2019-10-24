@@ -81,6 +81,11 @@ void Buffer::CreateVertexArray()
 	glGenVertexArrays(1, &m_VAO);
 }
 
+void Buffer::DrawVertexArray(GLenum mode, GLint first, const GLsizei& count)
+{
+	glDrawArrays(mode, first, count);
+}
+
 void Buffer::BindElementBuffer()
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
@@ -91,6 +96,11 @@ void Buffer::CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data,
 	glGenBuffers(1, &m_EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, dataSize, data, mode);
+}
+
+void Buffer::DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices)
+{
+	glDrawElements(mode, count, type, indices);
 }
 
 void Buffer::UnbindElementBuffer()

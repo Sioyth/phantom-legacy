@@ -6,10 +6,10 @@ Input* Input::Instance()
 	return input;
 }
 
-KeyState Input::GetKeyStates()
-{
-	return m_keyStates;
-}
+//KeyState Input::GetKeyStates()
+//{
+//	return m_keyStates;
+//}
 
 glm::ivec2 Input::GetMouseMotion()
 {
@@ -22,15 +22,59 @@ glm::vec2 Input::GetMousePosition()
 	return m_mousePosition;
 }
 
-bool Input::KeyDown(std::string key)
+bool Input::GetMouseButtonDown(int mouseid)
 {
-	if (m_keys.find(key) == m_keys.end())
+	switch (mouseid)
 	{
-		return false;
+	case 0:
+	{
+		if (m_IsLeftMouseButtonPressed)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	case 1:
+	{
+		if (m_IsRightMouseButtonPressed)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	case 2:
+	{
+		if (m_IsLeftMouseButtonPressed)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	default:
+		break;
+	}
+}
+
+bool Input::KeyDown(Keycode keycode)
+{
+	if (m_keyStates[keycode])
+	{
+		return true;
 	}
 	else
 	{
-		return true;
+		return false;
 	}
 }
 
@@ -92,21 +136,22 @@ void Input::PollEvents()
 				{
 					case SDL_BUTTON_LEFT:
 					{
-
+						m_IsLeftMouseButtonPressed = true;
 						break;
 					}
 
 					case SDL_BUTTON_RIGHT:
 					{
-
+						m_IsRightMouseButtonPressed = true;
 						break;
 					}
 
 					case SDL_BUTTON_MIDDLE:
 					{
-
+						m_IsMiddleMouseButtonPressed = true;
 						break;
 					}
+
 
 				}
 				break;
@@ -118,19 +163,19 @@ void Input::PollEvents()
 				{
 					case SDL_BUTTON_LEFT:
 					{
-
+						m_IsLeftMouseButtonPressed = false;
 						break;
 					}
 
 					case SDL_BUTTON_RIGHT:
 					{
-
+						m_IsRightMouseButtonPressed = false;
 						break;
 					}
 
 					case SDL_BUTTON_MIDDLE:
 					{
-
+						m_IsMiddleMouseButtonPressed = false;
 						break;
 					}
 

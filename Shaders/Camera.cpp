@@ -9,7 +9,7 @@ Camera::Camera()
 	m_forward = glm::vec3(0.0f, 0.0f, -1.0f);
 
 	m_velocity = 0.05f;
-	m_sensitivity = 0.5f;
+	m_sensitivity = 0.2f;
 
 	m_fov = 45;
 	m_nearClip = 0.1f;
@@ -19,65 +19,6 @@ Camera::Camera()
 
 	m_aspectRatio = (float)Screen::Instance()->GetScreenWidth() / 
 					(float)Screen::Instance()->GetScreenHeight();
-}
-
-void Camera::Update()
-{
-
-	glm::ivec2 mouseMotion;
-
-	mouseMotion = Input::Instance()->GetMouseMotion();
-
-	static GLfloat yaw = -90.0f;
-	static GLfloat pitch = 0.0f;
-
-	yaw += mouseMotion.x * m_sensitivity;
-	pitch += -mouseMotion.y * m_sensitivity;
-
-	m_forward.x = glm::cos(glm::radians(pitch)) * glm::cos(glm::radians(yaw));
-	m_forward.y = glm::sin(glm::radians(pitch));
-	m_forward.z = glm::cos(glm::radians(pitch)) * glm::sin(glm::radians(yaw));
-
-	// Get key states
-	KeyState keyStates = Input::Instance()->GetKeyStates();
-
-	if (keyStates[SDL_SCANCODE_W])
-	{
-		m_transform.Translate(m_forward * m_velocity);
-	}
-
-	if (keyStates[SDL_SCANCODE_S])
-	{
-		m_transform.Translate(-m_forward * m_velocity);
-	}
-
-	if (keyStates[SDL_SCANCODE_A])
-	{
-		m_transform.Translate(-glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
-	}
-
-	if (keyStates[SDL_SCANCODE_D])
-	{
-		m_transform.Translate(glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
-	}
-
-	if (keyStates[SDL_SCANCODE_Q])
-	{
-		glm::vec3 right = glm::cross(m_forward, m_up);
-		glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
-
-		m_transform.Translate(up * m_velocity);
-	}
-
-	if (keyStates[SDL_SCANCODE_E])
-	{
-		glm::vec3 right = glm::cross(m_forward, m_up);
-		glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
-
-		m_transform.Translate(-up * m_velocity);
-	}
-
-	CalulateLookAt();
 }
 
 void Camera::SetOrthoView()

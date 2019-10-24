@@ -10,8 +10,10 @@
 #include "Interface.h"
 
 #include "Cube.h"
-#include "Camera.h"
+#include "CameraEditor.h"
 #include "Grid.h"
+#include "SceneManager.h"
+#include "DefaultScene.h"
 
 GLfloat time = 0;
 bool IsGameEngineRunning = true;
@@ -24,19 +26,9 @@ int main(int argc, char* args[])
 	Screen::Instance()->Initialize(1280, 720, 4, 6, true);
 
 	// -------------------------------------------#  Instanciate Game Objects
-	
-	Cube m_cube;
-	Grid m_grid;
-	Camera m_camera;
 
-	// -------------------------------------------#  Create Game Objects
-
-	m_cube.Create();
-	m_grid.Create();
-
-	// -------------------------------------------#  Create Camera Perspective
-
-	m_camera.SetPerspectiveView();
+	DefaultScene m_defaultScene;
+	SceneManager::Instance()->ChangeScene("DefaultScene");
 
 	// -------------------------------------------# 
 
@@ -81,17 +73,12 @@ int main(int argc, char* args[])
 		// Draws all the GUI and UI
 		Interface::Instance()->DrawUi();
 
-		// Get key states
-		KeyState keyStates = Input::Instance()->GetKeyStates();
 
-		// -------------------------------------------# Update Game Objects
 
-		m_camera.Update();
+		//-------------------------------------------# Update and Render Scene
 
-		// -------------------------------------------# Render Game Objects
-	
-		m_grid.Render();
-		m_cube.Render();
+		SceneManager::Instance()->GetCurrentScene().Update();
+		SceneManager::Instance()->GetCurrentScene().Render();
 
 		// -------------------------------------------# 
 		// TESTING CODE FOR A NEW VIEW PORT

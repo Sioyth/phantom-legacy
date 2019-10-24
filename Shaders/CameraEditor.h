@@ -7,5 +7,11 @@ class CameraEditor : public Camera
 public:
 
 	CameraEditor();
+
+public:
+
+	void Update();
+
+
 };
 

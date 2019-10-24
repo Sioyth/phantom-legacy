@@ -23,12 +23,14 @@ public:
 	void BindVertexArray();
 	void UnbindVertexArray();
 	void CreateVertexArray();
+	void DrawVertexArray(GLenum mode, GLint first, const GLsizei& count);
 
 public:
 
 	void BindElementBuffer();
 	void ElementBufferData();
 	void CreateElementBuffer(const GLsizeiptr& dataSize, const GLvoid* data, GLenum mode);
+	void DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices);
 	void UnbindElementBuffer();
 
 private:
