@@ -15,10 +15,6 @@ public:
 
 public:
 
-	virtual void Update() {};
-
-public:
-
 	void SetOrthoView();
 	void SetPerspectiveView();
 

@@ -15,6 +15,8 @@ public:
 	virtual void Update() {};
 	virtual void Render() {};
 
+	void PushGameObject(GameObject* obj);
+
 protected:
 
 	bool m_isEditing;

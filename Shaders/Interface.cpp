@@ -1,4 +1,5 @@
 #include "Interface.h"
+#include "Input.h"
 
 Interface* Interface::Instance()
 {
@@ -96,8 +97,13 @@ Interface::Interface()
 
 void Interface::DrawUi()
 {
+	// Draws all the UI or inferface component
 	DrawMainMenuBar();
 	DrawConsole();
+	RightClickMenu();
+
+	// FOR DEBUG ONLY/ ALSO USED AS CODE REFERENCE FOR IMGUII
+	ImGui::ShowDemoWindow(); 
 }
 
 void Interface::DrawConsole()
@@ -111,7 +117,7 @@ void Interface::DrawConsole()
 
 	ImGui::Begin("Debug Console");
 
-	// -------------------------------------------# Adds Debug Buttons
+	// -------------------------------------------# Adds Debug Buttons (TESTING)
 
 	if (ImGui::Button("Add Log"))
 		Debug::Log("Dummy log");
@@ -159,8 +165,10 @@ void Interface::DrawConsole()
 
 		ImGui::TextUnformatted(Debug::GetLogs()[i].c_str());
 
-		if(pop_color)
+		if (pop_color)
+		{
 			ImGui::PopStyleColor();
+		}
 
 	}
 
@@ -191,6 +199,43 @@ void Interface::DrawMainMenuBar()
 	}
 
 	// -------------------------------------------# 
+}
+
+void Interface::RightClickMenu()
+{
+	// problems with depency as it depends on the current scene, and depends on having all includes for primitives..
+	// Need to fix the vector of GameObjects in each scene.
+
+	if (m_isRightMenuEnabled)
+	{
+		ImGui::OpenPopup("Menu");
+		if (ImGui::BeginPopup("Menu", m_isRightMenuEnabled))
+		{
+
+			if (ImGui::BeginMenu("New Primitive"))
+			{
+				if (ImGui::MenuItem("Plane")) 
+				{
+					// currentScene.PushGameObject(new Plane);
+				}
+				if (ImGui::MenuItem("Cube")) {}
+				if (ImGui::MenuItem("Sphere")) {}
+				ImGui::EndMenu();
+			}
+
+			ImGui::EndPopup();
+		}
+	}
+
+	if (Input::Instance()->GetMouseButtonDown(1))
+	{
+		m_isRightMenuEnabled = true;
+	}
+
+	if (Input::Instance()->GetMouseButtonDown(0))
+	{
+		m_isRightMenuEnabled = false;
+	}
 }
 
 

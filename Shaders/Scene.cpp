@@ -9,3 +9,8 @@ void Scene::Resume()
 {
 	m_isRunning = true;
 }
+
+void Scene::PushGameObject(GameObject* obj)
+{
+	m_gameObjects.push_back(*obj);
+}

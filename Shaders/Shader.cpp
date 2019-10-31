@@ -2,7 +2,9 @@
 #include "Debug.h"
 #include <fstream>
 
+
 GLuint Shader::s_shaderProgram;
+
 bool Shader::s_isProgramCreated = false;
 
 Shader::Shader()
@@ -16,22 +18,37 @@ Shader::Shader()
 
 }
 
+Shader::Shader(const std::string& filename, const std::string& textureName)
+{
+	// -------------------------------------------# Checks if program is already created
+
+	if (!s_isProgramCreated)
+	{
+		CreateShaderProgram();
+	}
+
+	if (!m_texture.LoadTexture(filename, textureName))
+	{
+		Debug::ErrorLog(filename + " couldn't be loaded!");
+	}
+}
+
 void Shader::CreateShader(std::string vertShader, std::string fragShader)
 {
 	// -------------------------------------------# Read Shader Files
 
-	m_vertShaderCode = ReadShader(vertShader);
-	m_fragShaderCode = ReadShader(fragShader);
+	std::string vertShaderCode = ReadShader(vertShader);
+	std::string fragShaderCode = ReadShader(fragShader);
 
 	// -------------------------------------------# Compile Shaders and checks for errors
 
-	m_vertexShader = CompileShader(GL_VERTEX_SHADER, m_vertShaderCode);
-	m_fragmentShader = CompileShader(GL_FRAGMENT_SHADER, m_fragShaderCode);
+	GLuint vertexShader = CompileShader(GL_VERTEX_SHADER, vertShaderCode);
+	GLuint fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragShaderCode);
 
 	// -------------------------------------------# Attach Shaders
 
-	glAttachShader(s_shaderProgram, m_vertexShader);
-	glAttachShader(s_shaderProgram, m_fragmentShader);
+	glAttachShader(s_shaderProgram, vertexShader);
+	glAttachShader(s_shaderProgram, fragmentShader);
 
 	// -------------------------------------------# Linking Shader Program
 
@@ -202,14 +219,19 @@ void Shader::CreateBuffer(std::string bufferName)
 	m_buffer.CreateBuffer(bufferName);
 }
 
-void Shader::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode)
+void Shader::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, GLenum mode)
 {
-	m_buffer.BufferData(data, dataSize, name, size, type, normalized, stride, mode);
+	m_buffer.BufferData(data, dataSize, name, mode);
 }
 
 void Shader::BufferSubData(GLenum target, const GLintptr& offset, const GLsizeiptr& size, const GLvoid* data)
 {
 	m_buffer.BufferSubData(target, offset, size, data);
+}
+
+void Shader::BufferSetAttribute(const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride)
+{
+	m_buffer.BufferSetAttribute(name, size, type, normalized, stride);
 }
 
 void Shader::UnbindBuffer()
@@ -259,6 +281,33 @@ void Shader::DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid*
 void Shader::UnbindElementBuffer()
 {
 	m_buffer.UnbindElementBuffer();
+}
+
+void Shader::BindTexture()
+{
+	m_texture.BindTexture();
+}
+
+bool Shader::LoadTexture(const std::string& filename, const std::string& textureName)
+{
+	if (m_texture.LoadTexture(filename, textureName))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Shader::UnbindTexture()
+{
+	m_texture.UnbindTexture();
+}
+
+void Shader::UnloadTexture()
+{
+	m_texture.UnloadTexture();
 }
 
 

@@ -9,13 +9,8 @@ Buffer::Buffer()
 	
 }
 
-void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride, GLenum mode)
-{
-	// TEMPORARY SOLUTION
-	s_shaderProgram = Shader::GetShaderProgram();
-
-	m_attributes[name] = glGetAttribLocation(s_shaderProgram, name);
-	
+void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GLchar* name, GLenum mode)
+{	
 	if (m_attributes[name] == -1)
 	{
 		Debug::ErrorLog(name);
@@ -23,14 +18,31 @@ void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GL
 	else
 	{
 		glBufferData(GL_ARRAY_BUFFER, dataSize, data, mode);
-		glVertexAttribPointer(m_attributes[name], size, type, normalized, stride, 0);
-		glEnableVertexAttribArray(m_attributes[name]);
+		
 	}
 }
 
 void Buffer::BufferSubData(GLenum target, const GLintptr& offset, const GLsizeiptr& size, const GLvoid* data)
 {
 	glBufferSubData(target, offset, size, data);
+}
+
+void Buffer::BufferSetAttribute(const GLchar* name, const GLint& size, GLenum type, GLboolean normalized, const GLsizei& stride)
+{
+	// TEMPORARY SOLUTION
+	s_shaderProgram = Shader::GetShaderProgram();
+
+	m_attributes[name] = glGetAttribLocation(s_shaderProgram, name);
+
+	if (m_attributes[name] == -1)
+	{
+		Debug::ErrorLog(name);
+	}
+	else
+	{
+		glVertexAttribPointer(m_attributes[name], size, type, normalized, stride, 0);
+		glEnableVertexAttribArray(m_attributes[name]);
+	}
 }
 
 void Buffer::BindBuffer(std::string bufferName)

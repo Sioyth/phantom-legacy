@@ -1,8 +1,8 @@
 #pragma once
-#include "GameObject.h"
+#include "Primitives.h"
 #include "Texture.h"
 
-class Quad : public GameObject
+class Quad : public Primitives
 {
 public:
 
@@ -12,8 +12,6 @@ public:
 	virtual void Create();
 
 private:
-
-	Texture m_texture;
 
 };
 

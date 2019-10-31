@@ -6,6 +6,7 @@
 #include "CameraEditor.h"
 #include "Grid.h"
 #include "Quad.h"
+#include "SkyBox.h"
 
 class DefaultScene : public Scene
 {
@@ -24,6 +25,7 @@ private:
 	Cube m_cube;
 	Grid m_grid;
 	CameraEditor m_camera;
+	SkyBox m_skyBox;
 
 };
 

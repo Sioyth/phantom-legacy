@@ -2,7 +2,9 @@
 
 Cube::Cube()
 {
-
+	m_color.r = 1.0f;
+	m_color.g = 1.0f;
+	m_color.b = 1.0f;
 }
 
 void Cube::Create()
@@ -21,18 +23,18 @@ void Cube::Create()
 							  0.5f, -0.5f, -0.5f, 0.5f, 0.5f, -0.5f
 	};
 
-	GLfloat colors3d[] = { 1.0f ,0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-					   1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-					   0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-					   0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-					   0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-					   0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-					   1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-					   1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
-					   1.0f, 0.5f, 0.0f, 1.0f, 0.5f, 0.0f,
-					   1.0f, 0.5f, 0.0f, 1.0f, 0.5f, 0.0f,
-					   1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f,
-					   1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f
+	GLfloat colors3d[] = {m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
+						  m_color.r, m_color.g, m_color.b, m_color.r, m_color.g, m_color.b,
 	};
 
 	GLuint indices3d[] = { 0,  1,  3,  3,  1,  2,
@@ -44,63 +46,55 @@ void Cube::Create()
 	};
 
 	GLfloat UVs[] = {
-		   0, 0.66f,
-			0.25f, 0.66f,
-			0, 0.33f,
-			0.25f, 0.33f,
+		  0.5f, 0.667f, 0.75f, 0.667f, 0.5f, 0.333f, 0.75f, 0.333f,
+		  0.0f, 0.667f, 0.25f, 0.667f, 0.0f, 0.333f, 0.25f, 0.333f,
+		  0.25f, 1.0f, 0.5f ,1.0f, 0.25f, 0.667f, 0.5f, 0.667f,
+		  0.25f, 0.333f, 0.5f, 0.333f, 0.25f, 0.0f, 0.5f, 0.0f,
+		  0.25f, 0.667f, 0.5f , 0.667f, 0.25f, 0.333f, 0.5f, 0.333f,
+		  0.75f, 0.667f, 1.0f, 0.667, 0.75f, 0.333f, 1.0f, 0.333f
 
-			0.5f, 0.66f,
-			0.5f, 0.33f,
-			0.75f, 0.66f,
-			0.75f, 0.33f,
-
-			1, 0.66f,
-			1, 0.33f,
-
-			0.25f, 1,
-			0.5f, 1,
-
-			0.25f, 0,
-			0.5f, 0,  
 					  };
-
-
-	
-
-	//m_texture.LoadTexture();
 
 	m_shader.CreateVertexArray();
 	m_shader.BindVertexArray();
 
 	m_shader.CreateBuffer("vertexVBO");
 	m_shader.BindBuffer("vertexVBO");
-	m_shader.BufferData(vertices3d, sizeof(vertices3d), "vertexIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
+	m_shader.BufferData(vertices3d, sizeof(vertices3d), "vertexIn", GL_DYNAMIC_DRAW);
 	m_shader.UnbindBuffer();
 
 	m_shader.CreateBuffer("colorVBO");
 	m_shader.BindBuffer("colorVBO");
-	m_shader.BufferData(colors3d, sizeof(colors3d), "colorIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+	m_shader.BufferData(colors3d, sizeof(colors3d), "colorIn", GL_DYNAMIC_DRAW);
 	m_shader.UnbindBuffer();
 
 	m_shader.CreateBuffer("TextureVBO");
 	m_shader.BindBuffer("TextureVBO");
-	m_shader.BufferData(UVs, sizeof(UVs), "textureIn", 2, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+	m_shader.BufferSetAttribute("textureIn", 2, GL_FLOAT, GL_FALSE, 0);
+	m_shader.BufferData(UVs, sizeof(UVs), "textureIn", GL_DYNAMIC_DRAW);
 	m_shader.UnbindBuffer();
 
 	m_shader.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
 	m_shader.UnbindVertexArray();
+
+	// Uniforms
+	m_shader.BindUniform("isTextured");
+	m_shader.BindUniform("model");
 }
 
 void Cube::Render()
 {
-	m_texture.BindTexture();
+	m_shader.SendUniformData("isTextured", 0);
+
+	m_shader.BindTexture();
 
 	m_shader.BindVertexArray();
-	m_shader.BindUniform("model");
 	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	m_shader.DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	m_shader.UnbindVertexArray();
 
-	m_texture.UnbindTexture();
+	m_shader.UnbindTexture();
 }

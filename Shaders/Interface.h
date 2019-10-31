@@ -23,14 +23,16 @@ private:
 	void DrawConsole();
 	void DrawMainMenuBar();
 	
+	void RightClickMenu();
+
+private:
+
+	bool m_isRightMenuEnabled = false;
+
 private:
 
 	Interface();
 	Interface(const Interface&);
 	Interface operator=(const Interface);
-
-private:
-
-	static std::vector<std::string>* m_logs;
 };
 

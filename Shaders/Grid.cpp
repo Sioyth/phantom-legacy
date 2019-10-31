@@ -28,12 +28,14 @@ void Grid::Create()
 	{
 		m_shader.CreateBuffer("vertexVBO");
 		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "vertexIn", 3, GL_INT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+		m_shader.BufferSetAttribute("vertexIn", 3, GL_INT, GL_FALSE, 0);
+		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "vertexIn", GL_DYNAMIC_DRAW);
 		m_shader.UnbindBuffer();
 
 		m_shader.CreateBuffer("colorVBO");
 		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "colorIn", 3, GL_FLOAT, GL_FALSE, 0, GL_DYNAMIC_DRAW);
+		m_shader.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "colorIn", GL_DYNAMIC_DRAW);
 		m_shader.UnbindBuffer();
 	}
 
