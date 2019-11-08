@@ -30,6 +30,8 @@ public:
 
 protected:
 
+	bool m_isMoving;
+
 	GLfloat m_fov;
 	GLfloat m_farClip;
 	GLfloat m_nearClip;

@@ -12,6 +12,7 @@ public:
 
 	virtual void Create();
 	virtual void Render();
+	virtual void Update() {};
 
 private:
 

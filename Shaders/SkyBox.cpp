@@ -83,6 +83,7 @@ void SkyBox::Create()
 	// Uniforms
 	m_shader.BindUniform("isTextured");
 	m_shader.BindUniform("model");
+	m_shader.BindUniform("isLit");
 
 	m_transform.Scale(100.0f, 100.0f, 100.0f);
 }
@@ -90,6 +91,7 @@ void SkyBox::Create()
 void SkyBox::Render()
 {
 	m_shader.SendUniformData("isTextured", 1);
+	m_shader.SendUniformData("isLit", 0);
 
 	m_shader.BindTexture();
 

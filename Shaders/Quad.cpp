@@ -5,7 +5,13 @@ Quad::Quad()
 	m_color.r = 1.0f;
 	m_color.g = 1.0f;
 	m_color.b = 1.0f;
-	m_isTextured;
+	m_isTextured = false;
+	m_isLit = false;
+
+	m_metallic = 1.0f;
+	m_ambient = glm::vec3(1.0f, 1.0f, 1.0f);
+	m_diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
+	m_specular = glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
 void Quad::Create()
@@ -62,13 +68,23 @@ void Quad::Create()
 	// Uniforms
 	m_shader.BindUniform("isTextured");
 	m_shader.BindUniform("model");
+	m_shader.BindUniform("isLit");
+	m_shader.BindUniform("material.ambient");
+	m_shader.BindUniform("material.diffuse");
+	m_shader.BindUniform("material.specular");
+	m_shader.BindUniform("material.metallic");
 
 }
 
 void Quad::Render()
 {
 	m_shader.SendUniformData("isTextured", m_isTextured);
+	m_shader.SendUniformData("isLit", 1);
 
+	m_shader.SendUniformData("material.ambient", m_ambient);
+	m_shader.SendUniformData("material.diffuse", m_diffuse);
+	m_shader.SendUniformData("material.specular",m_specular);
+	m_shader.SendUniformData("material.metallic",m_metallic);
 
 	m_shader.BindTexture();
 	m_shader.BindVertexArray();

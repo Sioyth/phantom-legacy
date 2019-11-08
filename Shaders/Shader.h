@@ -25,6 +25,7 @@ public:
 	void BindUniform(const std::string& name);
 	void SendUniformData(const std::string& name, GLint data);
 	void SendUniformData(const std::string& name, GLfloat data);
+	void SendUniformData(const std::string& name, glm::vec3 data);
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y);
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z);
 	void SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z, GLfloat w);

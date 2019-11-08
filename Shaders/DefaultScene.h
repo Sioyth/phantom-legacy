@@ -7,6 +7,7 @@
 #include "Grid.h"
 #include "Quad.h"
 #include "SkyBox.h"
+#include "PointLight.h"
 
 class DefaultScene : public Scene
 {
@@ -27,5 +28,6 @@ private:
 	CameraEditor m_camera;
 	SkyBox m_skyBox;
 
+	PointLight m_pointLight;
 };
 

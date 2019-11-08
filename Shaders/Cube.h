@@ -10,6 +10,7 @@ public:
 
 	virtual void Render();
 	virtual void Create();
+	virtual void Update();
 
 };
 

@@ -13,14 +13,26 @@ CameraEditor::CameraEditor()
 	m_projectionMatrix = glm::mat4(1.0f);
 	m_forward = glm::vec3(0.0f, 0.0, -1.0f);
 
+	m_isMoving = false;
+
 	m_aspectRatio = (float)Screen::Instance()->GetScreenWidth() /
 					(float)Screen::Instance()->GetScreenHeight();
+	
+}
+
+void CameraEditor::Create()
+{
+	m_shader.BindUniform("cameraPosition");
 }
 
 void CameraEditor::Update()
 {
+	m_shader.SendUniformData("cameraPosition", m_transform.GetPosition());
+
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{
+		m_isMoving = true;
+
 		glm::ivec2 mouseMotion;
 
 		// Get Mouse Motion
@@ -80,6 +92,8 @@ void CameraEditor::Update()
 		// TODO RAYCAST CLASS
 		// Ray Cast
 
+		m_isMoving = false;
+
 		glm::vec2 mousePosition = Input::Instance()->GetMousePosition();
 		float height = Screen::Instance()->GetScreenHeight();
 		float width = Screen::Instance()->GetScreenWidth();
@@ -112,6 +126,10 @@ void CameraEditor::Update()
 
 
 		Debug::Log(rayWorldCoords);
+	}
+	else {
+
+		m_isMoving = false;
 	}
 
 	CalulateLookAt();

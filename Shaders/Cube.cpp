@@ -85,6 +85,10 @@ void Cube::Create()
 	m_shader.BindUniform("model");
 }
 
+void Cube::Update()
+{
+}
+
 void Cube::Render()
 {
 	m_shader.SendUniformData("isTextured", 0);

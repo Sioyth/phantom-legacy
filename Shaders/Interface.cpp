@@ -172,6 +172,10 @@ void Interface::DrawConsole()
 
 	}
 
+	// Auto-Scroll
+	if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+		ImGui::SetScrollHereY(1.0f);
+
 	// -------------------------------------------# Ends ImGuiFrames
 
 	ImGui::EndChild();

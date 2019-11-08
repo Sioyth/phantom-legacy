@@ -7,8 +7,9 @@ public:
 
 	SkyBox();
 
-	virtual void Render();
-	virtual void Create();
+	void Render();
+	void Create();
+	void Update() {};
 
 };
 

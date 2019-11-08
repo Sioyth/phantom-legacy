@@ -14,9 +14,10 @@ class GameObject
 
 public:
 
+	//GameObject(int j) {};
+
 	virtual void Render() {};
-	virtual void Update() {};
-						  
+	virtual void Update() {};		  	
 	virtual void Create() {};
 
 	bool LoadTexture(const std::string& filename, const std::string& textureName);
@@ -33,8 +34,9 @@ public:
 
 protected:
 
-	bool m_isPicked;
+	bool m_isLit;
 	bool m_enabled;
+	bool m_isPicked;
 	bool m_isTextured;
 
 	std::string m_tag;

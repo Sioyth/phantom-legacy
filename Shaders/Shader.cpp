@@ -108,6 +108,30 @@ void Shader::BindUniform(const std::string& name)
 	}
 }
 
+void Shader::SendUniformData(const std::string& name, GLfloat data)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+	{
+		Debug::ErrorLog(name + " Uniform couldn't be finded!");
+	}
+	else
+	{
+		glUniform1f(m_uniforms[name], data);
+	}
+}
+
+void Shader::SendUniformData(const std::string& name, glm::vec3 data)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+	{
+		Debug::ErrorLog(name + " Uniform couldn't be finded!");
+	}
+	else
+	{
+		glUniform3f(m_uniforms[name], data.x, data.y, data.z);
+	}
+}
+
 void Shader::CreateShaderProgram()
 {
 	// -------------------------------------------# Create Shader Program
