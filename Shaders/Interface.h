@@ -27,6 +27,8 @@ private:
 
 private:
 
+	bool m_click;
+	bool m_cooldown;
 	bool m_isRightMenuEnabled = false;
 
 private:

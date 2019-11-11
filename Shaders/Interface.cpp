@@ -1,6 +1,8 @@
 #include "Interface.h"
 #include "Input.h"
 
+float startTimer = 0.0f;
+
 Interface* Interface::Instance()
 {
 	static Interface* s_Interface = new Interface;
@@ -9,6 +11,8 @@ Interface* Interface::Instance()
 
 Interface::Interface()
 {
+	m_click = false;
+	m_cooldown = false;
 
 	// -------------------------------------------# Set ImGui Style
 
@@ -231,10 +235,42 @@ void Interface::RightClickMenu()
 		}
 	}
 
+	
+	float currentTime = SDL_GetTicks() / 1000.0f;
+
+	//Debug::Log(currentTime);
+
+	
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{
-		m_isRightMenuEnabled = true;
+		if (!m_click)
+		{
+			m_cooldown = true;
+			m_isRightMenuEnabled = false;
+			startTimer = SDL_GetTicks() / 1000.0f;
+		}
+
+		m_click = true;
 	}
+	else 
+	{
+		startTimer = 0;
+		m_click = false;
+	}
+	
+	if (currentTime - 0.2f > startTimer && m_cooldown)
+	{
+		if (m_click)
+		{
+			m_cooldown = false;
+		}
+		else
+		{
+			m_isRightMenuEnabled = true;
+			m_cooldown = false;
+		}
+	}
+	
 
 	if (Input::Instance()->GetMouseButtonDown(0))
 	{
