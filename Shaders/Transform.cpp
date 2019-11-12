@@ -14,7 +14,7 @@ Transform::Transform()
 void Transform::Translate(glm::vec3 translation)
 {
 	m_position += translation;
-	m_transform = glm::translate(glm::mat4(1.0f), translation);
+	m_transform = glm::translate(m_transform, translation);
 }
 
 void Transform::Translate(float x, float y, float z)

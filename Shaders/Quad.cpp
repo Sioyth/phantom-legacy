@@ -40,57 +40,56 @@ void Quad::Create()
 
 	GLint indices[] = { 0, 1, 3, 3, 1, 2};
 
-	m_shader.CreateVertexArray();
-	m_shader.BindVertexArray();
+	m_material.CreateVertexArray();
+	m_material.BindVertexArray();
 	{
-		m_shader.CreateBuffer("vertexVBO");
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("vertexVBO");
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
-		m_shader.CreateBuffer("colorVBO");
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("colorVBO");
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
-		m_shader.CreateBuffer("TextureVBO");
-		m_shader.BindBuffer("TextureVBO");
-		m_shader.BufferSetAttribute("textureIn", 2, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(uvs, sizeof(uvs), "textureIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("TextureVBO");
+		m_material.BindBuffer("TextureVBO");
+		m_material.BufferSetAttribute("textureIn", 2, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(uvs, sizeof(uvs), "textureIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
-		m_shader.CreateElementBuffer(sizeof(indices), indices, GL_DYNAMIC_DRAW);
+		m_material.CreateElementBuffer(sizeof(indices), indices, GL_DYNAMIC_DRAW);
 	}
-	m_shader.UnbindVertexArray();
+	m_material.UnbindVertexArray();
 
 	// Uniforms
-	m_shader.BindUniform("isTextured");
-	m_shader.BindUniform("model");
-	m_shader.BindUniform("isLit");
-	m_shader.BindUniform("material.ambient");
-	m_shader.BindUniform("material.diffuse");
-	m_shader.BindUniform("material.specular");
-	m_shader.BindUniform("material.metallic");
+	m_material.BindUniform("isTextured");
+	m_material.BindUniform("model");
+	m_material.BindUniform("isLit");
+	m_material.BindUniform("material.ambient");
+	m_material.BindUniform("material.diffuse");
+	m_material.BindUniform("material.specular");
+	m_material.BindUniform("material.metallic");
 
 }
 
 void Quad::Render()
 {
-	m_shader.SendUniformData("isTextured", m_isTextured);
-	m_shader.SendUniformData("isLit", 1);
+	m_material.SendUniformData("isLit", 1);
+	m_material.SendUniformData("isTextured", m_isTextured);
+	m_material.SendUniformData("material.ambient", m_ambient);
+	m_material.SendUniformData("material.diffuse", m_diffuse);
+	m_material.SendUniformData("material.specular",m_specular);
+	m_material.SendUniformData("material.metallic",m_metallic);
 
-	m_shader.SendUniformData("material.ambient", m_ambient);
-	m_shader.SendUniformData("material.diffuse", m_diffuse);
-	m_shader.SendUniformData("material.specular",m_specular);
-	m_shader.SendUniformData("material.metallic",m_metallic);
-
-	m_shader.BindTexture();
-	m_shader.BindVertexArray();
-	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
-	m_shader.DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	m_shader.UnbindVertexArray();
-	m_shader.UnbindTexture();
+	m_material.BindTexture();
+	m_material.BindVertexArray();
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+	m_material.DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	m_material.UnbindVertexArray();
+	m_material.UnbindTexture();
 
 }

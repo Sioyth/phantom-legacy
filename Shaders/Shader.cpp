@@ -132,6 +132,18 @@ void Shader::SendUniformData(const std::string& name, glm::vec3 data)
 	}
 }
 
+void Shader::SendUniformData(const std::string& name, GLfloat x, GLfloat y)
+{
+}
+
+void Shader::SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z)
+{
+}
+
+void Shader::SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+{
+}
+
 void Shader::CreateShaderProgram()
 {
 	// -------------------------------------------# Create Shader Program
@@ -198,7 +210,7 @@ const GLuint& Shader::GetShaderProgram()
 	}
 }
 
-void Shader::SendUniformData(const std::string& name, int flag)
+void Shader::SendUniformData(const std::string& name, GLint flag)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 	{
@@ -225,12 +237,12 @@ void Shader::SendUniformData(const std::string& name, GLsizei count, GLboolean t
 
 void Shader::ShutdownShaders()
 {
-	/*glDetachShader(m_shaderProgramID, m_vertexShaderID);
-	glDetachShader(m_shaderProgramID, m_fragmentShaderID);
+	/*glDetachShader(m_materialProgramID, m_vertexShaderID);
+	glDetachShader(m_materialProgramID, m_fragmentShaderID);
 
 	glDeleteShader(m_vertexShaderID);
 	glDeleteShader(m_fragmentShaderID);
-	glDeleteProgram(m_shaderProgramID);*/
+	glDeleteProgram(m_materialProgramID);*/
 }
 
 void Shader::BindBuffer(std::string bufferName)

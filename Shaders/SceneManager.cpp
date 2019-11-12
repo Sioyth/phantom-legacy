@@ -42,4 +42,8 @@ Scene& SceneManager::GetCurrentScene()
 	{
 		return *m_currentScene;
 	}
+	else 
+	{
+		// return null
+	}
 }

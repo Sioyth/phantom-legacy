@@ -5,6 +5,7 @@
 #include "glad/glad.h"
 
 #include "Shader.h"
+#include "Material.h"
 #include "Transform.h"
 
 #include <iostream>
@@ -16,9 +17,9 @@ public:
 
 	//GameObject(int j) {};
 
-	virtual void Render() {};
-	virtual void Update() {};		  	
-	virtual void Create() {};
+	virtual void Render() = 0;
+	virtual void Update() = 0;		  	
+	virtual void Create() = 0;
 
 	bool LoadTexture(const std::string& filename, const std::string& textureName);
 
@@ -42,7 +43,7 @@ protected:
 	std::string m_tag;
 	std::string m_name;
 
-	Shader m_shader;
+	Material m_material;
 	Transform m_transform;
 
 };

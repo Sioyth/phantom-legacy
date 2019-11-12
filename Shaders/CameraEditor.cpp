@@ -22,12 +22,12 @@ CameraEditor::CameraEditor()
 
 void CameraEditor::Create()
 {
-	m_shader.BindUniform("cameraPosition");
+	m_material.BindUniform("cameraPosition");
 }
 
 void CameraEditor::Update()
 {
-	m_shader.SendUniformData("cameraPosition", m_transform.GetPosition());
+	m_material.SendUniformData("cameraPosition", m_transform.GetPosition());
 
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{
@@ -95,8 +95,8 @@ void CameraEditor::Update()
 		m_isMoving = false;
 
 		glm::vec2 mousePosition = Input::Instance()->GetMousePosition();
-		float height = Screen::Instance()->GetScreenHeight();
-		float width = Screen::Instance()->GetScreenWidth();
+		float height = (float)Screen::Instance()->GetScreenHeight();
+		float width = (float)Screen::Instance()->GetScreenWidth();
 
 		// Normalized Ray
 		glm::vec3 ray;

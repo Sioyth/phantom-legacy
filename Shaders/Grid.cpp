@@ -20,26 +20,26 @@ void Grid::Create()
 	const int BYTERS_PER_VERTEX = 3 * sizeof(GLfloat);
 	const int TOTAL_BYTES_VBO = SIZE * QUADRANTS * BYTERS_PER_LINE;
 
-	//m_shader.CreateShader("Main.vert", "Main.frag");
+	//m_material.CreateShader("Main.vert", "Main.frag");
 
-	m_shader.CreateVertexArray();
+	m_material.CreateVertexArray();
 
-	m_shader.BindVertexArray();
+	m_material.BindVertexArray();
 	{
-		m_shader.CreateBuffer("vertexVBO");
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSetAttribute("vertexIn", 3, GL_INT, GL_FALSE, 0);
-		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "vertexIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("vertexVBO");
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSetAttribute("vertexIn", 3, GL_INT, GL_FALSE, 0);
+		m_material.BufferData(nullptr, TOTAL_BYTES_VBO, "vertexIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
-		m_shader.CreateBuffer("colorVBO");
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(nullptr, TOTAL_BYTES_VBO, "colorIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("colorVBO");
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(nullptr, TOTAL_BYTES_VBO, "colorIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 	}
 
-	m_shader.UnbindVertexArray();
+	m_material.UnbindVertexArray();
 
 	// negative x axis lines
 	for (int i = 0; i < SIZE; i++)
@@ -50,13 +50,13 @@ void Grid::Create()
 		GLfloat color[]{ m_color.r, m_color.g, m_color.b,
 						  m_color.r, m_color.g, m_color.b };
 
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices); 
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices); 
+		m_material.UnbindBuffer();
 
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
+		m_material.UnbindBuffer();
 
 		offset += BYTERS_PER_LINE;
 
@@ -71,13 +71,13 @@ void Grid::Create()
 		GLfloat color[]{ m_color.r, m_color.g, m_color.b,
 						  m_color.r, m_color.g, m_color.b };
 
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
+		m_material.UnbindBuffer();
 
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
+		m_material.UnbindBuffer();
 
 		offset += BYTERS_PER_LINE;
 
@@ -92,13 +92,13 @@ void Grid::Create()
 		GLfloat color[]{ m_color.r, m_color.g, m_color.b,
 						  m_color.r, m_color.g, m_color.b };
 
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
+		m_material.UnbindBuffer();
 
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
+		m_material.UnbindBuffer();
 
 		offset += BYTERS_PER_LINE;
 
@@ -113,13 +113,13 @@ void Grid::Create()
 		GLfloat color[]{ m_color.r, m_color.g, m_color.b,
 						  m_color.r, m_color.g, m_color.b };
 
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
+		m_material.UnbindBuffer();
 
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
-		m_shader.UnbindBuffer();
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
+		m_material.UnbindBuffer();
 
 		offset += BYTERS_PER_LINE;
 
@@ -132,13 +132,13 @@ void Grid::Create()
 	GLfloat color[]{ 1.0f, 0.0f, 0.0f,
 					 1.0f, 0.0f, 0.0f};
 
-	m_shader.BindBuffer("vertexVBO");
-	m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
-	m_shader.UnbindBuffer();
+	m_material.BindBuffer("vertexVBO");
+	m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices);
+	m_material.UnbindBuffer();
 
-	m_shader.BindBuffer("colorVBO");
-	m_shader.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
-	m_shader.UnbindBuffer();
+	m_material.BindBuffer("colorVBO");
+	m_material.BufferSubData(GL_ARRAY_BUFFER, offset, sizeof(color), color);
+	m_material.UnbindBuffer();
 
 	offset += BYTERS_PER_LINE;
 
@@ -158,12 +158,12 @@ void Grid::Create()
 void Grid::Render()
 {
 
-	m_shader.BindUniform("isTextured");
-	m_shader.SendUniformData("isTextured", 0);
+	m_material.BindUniform("isTextured");
+	m_material.SendUniformData("isTextured", 0);
 
-	m_shader.BindVertexArray();
-	m_shader.BindUniform("model");
-	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
-	m_shader.DrawVertexArray(GL_LINES, 0, m_totalVertices);
-	m_shader.UnbindVertexArray();
+	m_material.BindVertexArray();
+	m_material.BindUniform("model");
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+	m_material.DrawVertexArray(GL_LINES, 0, m_totalVertices);
+	m_material.UnbindVertexArray();
 }

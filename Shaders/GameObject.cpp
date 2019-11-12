@@ -2,7 +2,7 @@
 
 bool GameObject::LoadTexture(const std::string& filename, const std::string& textureName)
 {
-	if (m_shader.LoadTexture(filename, textureName))
+	if (m_material.LoadTexture(filename, textureName))
 	{
 		m_isTextured = true;
 		return true;

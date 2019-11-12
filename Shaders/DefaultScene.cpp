@@ -23,7 +23,7 @@ DefaultScene::DefaultScene()
 	m_camera.Create();
 
 	m_quad.Create();
-	//m_quad.LoadTexture("Textures/Water_2.jpg", "Water");
+	m_quad.LoadTexture("Textures/Water_2.jpg", "Water");
 
 	m_cube.Create();
 	m_grid.Create();
@@ -51,10 +51,10 @@ void DefaultScene::Render()
 {
 	// -------------------------------------------# Render Game Objects
 
-	/*for (int i = 0; i < m_gameObjects.size(); i++)
+	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
-		m_gameObjects[i].Render();
-	}*/
+		(*m_gameObjects[i]).Render();
+	}
 
 	m_quad.Render();
 	//m_grid.Render();

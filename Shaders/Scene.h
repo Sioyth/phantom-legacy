@@ -21,6 +21,6 @@ protected:
 
 	bool m_isEditing;
 	bool m_isRunning;
-	std::vector<GameObject> m_gameObjects;
+	std::vector<GameObject*> m_gameObjects;
 };
 

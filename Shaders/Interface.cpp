@@ -1,5 +1,8 @@
 #include "Interface.h"
 #include "Input.h"
+#include "SceneManager.h"
+#include "Cube.h"
+#include "Quad.h"
 
 float startTimer = 0.0f;
 
@@ -222,12 +225,23 @@ void Interface::RightClickMenu()
 
 			if (ImGui::BeginMenu("New Primitive"))
 			{
-				if (ImGui::MenuItem("Plane")) 
+				if (ImGui::MenuItem("Quad")) 
 				{
-					// currentScene.PushGameObject(new Plane);
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Quad);
+					m_isRightMenuEnabled = false;
 				}
-				if (ImGui::MenuItem("Cube")) {}
-				if (ImGui::MenuItem("Sphere")) {}
+
+				if (ImGui::MenuItem("Cube")) 
+				{
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Cube);
+					m_isRightMenuEnabled = false;
+				}
+
+				/*if (ImGui::MenuItem("Sphere")) 
+				{
+
+				}*/
+
 				ImGui::EndMenu();
 			}
 
@@ -235,6 +249,7 @@ void Interface::RightClickMenu()
 		}
 	}
 
+	// TODO add function GetMouseButtonClick() in input class.
 	
 	float currentTime = SDL_GetTicks() / 1000.0f;
 
@@ -274,7 +289,7 @@ void Interface::RightClickMenu()
 
 	if (Input::Instance()->GetMouseButtonDown(0))
 	{
-		m_isRightMenuEnabled = false;
+		//m_isRightMenuEnabled = false;
 	}
 }
 

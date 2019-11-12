@@ -1,4 +1,5 @@
 #include "PointLight.h"
+#include "Input.h"
 
 PointLight::PointLight()
 {
@@ -19,52 +20,87 @@ void PointLight::Create()
 
 	GLfloat colors[]{ m_color.r, m_color.g, m_color.b };
 
-	m_shader.CreateVertexArray();
-	m_shader.BindVertexArray();
+	m_material.CreateVertexArray();
+	m_material.BindVertexArray();
 	{
-		m_shader.CreateBuffer("vertexVBO");
-		m_shader.BindBuffer("vertexVBO");
-		m_shader.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("vertexVBO");
+		m_material.BindBuffer("vertexVBO");
+		m_material.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
-		m_shader.CreateBuffer("colorVBO");
-		m_shader.BindBuffer("colorVBO");
-		m_shader.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_shader.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
-		m_shader.UnbindBuffer();
+		m_material.CreateBuffer("colorVBO");
+		m_material.BindBuffer("colorVBO");
+		m_material.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+		m_material.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
+		m_material.UnbindBuffer();
 
 	}
-	m_shader.UnbindVertexArray();
+	m_material.UnbindVertexArray();
 
 	// Uniforms
-	m_shader.BindUniform("model");
-	m_shader.BindUniform("lightColor");
-	m_shader.BindUniform("isTextured");
+	m_material.BindUniform("model");
+	m_material.BindUniform("lightColor");
+	m_material.BindUniform("isTextured");
 
-	m_shader.BindUniform("isLit");
-	m_shader.BindUniform("light.position");
-	m_shader.BindUniform("light.ambient");
-	m_shader.BindUniform("light.diffuse");
-	m_shader.BindUniform("light.specular");
+	m_material.BindUniform("isLit");
+	m_material.BindUniform("light.position");
+	m_material.BindUniform("light.ambient");
+	m_material.BindUniform("light.diffuse");
+	m_material.BindUniform("light.specular");
 
 
 }
 
 void PointLight::Render()
 {
-	m_shader.SendUniformData("isTextured", m_isTextured);
-	m_shader.SendUniformData("isLit", m_isLit);
-	m_shader.SendUniformData("lightColor", m_color);
+	float speed = 0.03f;
 
-	m_shader.SendUniformData("light.position", m_transform.GetPosition());
-	m_shader.SendUniformData("light.ambient",m_ambient);
-	m_shader.SendUniformData("light.diffuse", m_diffuse);
-	m_shader.SendUniformData("light.specular",m_specular);
+	// Camera Movement
+	if (Input::Instance()->KeyDown(Keycode::UP))
+	{
+		m_transform.Translate(glm::vec3(0.0f, 0.0f, -1.0f) * speed);
+	}
 
-	m_shader.BindVertexArray();
-	m_shader.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+	if (Input::Instance()->KeyDown(Keycode::DOWN))
+	{
+		m_transform.Translate(glm::vec3(0.0f, 0.0f, 1.0f) * speed);
+	}
+
+	if (Input::Instance()->KeyDown(Keycode::LEFT))
+	{
+		m_transform.Translate(glm::vec3(-1.0f, 0.0f, 0.0f) * speed);
+	}
+
+	if (Input::Instance()->KeyDown(Keycode::RIGHT))
+	{
+		m_transform.Translate(glm::vec3(1.0f, 0.0f, 0.0f) * speed);
+	}
+
+	// Down
+	if (Input::Instance()->KeyDown(Keycode::KP_4))
+	{
+		m_transform.Translate(glm::vec3(0.0f, 1.0f, 0.0f) * speed);
+	}
+
+	// Up
+	if (Input::Instance()->KeyDown(Keycode::KP_1))
+	{
+		m_transform.Translate(glm::vec3(0.0f, -1.0f, 0.0f) * speed);
+	}
+
+	m_material.SendUniformData("isTextured", m_isTextured);
+	m_material.SendUniformData("isLit", m_isLit);
+	m_material.SendUniformData("lightColor", m_color);
+
+	m_material.SendUniformData("light.position", m_transform.GetPosition());
+	m_material.SendUniformData("light.ambient",m_ambient);
+	m_material.SendUniformData("light.diffuse", m_diffuse);
+	m_material.SendUniformData("light.specular",m_specular);
+
+	m_material.BindVertexArray();
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	glPointSize(30.0f); // TODO put this in shader class
 	glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
-	m_shader.DrawVertexArray(GL_POINTS, 0, 1);
+	m_material.DrawVertexArray(GL_POINTS, 0, 1);
 }

@@ -1,4 +1,25 @@
-﻿  Interface.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.h(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(153,20): warning C4018: '<': signed/unsigned mismatch
+﻿  Camera.cpp
+  CameraEditor.cpp
+  Cube.cpp
+  DefaultScene.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Cube.cpp(56,8): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  GameObject.cpp
+  Grid.cpp
+  Interface.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(54,20): warning C4018: '<': signed/unsigned mismatch
+  Light.cpp
+  main.cpp
+  Material.cpp
+  PointLight.cpp
+  Primitives.cpp
+  Quad.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Shader.cpp
+  SkyBox.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(156,20): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+C:\Users\Sioyth\Desktop\phantom\Shaders\SkyBox.cpp(53,2): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\Sioyth\Desktop\phantom\Shaders\Shader.cpp(211): warning C4715: 'Shader::GetShaderProgram': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\SceneManager.cpp(49): warning C4715: 'SceneManager::GetCurrentScene': not all control paths return a value
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe

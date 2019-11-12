@@ -29,7 +29,7 @@ void main()
    {
 	   if(isTextured == 1)
 	   {
-			pixelColor =  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4(lightColor, 1.0);
+			pixelColor =  vec4(colorOut, 1.0) * texture(textureImage, textureOut);// * vec4(lightColor, 1.0);
 	   }
 	   else
 	   {
