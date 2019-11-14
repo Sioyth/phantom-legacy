@@ -13,7 +13,7 @@ void Buffer::BufferData(const GLvoid* data, const GLsizeiptr& dataSize, const GL
 {	
 	if (m_attributes[name] == -1)
 	{
-		Debug::ErrorLog(name);
+		Debug::ErrorLog("Can't buffer " + (std::string)name + " Data!");
 	}
 	else
 	{
@@ -36,7 +36,7 @@ void Buffer::BufferSetAttribute(const GLchar* name, const GLint& size, GLenum ty
 
 	if (m_attributes[name] == -1)
 	{
-		Debug::ErrorLog(name);
+		Debug::ErrorLog("Can't set " + (std::string)name + " attributes!");
 	}
 	else
 	{

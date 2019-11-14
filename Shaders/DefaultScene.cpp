@@ -23,13 +23,13 @@ DefaultScene::DefaultScene()
 	m_camera.Create();
 
 	m_quad.Create();
-	m_quad.LoadTexture("Textures/Water_2.jpg", "Water");
+	//m_quad.LoadTexture("Textures/Water_2.jpg", "Water");
 
 	m_cube.Create();
 	m_grid.Create();
 	m_skyBox.Create();
 
-	m_quad.Scale(glm::vec3(10.0f));
+	m_quad.Scale(glm::vec3(50.0f));
 	m_quad.Rotate(90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
 	m_pointLight.Create();

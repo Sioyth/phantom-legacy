@@ -21,6 +21,10 @@ protected:
 	GLfloat m_power;
 	GLfloat m_intensity;
 
+	GLfloat m_attenuationQuad;
+	GLfloat m_attenuationConst;
+	GLfloat m_attenuationLinear;
+
 	glm::vec3 m_color;
 	glm::vec3 m_ambient;
 	glm::vec3 m_diffuse;

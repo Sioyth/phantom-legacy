@@ -9,9 +9,14 @@ PointLight::PointLight()
 	m_color.g = 0.0f;
 	m_color.b = 0.0f;
 
-	m_ambient = glm::vec3(1.0f, 1.0f, 1.0f);
-	m_diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
-	m_specular = glm::vec3(1.0f, 1.0f, 1.0f);
+	m_ambient = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.2f, 0.2f, 0.2f);
+	m_diffuse = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.8f, 0.4f, 0.0f);
+	m_specular = glm::vec3(0.0f, 1.0f, 1.0f);  //glm::vec3(0.4f, 0.3f, 0.1f);;
+	
+	m_attenuationConst = 1.0f;
+	m_attenuationLinear = 0.15f;
+	m_attenuationQuad = 2.0f;
+	
 }
 
 void PointLight::Create()
@@ -49,11 +54,34 @@ void PointLight::Create()
 	m_material.BindUniform("light.diffuse");
 	m_material.BindUniform("light.specular");
 
+	m_material.BindUniform("light.attenuationConst");
+	m_material.BindUniform("light.attenuationLinear");
+	m_material.BindUniform("light.attenuationQuad");
 
 }
 
 void PointLight::Render()
 {
+
+	m_material.SendUniformData("isTextured", m_isTextured);
+	m_material.SendUniformData("isLit", m_isLit);
+	m_material.SendUniformData("lightColor", m_color);
+
+	m_material.SendUniformData("light.position", m_transform.GetPosition());
+	m_material.SendUniformData("light.ambient",m_ambient);
+	m_material.SendUniformData("light.diffuse", m_diffuse);
+	m_material.SendUniformData("light.specular",m_specular);
+
+	m_material.SendUniformData("light.attenuationConst", m_attenuationConst);
+	m_material.SendUniformData("light.attenuationLinear", m_attenuationLinear);
+	m_material.SendUniformData("light.attenuationQuad", m_attenuationQuad);
+
+	m_material.BindVertexArray();
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+	glPointSize(30.0f); // TODO put this in shader class
+	glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
+	m_material.DrawVertexArray(GL_POINTS, 0, 1);
+
 	float speed = 0.03f;
 
 	// Camera Movement
@@ -88,19 +116,4 @@ void PointLight::Render()
 	{
 		m_transform.Translate(glm::vec3(0.0f, -1.0f, 0.0f) * speed);
 	}
-
-	m_material.SendUniformData("isTextured", m_isTextured);
-	m_material.SendUniformData("isLit", m_isLit);
-	m_material.SendUniformData("lightColor", m_color);
-
-	m_material.SendUniformData("light.position", m_transform.GetPosition());
-	m_material.SendUniformData("light.ambient",m_ambient);
-	m_material.SendUniformData("light.diffuse", m_diffuse);
-	m_material.SendUniformData("light.specular",m_specular);
-
-	m_material.BindVertexArray();
-	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
-	glPointSize(30.0f); // TODO put this in shader class
-	glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
-	m_material.DrawVertexArray(GL_POINTS, 0, 1);
 }

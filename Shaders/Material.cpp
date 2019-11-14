@@ -8,6 +8,26 @@ Material::Material()
 	m_specular = glm::vec3(1.0f, 1.0f, 1.0f);
 }
 
+void Material::SetDiffuse(glm::vec3 diffuse)
+{
+	m_diffuse = diffuse;
+}
+
+void Material::SetAmbient(glm::vec3 ambient)
+{
+	m_ambient = ambient;
+}
+
+void Material::SetMetallic(GLfloat metallic)
+{
+	m_metallic = metallic;
+}
+
+void Material::SetSpecular(glm::vec3 specular)
+{
+	m_specular = specular;
+}
+
 void Material::BindTexture()
 {
 	m_material.BindTexture();

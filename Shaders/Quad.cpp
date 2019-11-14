@@ -8,7 +8,7 @@ Quad::Quad()
 	m_isTextured = false;
 	m_isLit = false;
 
-	m_metallic = 1.0f;
+	m_metallic = 64.0f;
 	m_ambient = glm::vec3(1.0f, 1.0f, 1.0f);
 	m_diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
 	m_specular = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -84,10 +84,10 @@ void Quad::Render()
 	m_material.SendUniformData("material.diffuse", m_diffuse);
 	m_material.SendUniformData("material.specular",m_specular);
 	m_material.SendUniformData("material.metallic",m_metallic);
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
 	m_material.BindTexture();
 	m_material.BindVertexArray();
-	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 	m_material.DrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	m_material.UnbindVertexArray();
 	m_material.UnbindTexture();

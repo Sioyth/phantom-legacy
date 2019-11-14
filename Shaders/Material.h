@@ -13,7 +13,7 @@ public:
 
 public:
 
-	void SetDefuse(glm::vec3 defuse);
+	void SetDiffuse(glm::vec3 diffuse);
 	void SetAmbient(glm::vec3 ambient);
 	void SetMetallic(GLfloat metallic);
 	void SetSpecular(glm::vec3 specular);

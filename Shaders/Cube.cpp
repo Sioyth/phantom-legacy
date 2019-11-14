@@ -83,6 +83,11 @@ void Cube::Create()
 	// Uniforms
 	m_material.BindUniform("isTextured");
 	m_material.BindUniform("model");
+	m_material.BindUniform("isLit");
+	m_material.BindUniform("material.ambient");
+	m_material.BindUniform("material.diffuse");
+	m_material.BindUniform("material.specular");
+	m_material.BindUniform("material.metallic");
 }
 
 void Cube::Update()
@@ -91,6 +96,7 @@ void Cube::Update()
 
 void Cube::Render()
 {
+	m_material.SendUniformData("isLit", 1);
 	m_material.SendUniformData("isTextured", 0);
 
 	m_material.BindTexture();
