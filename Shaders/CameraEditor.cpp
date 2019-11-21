@@ -3,6 +3,9 @@
 #include "Input.h"
 #include "Debug.h"
 
+#include "SceneManager.h"
+#include "Physics.h"
+
 CameraEditor::CameraEditor()
 {
 
@@ -124,10 +127,16 @@ void CameraEditor::Update()
 		// Normalize
 		rayWorldCoords = glm::normalize(rayWorldCoords);
 
+		 SceneManager::Instance()->GetCurrentScene().GetPointLight().GetSphereCollider();
 
-		Debug::Log(rayWorldCoords);
+		 if (Physics::RaySphereCollision(SceneManager::Instance()->GetCurrentScene().GetPointLight().GetSphereCollider(), m_transform.GetPosition(), rayWorldCoords))
+		 {
+			 Debug::Log("Colliding");
+		 }
+
 	}
-	else {
+	else 
+	{
 
 		m_isMoving = false;
 	}

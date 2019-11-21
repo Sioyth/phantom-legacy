@@ -52,6 +52,12 @@
     <Filter Include="Header Files\Core\GameObjects">
       <UniqueIdentifier>{0506c208-ea1a-45fe-8fb6-acdb17c91f80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Physics">
+      <UniqueIdentifier>{595aaebd-6aac-4422-b1ac-ff3adaff1019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Physics">
+      <UniqueIdentifier>{73ef12aa-adb8-4fc4-8a23-1c3e7d6ad89f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\imgui.cpp">
@@ -96,12 +102,6 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files\Core\Libs</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -129,19 +129,34 @@
     <ClCompile Include="DefaultScene.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Primitives.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files\Core\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\Core\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Material.cpp">
+      <Filter>Source Files\Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Source Files\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>Source Files\Core\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives.cpp">
+      <Filter>Source Files\Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -182,12 +197,6 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files\Core\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="CameraEditor.h">
       <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
@@ -221,19 +230,34 @@
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Primitives.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="SkyBox.h">
       <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="PointLight.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Header Files\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>Header Files\Core\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives.h">
+      <Filter>Header Files\Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Material.h">
+      <Filter>Header Files\Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

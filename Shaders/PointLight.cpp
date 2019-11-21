@@ -16,6 +16,8 @@ PointLight::PointLight()
 	m_attenuationConst = 1.0f;
 	m_attenuationLinear = 0.15f;
 	m_attenuationQuad = 2.0f;
+
+	m_sphereCollider.SetRadius(2.0f);
 	
 }
 
@@ -62,6 +64,8 @@ void PointLight::Create()
 
 void PointLight::Render()
 {
+
+	m_sphereCollider.SetPosition(m_transform.GetPosition());
 
 	m_material.SendUniformData("isTextured", m_isTextured);
 	m_material.SendUniformData("isLit", m_isLit);
@@ -116,4 +120,9 @@ void PointLight::Render()
 	{
 		m_transform.Translate(glm::vec3(0.0f, -1.0f, 0.0f) * speed);
 	}
+}
+
+const SphereCollider& PointLight::GetSphereCollider()
+{
+	return m_sphereCollider;
 }

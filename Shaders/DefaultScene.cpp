@@ -20,6 +20,8 @@ DefaultScene::DefaultScene()
 		m_gameObjects[i].Create();
 	}*/
 
+	m_pointLight = new PointLight;
+
 	m_camera.Create();
 
 	m_quad.Create();
@@ -32,8 +34,10 @@ DefaultScene::DefaultScene()
 	m_quad.Scale(glm::vec3(50.0f));
 	m_quad.Rotate(90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
-	m_pointLight.Create();
-	m_pointLight.Translate(0.0f, 3.0f, 0.0f);
+	m_pointLight->Create();
+	m_pointLight->Translate(0.0f, 3.0f, 0.0f);
+
+	m_gameObjects.push_back(m_pointLight);
 	
 	// -------------------------------------------#  Create Camera Perspective
 
@@ -60,5 +64,5 @@ void DefaultScene::Render()
 	//m_grid.Render();
 	//m_cube.Render();
 	//m_skyBox.Render();
-	m_pointLight.Render();
+	m_pointLight->Render();
 }

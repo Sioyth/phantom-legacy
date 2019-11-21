@@ -27,7 +27,5 @@ private:
 	Grid m_grid;
 	CameraEditor m_camera;
 	SkyBox m_skyBox;
-
-	PointLight m_pointLight;
 };
 

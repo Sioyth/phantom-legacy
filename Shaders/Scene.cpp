@@ -15,3 +15,9 @@ void Scene::PushGameObject(GameObject* obj)
 	m_gameObjects.push_back(obj);
 	m_gameObjects.back()->Create();
 }
+
+std::vector<GameObject*>& Scene::GetGameObjects()
+{
+	return m_gameObjects;
+}
+
