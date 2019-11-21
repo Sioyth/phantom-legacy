@@ -1,6 +1,7 @@
 #pragma once
 #include "Light.h"
 #include "SphereCollider.h"
+#include "AABB.h"
 
 class PointLight : public Light
 {
@@ -12,12 +13,8 @@ public:
 	void Render();
 	void Update() {};
 
-public:
-
-	const SphereCollider& GetSphereCollider();
-
 private:
 
-	SphereCollider m_sphereCollider;
+
 };
 

@@ -19,14 +19,10 @@ public:
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();
 
-	PointLight GetPointLight() { return *m_pointLight; }
-
 protected:
 
 	bool m_isEditing;
 	bool m_isRunning;
 	std::vector<GameObject*> m_gameObjects;
-
-	PointLight* m_pointLight;
 };
 

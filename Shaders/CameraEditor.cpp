@@ -124,14 +124,22 @@ void CameraEditor::Update()
 		// Convert to world coords
 		glm::vec3 rayWorldCoords = invertedViewMatrix * rayEyeCoords;
 
-		// Normalize
+		// Normalize / Ray Direction
 		rayWorldCoords = glm::normalize(rayWorldCoords);
 
-		 SceneManager::Instance()->GetCurrentScene().GetPointLight().GetSphereCollider();
 
-		 if (Physics::RaySphereCollision(SceneManager::Instance()->GetCurrentScene().GetPointLight().GetSphereCollider(), m_transform.GetPosition(), rayWorldCoords))
+		// Checks all objects int he scene to see if it's colliding with it
+		 for (int i = 0; i < SceneManager::Instance()->GetCurrentScene().GetGameObjects().size(); i++)
 		 {
-			 Debug::Log("Colliding");
+			 if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetAABB(), m_transform.GetPosition(), rayWorldCoords)) 
+			 {
+				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(true);
+				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->Selected();
+			 }
+			 else
+			 {
+				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(false);
+			 }
 		 }
 
 	}

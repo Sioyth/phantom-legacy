@@ -24,13 +24,12 @@ bool Physics::RayAABBCollision(AABB collider, glm::vec3 rayPost, glm::vec3 rayDi
 	float t;
 	glm::vec3 dirfrac;
 
-	// r.dir is unit direction vector of ray
+	//
 	dirfrac.x = 1.0f / rayDir.x;
 	dirfrac.y = 1.0f / rayDir.y;
 	dirfrac.z = 1.0f / rayDir.z;
 
-	// lb is the corner of AABB with minimal coordinates - left bottom, rt is maximal corner
-	// r.org is origin of ray
+	// 
 	float t1 = (collider.GetMin().x - rayPost.x) * dirfrac.x;
 	float t2 = (collider.GetMax().x - rayPost.x) * dirfrac.x;
 	float t3 = (collider.GetMin().y - rayPost.y) * dirfrac.y;

@@ -44,3 +44,20 @@ void GameObject::Scale(const float& x, const float& y, const float& z)
 	m_transform.Scale(x, y, z);
 }
 
+void GameObject::Selected()
+{
+	if (m_isSelected)
+	{
+		if (Input::Instance()->GetMouseButtonDown(0))
+		{
+			glm::vec3 translate;
+			translate.x = Input::Instance()->GetMouseMotion().x;
+			translate.y = Input::Instance()->GetMouseMotion().y;
+			translate.z = 0.0f;
+
+			m_transform.Translate(translate * 0.01f);
+		}
+
+	}
+}
+

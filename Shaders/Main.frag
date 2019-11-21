@@ -135,7 +135,9 @@ vec3 CalculeSpecular()
 
 	//calculate the specular color
 	return light.specular * material.specular * specularTerm;
+
 }
+
 float CalculateAttenuation()
 {
 

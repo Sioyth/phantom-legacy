@@ -26,6 +26,10 @@ public:
 
 	const glm::mat4x4& GetTransformMatrix();
 
+public:
+
+	void Render();
+
 private:
 
 	glm::vec3 m_scale;
