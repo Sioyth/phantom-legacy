@@ -28,6 +28,7 @@ float metallic;
 in vec2 textureOut;
 in vec3 colorOut;
 in vec3 vertexOut;
+in vec3 normalOut;
 
 // -------------------------------------------# Out
 
@@ -75,20 +76,33 @@ void main()
    }
    else
    {
+		 // -------------------------------------------# normalize normal
+
+		vec3 normal = normalize(normalOut);
+
+		 // -------------------------------------------# Create ambient lightning
+
+		vec3 ambientColor = CalculateAmbient();
+
+		// -------------------------------------------# calculate the diffuse color
+
+		vec3 diffuseColor = CalculateDiffuse();
+
+		// -------------------------------------------# calculate the specular color
+
+		vec3 specularColor = CalculeSpecular();
+
+		// -------------------------------------------# Attenuation Formula
+
+		float attenuation = CalculateAttenuation();
+
 	   if(isTextured == 1)
 	   {
-			pixelColor =  vec4(colorOut, 1.0) * texture(textureImage, textureOut);// * vec4(lightColor, 1.0);
+			pixelColor =  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);// * vec4(lightColor, 1.0);
 	   }
 	   else
 	   {
-		
-		vec3 ambient = CalculateAmbient();
-		vec3 diffuse = CalculateDiffuse();
-		vec3 specular = CalculeSpecular();
-		float attenuation = CalculateAttenuation();
-
-		pixelColor =  vec4((ambient + diffuse + specular) * attenuation, 1.0);
-
+			pixelColor =  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
 	   }
    }
 } 
@@ -105,10 +119,7 @@ vec3 CalculateDiffuse()
 
 	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
 
-//	//determine the vertex in world space for calculations below
-//	vec3 vertexPosition = (model * vec4(vertexOut, 1.0)).xyz;
-
-	//calculate the light direction based on light’s position and vertex position
+	//calculate the light direction based on lightï¿½s position and vertex position
 	lightDirection = normalize(light.position - vertexOut);
 
 	//calculate the light intensity value
@@ -124,7 +135,7 @@ vec3 CalculeSpecular()
 		
 	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
 
-	//calculate the view direction based on camera’s position and vertex position
+	//calculate the view direction based on cameraï¿½s position and vertex position
 	vec3 viewDirection = normalize(cameraPosition - vertexOut);
 
 	//calculate the reflection based on reversed light direction and normal vectors
@@ -135,15 +146,11 @@ vec3 CalculeSpecular()
 
 	//calculate the specular color
 	return light.specular * material.specular * specularTerm;
-
 }
 
 float CalculateAttenuation()
 {
-
-	// Calculate the Distance from the light
+	// -------------------------------------------# calculate attenuation
 	float distanceFromLight = length(light.position - vertexOut);
-
-	// calculate attunation
 	return 1 / (light.attenuationConst + light.attenuationLinear * distanceFromLight + light.attenuationQuad * pow(distanceFromLight, 2.0));
 }

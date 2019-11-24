@@ -53,7 +53,22 @@ void Cube::Create()
 		  0.25f, 0.667f, 0.5f , 0.667f, 0.25f, 0.333f, 0.5f, 0.333f,
 		  0.75f, 0.667f, 1.0f, 0.667, 0.75f, 0.333f, 1.0f, 0.333f
 
-					  };
+	};
+
+	GLfloat normals[] = { 0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+						  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f, //front face
+						  0.0f,  0.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+						  0.0f,  0.0f, -1.0f,  0.0f,  0.0f, -1.0f, //back face
+						 -1.0f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+						 -1.0f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f, //left face
+						  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+						  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f, //right face
+						  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+						  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f, //top face
+						  0.0f, -1.0f,  0.0f,  0.0f, -1.0f,  0.0f,
+						  0.0f, -1.0f,  0.0f,  0.0f, -1.0f,  0.0f  //bottom face
+
+	}; 
 
 	m_material.CreateVertexArray();
 	m_material.BindVertexArray();
@@ -74,6 +89,12 @@ void Cube::Create()
 	m_material.BindBuffer("TextureVBO");
 	m_material.BufferSetAttribute("textureIn", 2, GL_FLOAT, GL_FALSE, 0);
 	m_material.BufferData(UVs, sizeof(UVs), "textureIn", GL_DYNAMIC_DRAW);
+	m_material.UnbindBuffer();
+
+	m_material.CreateBuffer("normalVBO");
+	m_material.BindBuffer("normalVBO");
+	m_material.BufferSetAttribute("normalIn", 3, GL_FLOAT, GL_FALSE, 0);
+	//m_material.BufferData(normals, sizeof(normals), "normalIn", GL_DYNAMIC_DRAW);
 	m_material.UnbindBuffer();
 
 	m_material.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);

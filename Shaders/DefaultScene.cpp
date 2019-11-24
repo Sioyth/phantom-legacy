@@ -62,7 +62,7 @@ void DefaultScene::Render()
 
 	m_quad.Render();
 	//m_grid.Render();
-	//m_cube.Render();
+	m_cube.Render();
 	//m_skyBox.Render();
 	m_pointLight->Render();
 }

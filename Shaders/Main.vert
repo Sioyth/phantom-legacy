@@ -3,10 +3,12 @@
 in vec3 colorIn;
 in vec3 vertexIn;
 in vec2 textureIn;
+in vec3 normalIn;
 
 out vec3 vertexOut;
 out vec3 colorOut;
 out vec2 textureOut;
+out vec3 normalOut;
 
 // TODO do it outside the shader in the application
 uniform int isLit;
@@ -18,6 +20,7 @@ uniform vec3 cameraPosition;
 
 void main()
 {
+	normalOut = normalIn;
 
 	vertexOut = (model * vec4(vertexIn, 1.0)).xyz;
 

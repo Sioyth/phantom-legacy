@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿  CameraEditor.cpp
   DefaultScene.cpp
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(132,22): warning C4018: '<': signed/unsigned mismatch
@@ -10,4 +11,8 @@ C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(58,20): warning C4018: 
   Generating Code...
 C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(156,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Sioyth\Desktop\phantom\Shaders\SceneManager.cpp(49): warning C4715: 'SceneManager::GetCurrentScene': not all control paths return a value
+=======
+﻿  DefaultScene.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(54,20): warning C4018: '<': signed/unsigned mismatch
+>>>>>>> Stashed changes
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe
