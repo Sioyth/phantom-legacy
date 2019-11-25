@@ -1,6 +1,6 @@
 #version 460
 
-#define TOTAL_LIGHTS 4
+#define TOTAL_LIGHTS 3
 
 // -------------------------------------------# Structs
 
@@ -40,6 +40,7 @@ out vec4 pixelColor;
 
 uniform int isLit;
 uniform int isTextured;
+uniform int lightsActiveNumber;
 uniform vec3 lightColor;
 uniform sampler2D textureImage;
 
@@ -58,10 +59,10 @@ vec3 lightDirection;
 
 // -------------------------------------------# Functions
 
-vec3 CalculateAmbient();
-vec3 CalculateDiffuse();
-vec3 CalculeSpecular();
-float CalculateAttenuation();
+vec3 CalculateAmbient(Light light);
+vec3 CalculateDiffuse(Light light);
+vec3 CalculeSpecular(Light light);
+float CalculateAttenuation(Light light);
 
 
 void main()
@@ -83,40 +84,45 @@ void main()
 
 		//vec3 normal = normalize(normalOut);
 
-		 // -------------------------------------------# Create ambient lightning
+		for(int i = 0; i < lightsActiveNumber; i++)
+		{
 
-		vec3 ambientColor = CalculateAmbient();
+			 // -------------------------------------------# Create ambient lightning
 
-		// -------------------------------------------# calculate the diffuse color
+			vec3 ambientColor = CalculateAmbient(lights[i]);
 
-		vec3 diffuseColor = CalculateDiffuse();
+			// -------------------------------------------# calculate the diffuse color
 
-		// -------------------------------------------# calculate the specular color
+			vec3 diffuseColor = CalculateDiffuse(lights[i]);
 
-		vec3 specularColor = CalculeSpecular();
+			// -------------------------------------------# calculate the specular color
 
-		// -------------------------------------------# Attenuation Formula
+			vec3 specularColor = CalculeSpecular(lights[i]);
 
-		float attenuation = CalculateAttenuation();
+			// -------------------------------------------# Attenuation Formula
 
-	   if(isTextured == 1)
-	   {
-			pixelColor =  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);// * vec4(lightColor, 1.0);
-	   }
-	   else
-	   {
-			pixelColor =  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
+			float attenuation = CalculateAttenuation(lights[i]);
+
+		
+		   if(isTextured == 1)
+		   {
+				pixelColor +=  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);// * vec4(lightColor, 1.0);
+		   }
+		   else
+		   {
+				pixelColor +=  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
+		   }
 	   }
    }
 } 
 
-vec3 CalculateAmbient()
+vec3 CalculateAmbient(Light light)
 {
 	// -------------------------------------------# Calculate Ambient Light
 	return  light.ambient * material.ambient;
 }
 
-vec3 CalculateDiffuse()
+vec3 CalculateDiffuse(Light light)
 {
 	// -------------------------------------------# calculate the diffuse color
 
@@ -132,7 +138,7 @@ vec3 CalculateDiffuse()
 	return light.diffuse * material.diffuse * lightIntensity;
 }
 
-vec3 CalculeSpecular()
+vec3 CalculeSpecular(Light light)
 {
 	// -------------------------------------------# calculate the specular color
 		
@@ -151,7 +157,7 @@ vec3 CalculeSpecular()
 	return light.specular * material.specular * specularTerm;
 }
 
-float CalculateAttenuation()
+float CalculateAttenuation(Light light)
 {
 	// -------------------------------------------# calculate attenuation
 	float distanceFromLight = length(light.position - vertexOut);

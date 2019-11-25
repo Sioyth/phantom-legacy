@@ -22,6 +22,12 @@ DefaultScene::DefaultScene()
 
 	m_pointLight = new PointLight;
 
+	PointLight* light = new PointLight;
+	light->Create();
+	light->SetLightColor(glm::vec3(0.8f, 0.6f, 0.0f));
+
+	m_gameObjects.push_back(light);
+
 	m_camera.Create();
 
 	m_quad.Create();

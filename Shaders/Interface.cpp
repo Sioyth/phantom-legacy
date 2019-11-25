@@ -3,6 +3,7 @@
 #include "SceneManager.h"
 #include "Cube.h"
 #include "Quad.h"
+#include "PointLight.h"
 
 float startTimer = 0.0f;
 
@@ -222,7 +223,7 @@ void Interface::RightClickMenu()
 		ImGui::OpenPopup("Menu");
 		if (ImGui::BeginPopup("Menu", m_isRightMenuEnabled))
 		{
-
+			// Primitives
 			if (ImGui::BeginMenu("New Primitive"))
 			{
 				if (ImGui::MenuItem("Quad")) 
@@ -241,6 +242,18 @@ void Interface::RightClickMenu()
 				{
 
 				}*/
+
+				ImGui::EndMenu();
+			}
+
+			// Lights
+			if (ImGui::BeginMenu("New Light"))
+			{
+				if (ImGui::MenuItem("Point Light"))
+				{
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(new PointLight);
+					m_isRightMenuEnabled = false;
+				}
 
 				ImGui::EndMenu();
 			}

@@ -1,13 +1,15 @@
 #include "PointLight.h"
 #include "Input.h"
 
+GLuint PointLight::s_totalLights = 0;
+
 PointLight::PointLight()
 {
 	m_isTextured = false;
 	m_isLit = false;
 	m_color.r = 1.0f;
-	m_color.g = 0.0f;
-	m_color.b = 0.0f;
+	m_color.g = 1.0f;
+	m_color.b = 1.0f;
 
 	m_ambient = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.2f, 0.2f, 0.2f);
 	m_diffuse = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.8f, 0.4f, 0.0f);
@@ -18,6 +20,10 @@ PointLight::PointLight()
 	m_attenuationQuad = 2.0f;
 
 	m_collider.SetDimension(glm::vec3(0.5f));
+
+	m_lightNumber = s_totalLights++;
+
+	m_lightNumberStr = std::to_string(m_lightNumber);
 	
 }
 
@@ -47,19 +53,20 @@ void PointLight::Create()
 	m_material.UnbindVertexArray();
 
 	// Uniforms
+	m_material.BindUniform("isLit");
 	m_material.BindUniform("model");
 	m_material.BindUniform("lightColor");
 	m_material.BindUniform("isTextured");
+	m_material.BindUniform("lightsActiveNumber");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].position");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].ambient");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].diffuse");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].specular");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].attenuationConst");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].attenuationLinear");
+	m_material.BindUniform("lights["+ m_lightNumberStr + "].attenuationQuad");
 
-	m_material.BindUniform("isLit");
-	m_material.BindUniform("light.position");
-	m_material.BindUniform("light.ambient");
-	m_material.BindUniform("light.diffuse");
-	m_material.BindUniform("light.specular");
-
-	m_material.BindUniform("light.attenuationConst");
-	m_material.BindUniform("light.attenuationLinear");
-	m_material.BindUniform("light.attenuationQuad");
+	m_material.SendUniformData("lightsActiveNumber", (int)s_totalLights);
 
 }
 
@@ -72,14 +79,14 @@ void PointLight::Render()
 	m_material.SendUniformData("isLit", m_isLit);
 	m_material.SendUniformData("lightColor", m_color);
 
-	m_material.SendUniformData("light.position", m_transform.GetPosition());
-	m_material.SendUniformData("light.ambient",m_ambient);
-	m_material.SendUniformData("light.diffuse", m_diffuse);
-	m_material.SendUniformData("light.specular",m_specular);
+	m_material.SendUniformData("lights["+ m_lightNumberStr + "].position", m_transform.GetPosition());
+	m_material.SendUniformData("lights["+ m_lightNumberStr + "].ambient",m_ambient);
+	m_material.SendUniformData("lights["+ m_lightNumberStr + "].diffuse", m_diffuse);
+	m_material.SendUniformData("lights["+ m_lightNumberStr + "].specular",m_specular);
 
-	m_material.SendUniformData("light.attenuationConst", m_attenuationConst);
-	m_material.SendUniformData("light.attenuationLinear", m_attenuationLinear);
-	m_material.SendUniformData("light.attenuationQuad", m_attenuationQuad);
+	m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationConst", m_attenuationConst);
+	m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationLinear", m_attenuationLinear);
+	m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationQuad",  m_attenuationQuad);
 
 	m_material.BindVertexArray();
 	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
