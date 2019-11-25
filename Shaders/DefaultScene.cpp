@@ -49,7 +49,6 @@ void DefaultScene::Update()
 {
 	// -------------------------------------------# Update Game Objects
 	m_camera.Update();
-
 }
 
 void DefaultScene::Render()

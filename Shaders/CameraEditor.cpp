@@ -175,7 +175,6 @@ void CameraEditor::Update()
 					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
 				}
 
-				Debug::Log("X - Translation!");
 			}
 
 			// Check Collision with transform Lines
@@ -194,8 +193,6 @@ void CameraEditor::Update()
 				{
 					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
 				}
-
-				Debug::Log("Y - Translation!");
 			}
 
 			// Check Collision with transform Lines
@@ -214,8 +211,6 @@ void CameraEditor::Update()
 				{
 					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
 				}
-
-				Debug::Log("Z - Translation!");
 			}
 		}
 

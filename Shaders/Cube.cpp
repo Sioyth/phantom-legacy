@@ -95,7 +95,7 @@ void Cube::Create()
 
 	m_material.CreateBuffer("normalVBO");
 	m_material.BindBuffer("normalVBO");
-	m_material.BufferSetAttribute("normalIn", 3, GL_FLOAT, GL_FALSE, 0);
+	m_material.BufferSetAttribute("hi", 2, GL_FLOAT, GL_FALSE, 0);
 	//m_material.BufferData(normals, sizeof(normals), "normalIn", GL_DYNAMIC_DRAW);
 	m_material.UnbindBuffer();
 

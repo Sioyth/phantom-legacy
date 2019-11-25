@@ -1,5 +1,7 @@
 #version 460
 
+#define TOTAL_LIGHTS 4
+
 // -------------------------------------------# Structs
 
 struct Light
@@ -42,6 +44,7 @@ uniform vec3 lightColor;
 uniform sampler2D textureImage;
 
 uniform Light light;
+uniform Light lights[TOTAL_LIGHTS];
 uniform Material material;
 
 uniform mat4 model;

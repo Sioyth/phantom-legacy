@@ -17,7 +17,7 @@ PointLight::PointLight()
 	m_attenuationLinear = 0.15f;
 	m_attenuationQuad = 2.0f;
 
-	m_collider.SetDimension(glm::vec3(2.0f));
+	m_collider.SetDimension(glm::vec3(0.5f));
 	
 }
 
