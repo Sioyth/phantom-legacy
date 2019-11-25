@@ -129,10 +129,11 @@ void CameraEditor::Update()
 		// Normalize / Ray Direction
 		rayWorldCoords = glm::normalize(rayWorldCoords);
 
+		//TODO move this out of camera editor class.
+
 		// Checks all objects int he scene to see if it's colliding with it
 		for (int i = 0; i < SceneManager::Instance()->GetCurrentScene().GetGameObjects().size(); i++)
 		{
-
 			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetCollider(), m_transform.GetPosition(), rayWorldCoords))
 			{
 				if (lastSelectedGameObject > -1)
@@ -153,14 +154,26 @@ void CameraEditor::Update()
 
 		if (lastSelectedGameObject > -1)
 		{
+
+			// TODO make this functions, 
+			static const int NUMBER_LINES = 3;
+
 			// Check Collision with transform Lines
 			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[0].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
-				translate.x = -Input::Instance()->GetMouseMotion().x;
+				translate.x = Input::Instance()->GetMouseMotion().x;
 
 				float speed = 0.01f;
-				m_transform.Translate(translate * speed);
+				translate *= speed;
+
+				SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->Translate(translate);
+
+				// Translates all lines to follow the object.
+				for (int i = 0; i < NUMBER_LINES; i++)
+				{
+					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
+				}
 
 				Debug::Log("X - Translation!");
 			}
@@ -169,10 +182,18 @@ void CameraEditor::Update()
 			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[1].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
-				translate.y = +Input::Instance()->GetMouseMotion().y;
+				translate.y = -Input::Instance()->GetMouseMotion().y;
 
 				float speed = 0.01f;
-				m_transform.Translate(translate * speed);
+				translate *= speed;
+
+				SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->Translate(translate);
+
+				// Translates all lines to follow the object.
+				for (int i = 0; i < NUMBER_LINES; i++)
+				{
+					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
+				}
 
 				Debug::Log("Y - Translation!");
 			}
@@ -181,10 +202,18 @@ void CameraEditor::Update()
 			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[2].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
-				translate.z = -Input::Instance()->GetMouseMotion().x;
+				translate.z = Input::Instance()->GetMouseMotion().x;
 
 				float speed = 0.01f;
-				m_transform.Translate(translate * speed);
+				translate *= speed;
+
+				SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->Translate(translate);
+
+				// Translates all lines to follow the object.
+				for (int i = 0; i < NUMBER_LINES; i++)
+				{
+					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[i].Translate(translate);
+				}
 
 				Debug::Log("Z - Translation!");
 			}
