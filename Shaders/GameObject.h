@@ -40,6 +40,7 @@ public:
 public:
 
 	void SetIsSelected(bool flag) { m_isSelected = flag; };
+	TransformLine* GetTransformLines();
 
 	const AABB& GetCollider() { return m_collider; };
 	const AABB& GetTransformLineCollider();
@@ -59,5 +60,9 @@ protected:
 	TransformLine* m_transformLine;
 
 	AABB m_collider;
+
+private:
+
+	glm::vec3 m_transformMidPoints[3];
 };
 

@@ -1,29 +1,31 @@
 #include "TransformLine.h"
 #include "Debug.h";
 
-TransformLine::TransformLine(glm::vec3 translation)
+TransformLine::TransformLine()
 {
 	m_isLit = false;
 	m_isTextured = false;
 
 	m_color = nullptr;
 	m_vertex = nullptr;
-
-	m_transform.Translate(translation);
-
-	m_collider.SetDimension(glm::vec3(1.0f, 1.0f, 1.0f));
-	m_collider.SetPosition(m_transform.GetPosition());
-	m_collider.CalculateMinMax();
 }
 
-void TransformLine::Create(glm::vec3 point1, glm::vec3 point2, glm::vec3 color)
+void TransformLine::Create(glm::vec3 point1, glm::vec3 point2, glm::vec3 color, glm::vec3 translation)
 {
-	
+	//Collider
+
+	m_transform.Translate(translation);
+	m_collider.SetPosition(m_transform.GetPosition());
+	m_collider.CalculateMinMax();
+
+	//Material
+
 	GLfloat line[] = { point1.x, point1.y, point1.z,
 					   point2.x, point2.y, point2.z };
 
 	GLfloat colorLine[] = { color.x, color.y, color.z,
 						color.x, color.y, color.z };
+
 
 	m_material.CreateVertexArray();
 	m_material.BindVertexArray();
@@ -50,9 +52,9 @@ void TransformLine::Create(glm::vec3 point1, glm::vec3 point2, glm::vec3 color)
 	
 }
 
-void TransformLine::Update()
+void TransformLine::Update(glm::vec3 bound)
 {
-	m_collider.SetPosition(m_transform.GetPosition());
+	m_collider.SetPosition(bound);
 	m_collider.CalculateMinMax();
 }
 
@@ -81,4 +83,9 @@ void TransformLine::SetVertex(GLfloat* vertex)
 void TransformLine::SetColor(GLfloat* color)
 {
 	m_color = color;
+}
+
+void TransformLine::SetColliderDimension(glm::vec3 dimension)
+{
+	m_collider.SetDimension(dimension);
 }

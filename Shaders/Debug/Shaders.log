@@ -1,12 +1,30 @@
 ﻿  CameraEditor.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(133,22): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         with
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:             T=glm::i32
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         and
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         [
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:             T=float
-C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(151,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(133,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(172,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         ]
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe

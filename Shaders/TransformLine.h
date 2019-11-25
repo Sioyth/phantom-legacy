@@ -9,10 +9,10 @@ class TransformLine
 {
 public :
 
-	TransformLine(glm::vec3 translation);
+	TransformLine();
 
-	void Create(glm::vec3 point1, glm::vec3 point2, glm::vec3 color);
-	void Update();
+	void Create(glm::vec3 point1, glm::vec3 point2, glm::vec3 color, glm::vec3 translation);
+	void Update(glm::vec3 bound);
 	void Render();
 
 public:
@@ -23,7 +23,9 @@ public:
 	void SetColor(glm::vec3 color);
 	void SetColor(glm::vec3 color1, glm::vec3 color2);
 
-	AABB GetCollider() { return m_collider; };
+	void SetColliderDimension(glm::vec3 dimension);
+
+	const AABB& GetCollider() { return m_collider; };
 
 private:
 
