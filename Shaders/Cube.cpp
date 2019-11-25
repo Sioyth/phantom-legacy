@@ -5,6 +5,8 @@ Cube::Cube()
 	m_color.r = 1.0f;
 	m_color.g = 1.0f;
 	m_color.b = 1.0f;
+
+	m_collider.SetDimension(glm::vec3(1.0f));
 }
 
 void Cube::Create()
@@ -117,6 +119,9 @@ void Cube::Update()
 
 void Cube::Render()
 {
+	m_collider.SetPosition(m_transform.GetPosition());
+	m_collider.CalculateMinMax();
+
 	m_material.SendUniformData("isLit", 1);
 	m_material.SendUniformData("isTextured", 0);
 

@@ -85,6 +85,11 @@ void TransformLine::SetColor(GLfloat* color)
 	m_color = color;
 }
 
+void TransformLine::Translate(glm::vec3 translation)
+{
+	m_transform.Translate(translation);
+}
+
 void TransformLine::SetColliderDimension(glm::vec3 dimension)
 {
 	m_collider.SetDimension(dimension);
