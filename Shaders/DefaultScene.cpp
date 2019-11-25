@@ -27,6 +27,7 @@ DefaultScene::DefaultScene()
 	m_quad.Create();
 	//m_quad.LoadTexture("Textures/Water_2.jpg", "Water");
 
+	//m_line.Create();
 	m_cube.Create();
 	m_grid.Create();
 	m_skyBox.Create();
@@ -60,9 +61,10 @@ void DefaultScene::Render()
 		(*m_gameObjects[i]).Render();
 	}
 
+	//m_line.Render();
 	m_quad.Render();
 	//m_grid.Render();
-	m_cube.Render();
+	//m_cube.Render();
 	//m_skyBox.Render();
 	m_pointLight->Render();
 }

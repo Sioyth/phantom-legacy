@@ -52,7 +52,8 @@ void Debug::ErrorLog(std::string log)
 
 void Debug::WarningLog(std::string log)
 {
-	std::cout << "[Warning] " << log << std::endl;
+	std::string tempLog = "[Warn] " + log;
+	m_logs.push_back(tempLog);
 }
 
 void Debug::GLErrors()

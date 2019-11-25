@@ -11,13 +11,12 @@
 #include "AABB.h"
 #include "Input.h"
 
+#include "TransformLine.h"
 
 class GameObject
 {
 
 public:
-
-	//GameObject(int j) {};
 
 	virtual void Render() = 0;
 	virtual void Update() = 0;
@@ -42,7 +41,8 @@ public:
 
 	void SetIsSelected(bool flag) { m_isSelected = flag; };
 
-	const AABB& GetAABB() { return m_collider; };
+	const AABB& GetCollider() { return m_collider; };
+	const AABB& GetTransformLineCollider();
 
 protected:
 
@@ -56,6 +56,7 @@ protected:
 
 	Material m_material;
 	Transform m_transform;
+	TransformLine* m_transformLine;
 
 	AABB m_collider;
 };

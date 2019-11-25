@@ -30,6 +30,8 @@ void CameraEditor::Create()
 
 void CameraEditor::Update()
 {
+	static int lastSelectedGameObject;
+
 	m_material.SendUniformData("cameraPosition", m_transform.GetPosition());
 
 	if (Input::Instance()->GetMouseButtonDown(1))
@@ -121,33 +123,47 @@ void CameraEditor::Update()
 		// Inverse Projection Matrix
 		glm::mat4 invertedViewMatrix = glm::inverse(m_viewMatrix);
 
-		// Convert to world coords
+		// Convert to world coords (ray direction)
 		glm::vec3 rayWorldCoords = invertedViewMatrix * rayEyeCoords;
 
 		// Normalize / Ray Direction
 		rayWorldCoords = glm::normalize(rayWorldCoords);
 
-
 		// Checks all objects int he scene to see if it's colliding with it
 		 for (int i = 0; i < SceneManager::Instance()->GetCurrentScene().GetGameObjects().size(); i++)
 		 {
-			 if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetAABB(), m_transform.GetPosition(), rayWorldCoords)) 
+
+			 if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetCollider(), m_transform.GetPosition(), rayWorldCoords))
 			 {
 				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(true);
-				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->Selected();
+				 lastSelectedGameObject = i;
 			 }
 			 else
 			 {
-				 SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(false);
+				 //SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(false);
 			 }
+		 }
+
+		 // Check Collision with transform Lines
+		 if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLineCollider(), m_transform.GetPosition(), rayWorldCoords))
+		 {
+			 glm::vec3 translate = glm::vec3(0.0f);
+			 translate.x = -Input::Instance()->GetMouseMotion().x;
+
+			 float speed = 0.01f;
+			 m_transform.Translate(translate * speed);
+
+			 Debug::Log("X - Translation!");
 		 }
 
 	}
 	else 
 	{
-
 		m_isMoving = false;
 	}
+
+	// Updates and renders the selected game objects
+	SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->Selected();
 
 	CalulateLookAt();
 }

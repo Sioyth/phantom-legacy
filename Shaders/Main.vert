@@ -3,7 +3,7 @@
 in vec3 colorIn;
 in vec3 vertexIn;
 in vec2 textureIn;
-in vec3 normalIn;
+//in vec3 normalIn;
 
 out vec3 vertexOut;
 out vec3 colorOut;
@@ -20,7 +20,7 @@ uniform vec3 cameraPosition;
 
 void main()
 {
-	normalOut = normalIn;
+	//normalOut = normalIn;
 
 	vertexOut = (model * vec4(vertexIn, 1.0)).xyz;
 

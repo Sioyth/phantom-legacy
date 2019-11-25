@@ -23,6 +23,7 @@ PointLight::PointLight()
 
 void PointLight::Create()
 {
+
 	GLfloat vertices[]{ 0.0f,  0.0f, 0.0f };
 
 	GLfloat colors[]{ m_color.r, m_color.g, m_color.b };
@@ -64,7 +65,6 @@ void PointLight::Create()
 
 void PointLight::Render()
 {
-	//Selected();
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 

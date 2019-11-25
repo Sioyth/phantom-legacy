@@ -28,7 +28,7 @@ float metallic;
 in vec2 textureOut;
 in vec3 colorOut;
 in vec3 vertexOut;
-in vec3 normalOut;
+//in vec3 normalOut;
 
 // -------------------------------------------# Out
 
@@ -78,7 +78,7 @@ void main()
    {
 		 // -------------------------------------------# normalize normal
 
-		vec3 normal = normalize(normalOut);
+		//vec3 normal = normalize(normalOut);
 
 		 // -------------------------------------------# Create ambient lightning
 
