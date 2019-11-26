@@ -267,7 +267,6 @@ void Interface::RightClickMenu()
 	float currentTime = SDL_GetTicks() / 1000.0f;
 
 	//Debug::Log(currentTime);
-
 	
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{

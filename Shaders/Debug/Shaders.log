@@ -18,7 +18,7 @@ C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         [
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:             T=float
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(184,19): warning C4244:         ]
-  DefaultScene.cpp
+  Interface.cpp
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:         with
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:         [
@@ -28,15 +28,7 @@ C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:         [
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:             T=float
 C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(202,54): warning C4244:         ]
-  Interface.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(64,20): warning C4018: '<': signed/unsigned mismatch
-  Light.cpp
-  PointLight.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(157,20): warning C4018: '<': signed/unsigned mismatch
-  Scene.cpp
-  SceneManager.cpp
-  main.cpp
+  Quad.cpp
   Generating Code...
-C:\Users\Sioyth\Desktop\phantom\Shaders\PointLight.cpp(4,34): warning C4356: 'Light::s_totalLights': static data member cannot be initialized via derived class
-C:\Users\Sioyth\Desktop\phantom\Shaders\SceneManager.cpp(49): warning C4715: 'SceneManager::GetCurrentScene': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(157,20): warning C4018: '<': signed/unsigned mismatch
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe
