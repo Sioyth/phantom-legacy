@@ -20,9 +20,9 @@ DefaultScene::DefaultScene()
 		m_gameObjects[i].Create();
 	}*/
 
-	m_pointLight = new PointLight;
+	m_pointLight = new Light(PointLight);
 
-	PointLight* light = new PointLight;
+	Light* light = new Light(PointLight);
 	light->Create();
 	light->SetLightColor(glm::vec3(0.8f, 0.6f, 0.0f));
 

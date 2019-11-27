@@ -132,9 +132,6 @@
     <ClCompile Include="SkyBox.cpp">
       <Filter>Source Files\Core\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files\Core\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>Source Files\Core\GameObjects</Filter>
     </ClCompile>
@@ -243,9 +240,6 @@
       <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Header Files\Core\GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLight.h">
       <Filter>Header Files\Core\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="AABB.h">

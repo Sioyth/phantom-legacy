@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 #include "Cube.h"
 #include "Quad.h"
-#include "PointLight.h"
+#include "Light.h"
 
 float startTimer = 0.0f;
 
@@ -251,7 +251,7 @@ void Interface::RightClickMenu()
 			{
 				if (ImGui::MenuItem("Point Light"))
 				{
-					SceneManager::Instance()->GetCurrentScene().PushGameObject(new PointLight);
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Light(PointLight));
 					m_isRightMenuEnabled = false;
 				}
 

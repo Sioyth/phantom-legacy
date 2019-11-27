@@ -2,10 +2,18 @@
 
 #define TOTAL_LIGHTS 3
 
+#define POINT_LIGHT 1
+#define DIRECTIONAL_LIGHT 2
+
+
 // -------------------------------------------# Structs
 
 struct Light
 {
+
+int type;
+//int isActive;
+
 vec3 position;
 vec3 ambient;
 vec3 diffuse;
@@ -55,6 +63,7 @@ uniform vec3 cameraPosition;
 
 // -------------------------------------------# Variables
 
+float attenuation;
 vec3 lightDirection;
 
 // -------------------------------------------# Functions
@@ -87,31 +96,46 @@ void main()
 		for(int i = 0; i < lightsActiveNumber; i++)
 		{
 
-			 // -------------------------------------------# Create ambient lightning
-
+		
+			//  Create ambient lightning
 			vec3 ambientColor = CalculateAmbient(lights[i]);
 
-			// -------------------------------------------# calculate the diffuse color
-
+			// calculate the diffuse color
 			vec3 diffuseColor = CalculateDiffuse(lights[i]);
 
-			// -------------------------------------------# calculate the specular color
-
+			// calculate the specular color
 			vec3 specularColor = CalculeSpecular(lights[i]);
 
-			// -------------------------------------------# Attenuation Formula
+			if(lights[i].type == POINT_LIGHT)
+			{
+			
+				// Calculate Attenuation
+				attenuation = CalculateAttenuation(lights[i]);
 
-			float attenuation = CalculateAttenuation(lights[i]);
+				// Apply
+			   if(isTextured == 1)
+			   {
+					pixelColor +=  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);// * vec4(lightColor, 1.0);
+			   }
+			   else
+			   {
+					pixelColor +=  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
+			   }
 
-		
-		   if(isTextured == 1)
-		   {
-				pixelColor +=  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);// * vec4(lightColor, 1.0);
-		   }
-		   else
-		   {
-				pixelColor +=  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
-		   }
+			}
+			else if(lights[i].type == DIRECTIONAL_LIGHT)
+			{
+
+				// Apply
+			   if(isTextured == 1)
+			   {
+					pixelColor +=  vec4(colorOut, 1.0) * texture(textureImage, textureOut) * vec4((ambientColor + diffuseColor + specularColor), 1.0);// * vec4(lightColor, 1.0);
+			   }
+			   else
+			   {
+					pixelColor +=  vec4((ambientColor + diffuseColor + specularColor), 1.0);
+			   }
+			}
 	   }
    }
 } 
@@ -129,7 +153,15 @@ vec3 CalculateDiffuse(Light light)
 	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
 
 	//calculate the light direction based on light�s position and vertex position
-	lightDirection = normalize(light.position - vertexOut);
+	
+	if(light.type == POINT_LIGHT)
+	{
+		lightDirection = normalize(light.position - vertexOut);
+	}
+	else if(light.type == DIRECTIONAL_LIGHT)
+	{
+		lightDirection = normalize(light.position);
+	}
 
 	//calculate the light intensity value
 	float lightIntensity = max(dot(lightDirection, normal), 0.0);
