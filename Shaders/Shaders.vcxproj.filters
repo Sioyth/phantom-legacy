@@ -280,5 +280,11 @@
     <None Include="Main.frag">
       <Filter>Source Files\Shaders</Filter>
     </None>
+    <None Include="Noise.vert">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
+    <None Include="Noise.frag">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

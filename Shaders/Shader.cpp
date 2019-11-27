@@ -6,35 +6,23 @@
 GLuint Shader::s_shaderProgram;
 
 bool Shader::s_isProgramCreated = false;
+std::map<std::string, GLuint> Shader::s_programs;
 
 Shader::Shader()
 {
 	// -------------------------------------------# Checks if program is already created
 
-	if (!s_isProgramCreated)
-	{
-		CreateShaderProgram();
-	}
+	//if (!s_isProgramCreated)
+	//{
+	//	CreateShaderProgram();
+	//}
 
 }
 
-Shader::Shader(const std::string& filename, const std::string& textureName)
+void Shader::CreateShader(std::string vertShader, std::string fragShader, std::string shaderProgram)
 {
-	// -------------------------------------------# Checks if program is already created
+	CreateShaderProgram(shaderProgram);
 
-	if (!s_isProgramCreated)
-	{
-		CreateShaderProgram();
-	}
-
-	if (!m_texture.LoadTexture(filename, textureName))
-	{
-		Debug::ErrorLog(filename + " couldn't be loaded!");
-	}
-}
-
-void Shader::CreateShader(std::string vertShader, std::string fragShader)
-{
 	// -------------------------------------------# Read Shader Files
 
 	std::string vertShaderCode = ReadShader(vertShader);
@@ -144,18 +132,30 @@ void Shader::SendUniformData(const std::string& name, GLfloat x, GLfloat y, GLfl
 {
 }
 
-void Shader::CreateShaderProgram()
+void Shader::UseCurrentProgram()
+{
+	glUseProgram(s_shaderProgram);
+}
+
+void Shader::UseShaderProgram(std::string shaderProgram)
+{
+	s_shaderProgram = s_programs[shaderProgram];
+	glUseProgram(s_programs[shaderProgram]);
+}
+
+void Shader::CreateShaderProgram(std::string shaderProgram)
 {
 	// -------------------------------------------# Create Shader Program
 
-	s_shaderProgram = glCreateProgram();
+	s_programs[shaderProgram] = glCreateProgram();
 
-	if (s_shaderProgram == 0)
+	if (s_programs[shaderProgram] == 0)
 	{
 		Debug::ErrorLog("Shader program couldn't be created!");
 	}
 	else 
 	{
+		s_shaderProgram = s_programs[shaderProgram];
 		s_isProgramCreated = true;
 	}
 
@@ -243,6 +243,11 @@ void Shader::ShutdownShaders()
 	glDeleteShader(m_vertexShaderID);
 	glDeleteShader(m_fragmentShaderID);
 	glDeleteProgram(m_materialProgramID);*/
+}
+
+const std::map<std::string, GLuint>& Shader::GetPrograms()
+{
+	return s_programs;
 }
 
 void Shader::BindBuffer(std::string bufferName)

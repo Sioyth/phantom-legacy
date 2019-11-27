@@ -72,6 +72,8 @@ void Cube::Create()
 
 	}; 
 
+	Shader::UseShaderProgram("Noise");
+
 	m_material.CreateVertexArray();
 	m_material.BindVertexArray();
 
@@ -93,24 +95,20 @@ void Cube::Create()
 	m_material.BufferData(UVs, sizeof(UVs), "textureIn", GL_DYNAMIC_DRAW);
 	m_material.UnbindBuffer();
 
-	m_material.CreateBuffer("normalVBO");
-	m_material.BindBuffer("normalVBO");
-	m_material.BufferSetAttribute("normalIn", 3, GL_FLOAT, GL_FALSE, 0);
-	//m_material.BufferData(normals, sizeof(normals), "normalIn", GL_DYNAMIC_DRAW);
-	m_material.UnbindBuffer();
-
 	m_material.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
 	m_material.UnbindVertexArray();
 
 	// Uniforms
-	m_material.BindUniform("isTextured");
-	m_material.BindUniform("model");
 	m_material.BindUniform("isLit");
+	m_material.BindUniform("model");
+	m_material.BindUniform("isTextured");
 	m_material.BindUniform("material.ambient");
 	m_material.BindUniform("material.diffuse");
 	m_material.BindUniform("material.specular");
 	m_material.BindUniform("material.metallic");
+
+	Shader::UseShaderProgram("Main");
 }
 
 void Cube::Update()
@@ -119,6 +117,9 @@ void Cube::Update()
 
 void Cube::Render()
 {
+
+	Shader::UseShaderProgram("Noise");
+
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 
@@ -133,4 +134,6 @@ void Cube::Render()
 	m_material.UnbindVertexArray();
 
 	m_material.UnbindTexture();
+
+	Shader::UseShaderProgram("Main");
 }

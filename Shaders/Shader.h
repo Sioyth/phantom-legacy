@@ -16,8 +16,10 @@ public:
 
 public:
 
-	static void CreateShaderProgram();
-	static void CreateShader(std::string vertShader, std::string fragShader);
+	static void UseCurrentProgram();
+	static void UseShaderProgram(std::string shaderProgram);
+	static void CreateShaderProgram(std::string shaderProgram);
+	static void CreateShader(std::string vertShader, std::string fragShader, std::string shaderProgram);
 
 	static std::string ReadShader(const std::string& shader);
 	static GLuint CompileShader(GLuint shaderID, const std::string& shaderCode);
@@ -32,6 +34,10 @@ public:
 	void SendUniformData(const std::string& name, GLsizei count, GLboolean transpose, const glm::mat4& matrix);
 
 	void ShutdownShaders();
+
+public:
+
+	static const std::map<std::string, GLuint>& GetPrograms();
 
 public:
 
@@ -95,5 +101,7 @@ private:
 
 	static GLuint s_shaderProgram;
 	static bool s_isProgramCreated;
+
+	static std::map<std::string, GLuint> s_programs;
 };
 

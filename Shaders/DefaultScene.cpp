@@ -7,7 +7,8 @@ DefaultScene::DefaultScene()
 	SceneManager::Instance()->PushScene("DefaultScene", this);
 
 	// Create Default Shader
-	Shader::CreateShader("Main.vert", "Main.frag");
+	Shader::CreateShader("Noise.vert", "Noise.frag", "Noise");
+	Shader::CreateShader("Main.vert", "Main.frag", "Main");
 
 	// TODO MAKE A FUNCTION TO PASS THEM IN A ARRAY *
 	/*m_gameObjects.push_back(m_cube);
@@ -69,7 +70,7 @@ void DefaultScene::Render()
 	//m_line.Render();
 	m_quad.Render();
 	//m_grid.Render();
-	//m_cube.Render();
+	m_cube.Render();
 	//m_skyBox.Render();
 	m_pointLight->Render();
 }

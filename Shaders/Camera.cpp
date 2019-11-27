@@ -47,9 +47,14 @@ void Camera::SetPerspectiveView()
 
 	m_projectionMatrix = glm::perspective(glm::radians(m_fov), m_aspectRatio, m_nearClip, m_farClip);
 
-	// Pass projection matrix to the shaders.
-	m_material.BindUniform("proj");
-	m_material.SendUniformData("proj", 1, GL_FALSE, m_projectionMatrix);
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
+	{
+		glUseProgram(it->second);
+		// Pass projection matrix to the shaders.
+		m_material.BindUniform("proj");
+		m_material.SendUniformData("proj", 1, GL_FALSE, m_projectionMatrix);
+	}
+		Shader::UseCurrentProgram();
 }
 
 void Camera::CalulateLookAt()
@@ -58,9 +63,14 @@ void Camera::CalulateLookAt()
 						  m_transform.GetPosition() + m_forward,
 						  glm::vec3(0.0f, 1.0f, 0.0f));
 
-	// pass view matrix to the shaders
-	m_material.BindUniform("view");
-	m_material.SendUniformData("view", 1, GL_FALSE, m_viewMatrix);
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
+	{
+		glUseProgram(it->second);
+		// pass view matrix to the shaders
+		m_material.BindUniform("view");
+		m_material.SendUniformData("view", 1, GL_FALSE, m_viewMatrix);
+	}
+		Shader::UseCurrentProgram();
 }
 
 void Camera::Projection()

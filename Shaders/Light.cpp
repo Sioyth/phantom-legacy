@@ -25,8 +25,14 @@ Light::Light(LightType type)
 	m_lightNumberStr = std::to_string(m_lightNumber);
 
 	m_lightType = type;
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].type");
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].type", m_lightType);
+
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
+	{
+		glUseProgram(it->second);
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].type");
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].type", m_lightType);
+		Shader::UseCurrentProgram();
+	}
 }
 
 void Light::Create()
@@ -35,47 +41,54 @@ void Light::Create()
 
 	GLfloat colors[]{ m_color.r, m_color.g, m_color.b };
 
-	m_material.CreateVertexArray();
-	m_material.BindVertexArray();
+
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
 	{
-		m_material.CreateBuffer("vertexVBO");
-		m_material.BindBuffer("vertexVBO");
-		m_material.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_material.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
-		m_material.UnbindBuffer();
+		glUseProgram(it->second);
 
-		m_material.CreateBuffer("colorVBO");
-		m_material.BindBuffer("colorVBO");
-		m_material.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
-		m_material.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
-		m_material.UnbindBuffer();
+		m_material.CreateVertexArray();
+		m_material.BindVertexArray();
+		{
+			m_material.CreateBuffer("vertexVBO");
+			m_material.BindBuffer("vertexVBO");
+			m_material.BufferSetAttribute("vertexIn", 3, GL_FLOAT, GL_FALSE, 0);
+			m_material.BufferData(vertices, sizeof(vertices), "vertexIn", GL_DYNAMIC_DRAW);
+			m_material.UnbindBuffer();
 
+			m_material.CreateBuffer("colorVBO");
+			m_material.BindBuffer("colorVBO");
+			m_material.BufferSetAttribute("colorIn", 3, GL_FLOAT, GL_FALSE, 0);
+			m_material.BufferData(colors, sizeof(colors), "colorIn", GL_DYNAMIC_DRAW);
+			m_material.UnbindBuffer();
+
+		}
+		m_material.UnbindVertexArray();
+
+		// Uniforms
+		m_material.BindUniform("isLit");
+		m_material.BindUniform("model");
+		m_material.BindUniform("lightColor");
+		m_material.BindUniform("isTextured");
+		m_material.BindUniform("lightsActiveNumber");
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].position");
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].ambient");
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].diffuse");
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].specular");
+
+		if (m_lightType == PointLight)
+		{
+			m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationConst");
+			m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationLinear");
+			m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationQuad");
+
+			m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationConst", m_attenuationConst);
+			m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationLinear", m_attenuationLinear);
+			m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationQuad", m_attenuationQuad);
+		}
+
+		m_material.SendUniformData("lightsActiveNumber", (int)s_totalLights);
 	}
-	m_material.UnbindVertexArray();
-
-	// Uniforms
-	m_material.BindUniform("isLit");
-	m_material.BindUniform("model");
-	m_material.BindUniform("lightColor");
-	m_material.BindUniform("isTextured");
-	m_material.BindUniform("lightsActiveNumber");
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].position");
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].ambient");
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].diffuse");
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].specular");
-
-	if (m_lightType == PointLight)
-	{
-		m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationConst");
-		m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationLinear");
-		m_material.BindUniform("lights[" + m_lightNumberStr + "].attenuationQuad");
-
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationConst", m_attenuationConst);
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationLinear", m_attenuationLinear);
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].attenuationQuad", m_attenuationQuad);
-	}
-
-	m_material.SendUniformData("lightsActiveNumber", (int)s_totalLights);
+		Shader::UseCurrentProgram();
 }
 
 void Light::Render()
@@ -83,28 +96,43 @@ void Light::Render()
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 
-	m_material.SendUniformData("isTextured", m_isTextured);
-	m_material.SendUniformData("isLit", m_isLit);
-	m_material.SendUniformData("lightColor", m_color);
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
+	{
+		glUseProgram(it->second);
 
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].position", m_transform.GetPosition());
+		m_material.SendUniformData("isLit", m_isLit);
+		m_material.SendUniformData("lightColor", m_color);
+		m_material.SendUniformData("isTextured", m_isTextured);
+		m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].ambient", m_ambient);
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].diffuse", m_diffuse);
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].specular", m_specular);
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].position", m_transform.GetPosition());
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].ambient", m_ambient);
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].diffuse", m_diffuse);
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].specular", m_specular);
 
-	m_material.BindVertexArray();
-	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
-	glPointSize(30.0f); // TODO put this in shader class
-	glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
-	m_material.DrawVertexArray(GL_POINTS, 0, 1);
+	}
+		Shader::UseCurrentProgram();
+
+		m_material.BindVertexArray();
+		glPointSize(30.0f); // TODO put this in shader class
+		glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
+		m_material.DrawVertexArray(GL_POINTS, 0, 1);
+
+	
 }
 
 void Light::SetLightType(LightType type)
 {
 	m_lightType = type;
-	m_material.BindUniform("lights[" + m_lightNumberStr + "].type");
-	m_material.SendUniformData("lights[" + m_lightNumberStr + "].type", m_lightType);
+
+	for (auto it = Shader::GetPrograms().begin(); it != Shader::GetPrograms().end(); it++)
+	{
+		glUseProgram(it->second);
+		m_material.BindUniform("lights[" + m_lightNumberStr + "].type");
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].type", m_lightType);
+	}
+
+	Shader::UseCurrentProgram();
 }
 
 void Light::SetLightColor(glm::vec3 color)
