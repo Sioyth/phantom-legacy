@@ -15,9 +15,6 @@ public:
 private:
 
 	GLfloat m_metallic; // change
-	glm::vec3 m_ambient;
-	glm::vec3 m_diffuse;
-	glm::vec3 m_specular;
 
 };
 

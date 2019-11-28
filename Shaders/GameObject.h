@@ -42,8 +42,17 @@ public:
 	void SetIsSelected(bool flag) { m_isSelected = flag; };
 	TransformLine* GetTransformLines();
 
+	const glm::vec3& GetAmbient();
+	const glm::vec3& GetDiffuse();
+	const glm::vec3& GetSpecular();
+
+	const glm::vec3& GetPosition ();
 	const AABB& GetCollider() { return m_collider; };
 	const AABB& GetTransformLineCollider();
+
+	void SetAmbient(glm::vec3 ambient);
+	void SetDiffuse(glm::vec3 diffuse);
+	void SetSpecular(glm::vec3 specular);
 
 protected:
 
@@ -51,6 +60,7 @@ protected:
 	bool m_enabled;
 	bool m_isSelected;
 	bool m_isTextured;
+	//bool m_light;
 
 	std::string m_tag;
 	std::string m_name;

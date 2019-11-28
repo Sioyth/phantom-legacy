@@ -93,6 +93,11 @@ void Shader::BindUniform(const std::string& name)
 	if (m_uniforms.find(name) == m_uniforms.end())
 	{
 		m_uniforms[name] = glGetUniformLocation(s_shaderProgram, (const GLchar*) name.c_str());
+
+		if (m_uniforms[name] == -1)
+		{
+			Debug::ErrorLog("Couldn't get " + name + " location!");
+		}
 	}
 }
 

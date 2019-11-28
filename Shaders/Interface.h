@@ -25,6 +25,8 @@ private:
 	
 	void RightClickMenu();
 
+	void Inspector();
+
 private:
 
 	bool m_click;

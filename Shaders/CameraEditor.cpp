@@ -142,6 +142,8 @@ void CameraEditor::Update()
 					SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->SetIsSelected(false);
 				}
 
+				SceneManager::Instance()->GetCurrentScene().SetSelectedObject(i);
+
 				// Then select the new object
 				SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->SetIsSelected(true);
 				lastSelectedGameObject = i;

@@ -1,5 +1,7 @@
 #include "Scene.h"
 
+int Scene::s_currentSelectedGameObject = -1;
+
 void Scene::Pause()
 {
 	m_isRunning = false;
@@ -20,5 +22,22 @@ void Scene::PushGameObject(GameObject* obj)
 std::vector<GameObject*>& Scene::GetGameObjects()
 {
 	return m_gameObjects;
+}
+
+void Scene::SetSelectedObject(int objNr)
+{
+	s_currentSelectedGameObject = objNr;
+}
+
+int Scene::GetSelectedGameObject()
+{
+	if (s_currentSelectedGameObject >= 0)
+	{
+		return s_currentSelectedGameObject;
+	}
+	else
+	{
+		return -1;
+	}
 }
 

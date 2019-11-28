@@ -135,11 +135,46 @@ TransformLine* GameObject::GetTransformLines()
 	}
 }
 
+const glm::vec3& GameObject::GetAmbient()
+{
+	return m_material.GetAmbient();
+}
+
+const glm::vec3& GameObject::GetDiffuse()
+{
+	return m_material.GetDiffuse();
+}
+
+const glm::vec3& GameObject::GetSpecular()
+{
+	return m_material.GetSpecular();
+}
+
+const glm::vec3& GameObject::GetPosition()
+{
+	return m_transform.GetPosition();
+}
+
 const AABB& GameObject::GetTransformLineCollider()
 {
 	if (m_transformLine)
 	{
 		return m_transformLine->GetCollider();
 	}
+}
+
+void GameObject::SetAmbient(glm::vec3 ambient)
+{
+	m_material.SetAmbient(ambient);
+}
+
+void GameObject::SetDiffuse(glm::vec3 diffuse)
+{
+	return m_material.SetDiffuse(diffuse);
+}
+
+void GameObject::SetSpecular(glm::vec3 specular)
+{
+	m_material.SetSpecular(specular);
 }
 

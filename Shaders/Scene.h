@@ -18,10 +18,15 @@ public:
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();
 
+	static void SetSelectedObject(int objNr);
+	static int GetSelectedGameObject();
+
 protected:
 
 	bool m_isEditing;
 	bool m_isRunning;
 	std::vector<GameObject*> m_gameObjects;
+
+	static int s_currentSelectedGameObject;
 };
 

@@ -36,9 +36,6 @@ private:
 	GLuint m_lightNumber;
 
 	glm::vec3 m_color;
-	glm::vec3 m_ambient;
-	glm::vec3 m_diffuse;
-	glm::vec3 m_specular;
 
 	std::string m_lightNumberStr;
 

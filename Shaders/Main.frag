@@ -52,7 +52,6 @@ uniform int lightsActiveNumber;
 uniform vec3 lightColor;
 uniform sampler2D textureImage;
 
-uniform Light light;
 uniform Light lights[TOTAL_LIGHTS];
 uniform Material material;
 

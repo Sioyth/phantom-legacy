@@ -4,6 +4,7 @@
 #include "Cube.h"
 #include "Quad.h"
 #include "Light.h"
+#include "SceneManager.h";
 
 float startTimer = 0.0f;
 
@@ -109,6 +110,7 @@ void Interface::DrawUi()
 	DrawMainMenuBar();
 	DrawConsole();
 	RightClickMenu();
+	Inspector();
 
 	// FOR DEBUG ONLY/ ALSO USED AS CODE REFERENCE FOR IMGUII
 	ImGui::ShowDemoWindow(); 
@@ -302,6 +304,41 @@ void Interface::RightClickMenu()
 	if (Input::Instance()->GetMouseButtonDown(0))
 	{
 		//m_isRightMenuEnabled = false;
+	}
+}
+
+void Interface::Inspector()
+{
+	if (SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject() >= 0)
+	{
+
+		float x = 5.0f;
+		ImGui::Begin("Inspector");
+		{
+			GameObject* obj = SceneManager::Instance()->GetCurrentScene().GetGameObjects()[SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject()];
+			glm::vec3 pos = obj->GetPosition();
+
+			float transform[3] = { pos.x, pos.y, pos.x};
+
+			float ambient[3] = { obj->GetAmbient().x,obj->GetAmbient().y, obj->GetAmbient().z };
+			float diffuse[3] = { obj->GetDiffuse().x, obj->GetDiffuse().y, obj->GetDiffuse().z };
+			float specular[3] = { obj->GetSpecular().x, obj->GetSpecular().y, obj->GetSpecular().z };
+
+
+			ImGui::Text("Transform");
+			ImGui::InputFloat3("", transform);	
+
+			ImGui::ColorEdit3("Ambient:", ambient);
+			obj->SetAmbient(glm::vec3(ambient[0], ambient[1], ambient[2]));
+
+			ImGui::ColorEdit3("Diffuse:", diffuse);
+			obj->SetDiffuse(glm::vec3(diffuse[0], diffuse[1], diffuse[2]));
+
+			ImGui::ColorEdit3("Specular:", specular);
+			obj->SetSpecular(glm::vec3(specular[0], specular[1], specular[2]));
+		}
+		ImGui::End();
+
 	}
 }
 

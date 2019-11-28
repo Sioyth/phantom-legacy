@@ -11,10 +11,6 @@ Light::Light(LightType type)
 	m_color.g = 1.0f;
 	m_color.b = 1.0f;
 
-	m_ambient = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.2f, 0.2f, 0.2f);
-	m_diffuse = glm::vec3(0.0f, 1.0f, 1.0f);   //glm::vec3(0.8f, 0.4f, 0.0f);
-	m_specular = glm::vec3(0.0f, 1.0f, 1.0f);  //glm::vec3(0.4f, 0.3f, 0.1f);;
-
 	m_attenuationConst = 1.0f;
 	m_attenuationLinear = 0.15f;
 	m_attenuationQuad = 2.0f;
@@ -106,9 +102,9 @@ void Light::Render()
 		m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
 		m_material.SendUniformData("lights[" + m_lightNumberStr + "].position", m_transform.GetPosition());
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].ambient", m_ambient);
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].diffuse", m_diffuse);
-		m_material.SendUniformData("lights[" + m_lightNumberStr + "].specular", m_specular);
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].ambient", m_material.GetAmbient());
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].diffuse", m_material.GetDiffuse());
+		m_material.SendUniformData("lights[" + m_lightNumberStr + "].specular", m_material.GetSpecular());
 
 	}
 		Shader::UseCurrentProgram();
@@ -137,8 +133,8 @@ void Light::SetLightType(LightType type)
 
 void Light::SetLightColor(glm::vec3 color)
 {
+	m_material.SetAmbient(color);
+	m_material.SetDiffuse(color);
+	m_material.SetSpecular(color);
 	m_color = color;
-	m_ambient = color;
-	m_diffuse = color;
-	m_specular = color;
 }

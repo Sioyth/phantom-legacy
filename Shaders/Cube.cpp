@@ -100,19 +100,15 @@ void Cube::Create()
 	m_material.UnbindVertexArray();
 
 	// Uniforms
+	m_material.BindUniform("colorInt");
 	m_material.BindUniform("isLit");
-	m_material.BindUniform("time");
 	m_material.BindUniform("model");
 	m_material.BindUniform("isTextured");
+
 	m_material.BindUniform("material.ambient");
 	m_material.BindUniform("material.diffuse");
 	m_material.BindUniform("material.specular");
 	m_material.BindUniform("material.metallic");
-
-	m_material.SendUniformData("material.ambient", m_material.GetAmbient());
-	m_material.SendUniformData("material.diffuse", m_material.GetDiffuse());
-	m_material.SendUniformData("material.specular", m_material.GetSpecular());
-	m_material.SendUniformData("material.metallic", m_material.GetMetallic());
 
 	Shader::UseShaderProgram("Main");
 }
@@ -129,9 +125,15 @@ void Cube::Render()
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 
-	m_material.SendUniformData("time", 5.0f);
 	m_material.SendUniformData("isLit", 1);
 	m_material.SendUniformData("isTextured", 0);
+	m_material.SendUniformData("colorInt", 1);
+
+	m_material.SendUniformData("material.ambient", m_material.GetAmbient());
+	m_material.SendUniformData("material.diffuse", m_material.GetDiffuse());
+	m_material.SendUniformData("material.specular", m_material.GetSpecular());
+	m_material.SendUniformData("material.metallic", m_material.GetMetallic());
+
 	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
 	//m_material.BindTexture();
