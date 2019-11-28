@@ -324,7 +324,6 @@ void Interface::Inspector()
 			float diffuse[3] = { obj->GetDiffuse().x, obj->GetDiffuse().y, obj->GetDiffuse().z };
 			float specular[3] = { obj->GetSpecular().x, obj->GetSpecular().y, obj->GetSpecular().z };
 
-
 			ImGui::Text("Transform");
 			ImGui::InputFloat3("", transform);	
 
