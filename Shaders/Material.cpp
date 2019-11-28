@@ -28,6 +28,26 @@ void Material::SetSpecular(glm::vec3 specular)
 	m_specular = specular;
 }
 
+const float& Material::GetMetallic()
+{
+	return m_metallic;
+}
+
+const glm::vec3& Material::GetDiffuse()
+{
+	return m_diffuse;
+}
+
+const glm::vec3& Material::GetAmbient()
+{
+	return m_ambient;
+}
+
+const glm::vec3& Material::GetSpecular()
+{
+	return m_specular;
+}
+
 void Material::BindTexture()
 {
 	m_material.BindTexture();

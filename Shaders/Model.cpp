@@ -335,11 +335,11 @@ bool Model::LoadModel(const std::string& filename)
 	glVertexAttribPointer(m_textureAttributeID, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(m_textureAttributeID);
 
-	//fill and link normal VBO
-	glBindBuffer(GL_ARRAY_BUFFER, m_normalVBO);
-	glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), &normals[0], GL_STATIC_DRAW);
-	glVertexAttribPointer(m_normalAttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(m_normalAttributeID);
+	////fill and link normal VBO
+	//glBindBuffer(GL_ARRAY_BUFFER, m_normalVBO);
+	//glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), &normals[0], GL_STATIC_DRAW);
+	//glVertexAttribPointer(m_normalAttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	//glEnableVertexAttribArray(m_normalAttributeID);
 
 	//fill EBO with indices 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
@@ -390,16 +390,16 @@ void Model::Create()
 	m_materialAmbientID = glGetUniformLocation(shaderProgram, "material.ambient");
 	m_materialDiffuseID = glGetUniformLocation(shaderProgram, "material.diffuse");
 	m_materialSpecularID = glGetUniformLocation(shaderProgram, "material.specular");
-	m_materialShininessID = glGetUniformLocation(shaderProgram, "material.shininess");
+	m_materialShininessID = glGetUniformLocation(shaderProgram, "material.metallic");
 
 	//get all other shader IDs relating to texture flag, model matrix and attributes
 	m_lightFlagID = glGetUniformLocation(shaderProgram, "isLit");
 	m_textureFlagID = glGetUniformLocation(shaderProgram, "isTextured");
 	m_modelUniformID = glGetUniformLocation(shaderProgram, "model");
-	m_normalUniformID = glGetUniformLocation(shaderProgram, "normal");
+	//m_normalUniformID = glGetUniformLocation(shaderProgram, "normal");
 	m_vertexAttributeID = glGetAttribLocation(shaderProgram, "vertexIn");
 	m_colorAttributeID = glGetAttribLocation(shaderProgram, "colorIn");
-	m_normalAttributeID = glGetAttribLocation(shaderProgram, "normalIn");
+	//m_normalAttributeID = glGetAttribLocation(shaderProgram, "normalIn");
 	m_textureAttributeID = glGetAttribLocation(shaderProgram, "textureIn");
 
 	//create VAO, VBOs and EBO
@@ -444,7 +444,7 @@ void Model::Draw()
 	glUniformMatrix4fv(m_modelUniformID, 1, GL_FALSE, &m_model[0][0]);
 
 	//send normal matrix to vertex shader
-	glUniformMatrix3fv(m_normalUniformID, 1, GL_TRUE, &m_normal[0][0]);
+	//glUniformMatrix3fv(m_normalUniformID, 1, GL_TRUE, &m_normal[0][0]);
 
 	//send model's material color to fragment shader
 	glUniform3fv(m_materialAmbientID, 1, &m_ambient.r);

@@ -29,5 +29,5 @@ void main()
 	// Send interpolated UV coordinates value to the fragment shader;
 	textureOut = textureIn;
 
-    gl_Position = proj * view * model * vec4(vertexIn, 1.0) + 1.0;
+    gl_Position = proj * view * model * vec4(vertexIn, 1.0);
 }

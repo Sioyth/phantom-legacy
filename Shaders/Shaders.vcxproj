@@ -142,6 +142,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
+    <ClCompile Include="EmptyGameObject.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Grid.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DefaultScene.h" />
+    <ClInclude Include="EmptyGameObject.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="imgui\imconfig.h" />

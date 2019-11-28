@@ -9,10 +9,6 @@ DefaultScene::DefaultScene()
 	// Create Default Shader
 	Shader::CreateShader("Noise.vert", "Noise.frag", "Noise");
 	Shader::CreateShader("Main.vert", "Main.frag", "Main");
-
-	// TODO MAKE A FUNCTION TO PASS THEM IN A ARRAY *
-	/*m_gameObjects.push_back(m_cube);
-	m_gameObjects.push_back(m_grid);*/
 	
 	// -------------------------------------------#  Create Game Objects
 
@@ -50,6 +46,10 @@ DefaultScene::DefaultScene()
 	// -------------------------------------------#  Create Camera Perspective
 
 	m_camera.SetPerspectiveView();
+
+
+	m_gameObject.Create();
+	m_gameObject.LoadModel("Models/Sphere.obj");
 }
 
 void DefaultScene::Update()
@@ -73,4 +73,6 @@ void DefaultScene::Render()
 	m_cube.Render();
 	//m_skyBox.Render();
 	m_pointLight->Render();
+
+	//m_gameObject.Render();
 }

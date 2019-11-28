@@ -6,6 +6,8 @@
 #include <glm.hpp>
 #include "Texture.h"
 
+#include "Shader.h"
+
 //struct to store all three components of a vertex group, which is
 //the grouping of verts, UVs and norms for each point in a triangle
 struct Groups
@@ -52,6 +54,8 @@ public:
 	void Destroy();
 
 private:
+
+	Shader m_shader;
 
 	GLfloat m_shininess;
 	GLboolean m_isTextured;

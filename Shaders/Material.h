@@ -18,6 +18,11 @@ public:
 	void SetMetallic(GLfloat metallic);
 	void SetSpecular(glm::vec3 specular);
 
+	const float& GetMetallic();
+	const glm::vec3& GetDiffuse();
+	const glm::vec3& GetAmbient();
+	const glm::vec3& GetSpecular();
+
 public:
 
 	//#--------------------------------# 
