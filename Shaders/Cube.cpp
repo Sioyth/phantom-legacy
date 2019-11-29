@@ -6,6 +6,8 @@ Cube::Cube()
 	m_color.g = 1.0f;
 	m_color.b = 1.0f;
 
+	m_isLit = true;
+	m_isTextured = false;
 	m_collider.SetDimension(glm::vec3(1.0f));
 }
 
@@ -72,8 +74,6 @@ void Cube::Create()
 
 	}; 
 
-	Shader::UseShaderProgram("Noise");
-
 	m_material.CreateVertexArray();
 	m_material.BindVertexArray();
 
@@ -110,7 +110,6 @@ void Cube::Create()
 	m_material.BindUniform("material.specular");
 	m_material.BindUniform("material.metallic");
 
-	Shader::UseShaderProgram("Main");
 }
 
 void Cube::Update()
@@ -120,14 +119,11 @@ void Cube::Update()
 void Cube::Render()
 {
 
-	Shader::UseShaderProgram("Noise");
-
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 
-	m_material.SendUniformData("isLit", 1);
-	m_material.SendUniformData("isTextured", 0);
-	m_material.SendUniformData("colorInt", 1);
+	m_material.SendUniformData("isLit", m_isLit);
+	m_material.SendUniformData("isTextured", m_isTextured);
 
 	m_material.SendUniformData("material.ambient", m_material.GetAmbient());
 	m_material.SendUniformData("material.diffuse", m_material.GetDiffuse());
@@ -144,5 +140,4 @@ void Cube::Render()
 
 	//m_material.UnbindTexture();
 
-	Shader::UseShaderProgram("Main");
 }

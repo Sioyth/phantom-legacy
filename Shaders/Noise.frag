@@ -1,6 +1,6 @@
 ﻿#version 460
 
-#define TOTAL_LIGHTS 3
+#define TOTAL_LIGHTS 5
 
 #define POINT_LIGHT 1
 #define DIRECTIONAL_LIGHT 2

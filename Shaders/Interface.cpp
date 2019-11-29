@@ -5,6 +5,7 @@
 #include "Quad.h"
 #include "Light.h"
 #include "SceneManager.h";
+#include "EmptyGameObject.h"
 
 float startTimer = 0.0f;
 
@@ -111,9 +112,10 @@ void Interface::DrawUi()
 	DrawConsole();
 	RightClickMenu();
 	Inspector();
+	ToolBar();
 
 	// FOR DEBUG ONLY/ ALSO USED AS CODE REFERENCE FOR IMGUII
-	ImGui::ShowDemoWindow(); 
+	//ImGui::ShowDemoWindow(); 
 }
 
 void Interface::DrawConsole()
@@ -228,6 +230,15 @@ void Interface::RightClickMenu()
 			// Primitives
 			if (ImGui::BeginMenu("New Primitive"))
 			{
+				if (ImGui::MenuItem("Empty"))
+				{
+					EmptyGameObject* tempObj = new EmptyGameObject;
+					tempObj->LoadModel("Models/sphere.obj");
+
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(tempObj);
+					m_isRightMenuEnabled = false;
+				}
+
 				if (ImGui::MenuItem("Quad")) 
 				{
 					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Quad);
@@ -254,6 +265,12 @@ void Interface::RightClickMenu()
 				if (ImGui::MenuItem("Point Light"))
 				{
 					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Light(PointLight));
+					m_isRightMenuEnabled = false;
+				}
+
+				if (ImGui::MenuItem("Directional Light"))
+				{
+					SceneManager::Instance()->GetCurrentScene().PushGameObject(new Light(DirectionalLight));
 					m_isRightMenuEnabled = false;
 				}
 
@@ -307,25 +324,123 @@ void Interface::RightClickMenu()
 	}
 }
 
+void Interface::ToolBar()
+{
+	ImGui::Begin("ToolBar");
+	{
+		static bool gridFlag = SceneManager::Instance()->GetCurrentScene().GetGrid();
+		if (ImGui::Checkbox("Grid:", &gridFlag))
+		{
+			SceneManager::Instance()->GetCurrentScene().SetGrid(gridFlag);
+		}
+		ImGui::SameLine();
+
+		static bool planeFlag = SceneManager::Instance()->GetCurrentScene().GetPlane();
+		if (ImGui::Checkbox("Plane:", &planeFlag))
+		{
+			SceneManager::Instance()->GetCurrentScene().SetPlane(planeFlag);
+		}
+
+		ImGui::End();
+	}
+}
+
 void Interface::Inspector()
 {
+	static const int NUMBER_LINES = 3;
+
 	if (SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject() >= 0)
 	{
-
-		float x = 5.0f;
 		ImGui::Begin("Inspector");
 		{
 			GameObject* obj = SceneManager::Instance()->GetCurrentScene().GetGameObjects()[SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject()];
-			glm::vec3 pos = obj->GetPosition();
 
-			float transform[3] = { pos.x, pos.y, pos.x};
-
+			float position[3] = { obj->GetPosition().x, obj->GetPosition().y, obj->GetPosition().z};
+			float rotation[3] = { obj->GetRotation().x, obj->GetRotation().y, obj->GetRotation().z };
+			float scale[3] = { obj->GetScale().x, obj->GetScale().y, obj->GetScale().z };
 			float ambient[3] = { obj->GetAmbient().x,obj->GetAmbient().y, obj->GetAmbient().z };
 			float diffuse[3] = { obj->GetDiffuse().x, obj->GetDiffuse().y, obj->GetDiffuse().z };
 			float specular[3] = { obj->GetSpecular().x, obj->GetSpecular().y, obj->GetSpecular().z };
 
 			ImGui::Text("Transform");
-			ImGui::InputFloat3("", transform);	
+
+			if (ImGui::InputFloat3("Position", position, "%.3f", ImGuiInputTextFlags_AlwaysInsertMode))
+			{
+
+				// X
+				if (position[0] != obj->GetPosition().x)
+				{
+					float xOffset = position[0] - obj->GetPosition().x;
+					obj->Translate(glm::vec3(xOffset, 0.0f, 0.0f));
+					for (int i = 0; i < NUMBER_LINES; i++)
+					{
+						obj->GetTransformLines()[i].Translate(glm::vec3(xOffset, 0.0f, 0.0f));
+					}
+					
+				}
+
+				//Y
+				if (position[1] != obj->GetPosition().y)
+				{
+					float yOffset = position[1] - obj->GetPosition().y;
+					obj->Translate(glm::vec3(0.0f, yOffset, 0.0f));
+
+					for (int i = 0; i < NUMBER_LINES; i++)
+					{
+						obj->GetTransformLines()[i].Translate(glm::vec3(0.0f, yOffset, 0.0f));
+					}
+				}
+
+				//Z
+				if (position[2] != obj->GetPosition().z)
+				{
+					float zOffset = position[2] - obj->GetPosition().z;
+					obj->Translate(glm::vec3(0.0f, 0.0f, zOffset));
+
+					for (int i = 0; i < NUMBER_LINES; i++)
+					{
+						obj->GetTransformLines()[i].Translate(glm::vec3(0.0f, 0.0f, zOffset));
+					}
+				}
+				//obj->SetPosition(glm::vec3(position[0],position[1], position[2]));
+			}
+	
+			// Rotation
+
+			if (ImGui::InputFloat3("Rotation", rotation, "%.3f", ImGuiInputTextFlags_AlwaysInsertMode))
+			{
+				obj->Rotate(rotation[0], glm::vec3(1.0f, 0.0f, 0.0f));
+				obj->Rotate(rotation[1], glm::vec3(0.0f, 1.0f, 0.0f));
+				obj->Rotate(rotation[2], glm::vec3(0.0f, 0.0f, 1.0));
+			}
+
+			// SCALE
+
+			if (ImGui::InputFloat3("Scale", scale, "%.3f", ImGuiInputTextFlags_AlwaysInsertMode))
+			{
+				// X
+				if (scale[0] != obj->GetScale().x)
+				{
+					obj->Scale(glm::vec3(scale[0], 1.0f, 1.0f));
+				}
+
+				//Y
+				if (scale[1] != obj->GetScale().y)
+				{
+
+					obj->Scale(glm::vec3(1.0f, scale[1], 1.0f));
+				}
+
+				//Z
+				if (scale[2] != obj->GetScale().z)
+				{
+
+					obj->Scale(glm::vec3(1.0f, 1.0f, scale[2]));
+				}
+
+			}
+			
+			// Color
 
 			ImGui::ColorEdit3("Ambient:", ambient);
 			obj->SetAmbient(glm::vec3(ambient[0], ambient[1], ambient[2]));
@@ -335,6 +450,13 @@ void Interface::Inspector()
 
 			ImGui::ColorEdit3("Specular:", specular);
 			obj->SetSpecular(glm::vec3(specular[0], specular[1], specular[2]));
+
+			static bool isLit = obj->GetIsLit();
+			if (ImGui::Checkbox("Lit:", &isLit))
+			{
+				obj->SetIsLit(isLit);
+			}
+			ImGui::SameLine();
 		}
 		ImGui::End();
 

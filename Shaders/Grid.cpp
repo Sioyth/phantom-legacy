@@ -7,6 +7,9 @@ Grid::Grid(GLuint size, GLfloat lineWidh, GLfloat r, GLfloat g, GLfloat b)
 	
 	m_color = glm::vec3(r, g, b);
 
+	m_isLit = false;
+	m_isTextured = false;
+
 }
 
 void Grid::Create()
@@ -152,14 +155,17 @@ void Grid::Create()
 				     m_color.r, m_color.g, m_color.b };*/
 
 	m_totalVertices = offset / BYTERS_PER_VERTEX;
+	m_material.BindUniform("isTextured");
+	m_material.BindUniform("isLit");
 
 }
 
 void Grid::Render()
 {
 
-	m_material.BindUniform("isTextured");
-	m_material.SendUniformData("isTextured", 0);
+	
+	m_material.SendUniformData("isLit", m_isLit);
+	m_material.SendUniformData("isTextured", m_isTextured);
 
 	m_material.BindVertexArray();
 	m_material.BindUniform("model");

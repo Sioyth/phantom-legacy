@@ -25,6 +25,7 @@ private:
 	
 	void RightClickMenu();
 
+	void ToolBar();
 	void Inspector();
 
 private:

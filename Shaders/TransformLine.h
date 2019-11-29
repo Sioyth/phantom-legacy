@@ -24,6 +24,7 @@ public:
 	void SetColor(glm::vec3 color1, glm::vec3 color2);
 
 	void Translate(glm::vec3 translation);
+	void SetPosition(glm::vec3 position);
 	void SetColliderDimension(glm::vec3 dimension);
 
 	const AABB& GetCollider() { return m_collider; };

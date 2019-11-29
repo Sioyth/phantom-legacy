@@ -20,6 +20,11 @@ public:
 
 public:
 
+	
+	void SetScale();
+	void SetRotation();
+	void SetPosition(glm::vec3 position);
+
 	const glm::vec3& GetPosition();
 	const glm::vec3& GetRotation();
 	const glm::vec3& GetScale();

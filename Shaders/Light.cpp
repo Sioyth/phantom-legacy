@@ -11,6 +11,14 @@ Light::Light(LightType type)
 	m_color.g = 1.0f;
 	m_color.b = 1.0f;
 
+	if (type == DirectionalLight)
+	{
+		m_color = glm::vec3(0.3f);
+		m_material.SetAmbient(glm::vec3(0.3f));
+		m_material.SetDiffuse(glm::vec3(0.3f));
+		m_material.SetSpecular(glm::vec3(0.3f));
+	}
+
 	m_attenuationConst = 1.0f;
 	m_attenuationLinear = 0.15f;
 	m_attenuationQuad = 2.0f;
@@ -63,7 +71,6 @@ void Light::Create()
 		// Uniforms
 		m_material.BindUniform("isLit");
 		m_material.BindUniform("model");
-		m_material.BindUniform("lightColor");
 		m_material.BindUniform("isTextured");
 		m_material.BindUniform("lightsActiveNumber");
 		m_material.BindUniform("lights[" + m_lightNumberStr + "].position");
@@ -97,7 +104,6 @@ void Light::Render()
 		glUseProgram(it->second);
 
 		m_material.SendUniformData("isLit", m_isLit);
-		m_material.SendUniformData("lightColor", m_color);
 		m_material.SendUniformData("isTextured", m_isTextured);
 		m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
@@ -110,7 +116,7 @@ void Light::Render()
 		Shader::UseCurrentProgram();
 
 		m_material.BindVertexArray();
-		glPointSize(30.0f); // TODO put this in shader class
+		glPointSize(20.0f); // TODO put this in shader class
 		glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
 		m_material.DrawVertexArray(GL_POINTS, 0, 1);
 

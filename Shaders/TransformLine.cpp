@@ -90,6 +90,11 @@ void TransformLine::Translate(glm::vec3 translation)
 	m_transform.Translate(translation);
 }
 
+void TransformLine::SetPosition(glm::vec3 position)
+{
+	m_transform.SetPosition(position);
+}
+
 void TransformLine::SetColliderDimension(glm::vec3 dimension)
 {
 	m_collider.SetDimension(dimension);

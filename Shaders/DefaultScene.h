@@ -22,12 +22,9 @@ public:
 
 private:
 
-	Quad m_quad;
-	Cube m_cube;
 	Grid m_grid;
+	Quad m_debugPlane;
 	CameraEditor m_camera;
 	SkyBox m_skyBox;
-	Light* m_pointLight;
-	EmptyGameObject m_gameObject;
 };
 

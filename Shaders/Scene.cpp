@@ -12,6 +12,26 @@ void Scene::Resume()
 	m_isRunning = true;
 }
 
+void Scene::SetGrid(bool flag)
+{
+	m_isGridActive = flag;
+}
+
+void Scene::SetPlane(bool flag)
+{
+	m_isPlaneActive = flag;
+}
+
+bool Scene::GetGrid()
+{
+	return m_isGridActive;
+}
+
+bool Scene::GetPlane()
+{
+	return m_isPlaneActive;
+}
+
 void Scene::PushGameObject(GameObject* obj)
 {
 	m_gameObjects.push_back(obj);

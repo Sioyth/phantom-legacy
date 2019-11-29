@@ -15,6 +15,12 @@ public:
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
+	void SetGrid(bool flag);
+	void SetPlane(bool flag);
+	
+	bool GetGrid();
+	bool GetPlane();
+
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();
 
@@ -25,6 +31,8 @@ protected:
 
 	bool m_isEditing;
 	bool m_isRunning;
+	bool m_isGridActive;
+	bool m_isPlaneActive;
 	std::vector<GameObject*> m_gameObjects;
 
 	static int s_currentSelectedGameObject;

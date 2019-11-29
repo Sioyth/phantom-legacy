@@ -45,6 +45,48 @@ void GameObject::Scale(const float& x, const float& y, const float& z)
 	m_transform.Scale(x, y, z);
 }
 
+void GameObject::LoadModel(const std::string& filename)
+{
+
+	if (m_model)
+	{
+		m_model->Create();
+
+		m_model->SetShininess(1.0f);
+		m_model->SetAmbient(1.0f, 1.0f, 1.0f);
+		m_model->SetDiffuse(1.0f, 1.0f, 1.0f);
+		m_model->SetSpecular(1.0f, 1.0f, 1.0f);
+		m_model->SetPosition(m_transform.GetPosition().x, m_transform.GetPosition().y, m_transform.GetPosition().z);
+
+		if (m_model->LoadModel(filename))
+		{
+			Debug::Log("Model Loaded correctly!");
+		}
+	}
+	else
+	{
+		m_model = new Model;
+
+		m_model->Create();
+
+		m_model->SetShininess(1.0f);
+		m_model->SetAmbient(1.0f, 1.0f, 1.0f);
+		m_model->SetDiffuse(1.0f, 1.0f, 1.0f);
+		m_model->SetSpecular(1.0f, 1.0f, 1.0f);
+		m_model->SetPosition(m_transform.GetPosition().x, m_transform.GetPosition().y, m_transform.GetPosition().z);
+
+		if (m_model->LoadModel(filename))
+		{
+			Debug::Log("Model Loaded correctly!");
+		}
+		else
+		{
+			Debug::ErrorLog("Model didn't Loaded correctly!");
+		}
+	}
+	
+}
+
 void GameObject::Selected()
 {
 
@@ -99,8 +141,6 @@ void GameObject::Selected()
 
 			m_transformLine[2].SetColliderDimension(glm::vec3(0.3f, 0.3f, offset));
 			m_transformLine[2].Create(origin, pointZ, colorZ, m_transform.GetPosition());
-
-			Debug::Log("Testing");
 		}
 		else
 		{
@@ -155,12 +195,45 @@ const glm::vec3& GameObject::GetPosition()
 	return m_transform.GetPosition();
 }
 
+const glm::vec3& GameObject::GetRotation()
+{
+	return m_transform.GetRotation();
+}
+
+const glm::vec3& GameObject::GetScale()
+{
+	return m_transform.GetScale();
+}
+
 const AABB& GameObject::GetTransformLineCollider()
 {
 	if (m_transformLine)
 	{
 		return m_transformLine->GetCollider();
 	}
+}
+
+void GameObject::SetIsLit(bool flag)
+{
+	m_isLit = flag;
+}
+
+bool GameObject::GetIsLit()
+{
+	return m_isLit;
+}
+
+void GameObject::SetPosition(glm::vec3 position)
+{
+	static const int NUMBER_LINES = 3;
+
+	m_transform.SetPosition(position);
+
+	for (int i = 0; i < NUMBER_LINES; i++)
+	{
+		m_transformLine[i].SetPosition(position);
+	}
+	
 }
 
 void GameObject::SetAmbient(glm::vec3 ambient)
