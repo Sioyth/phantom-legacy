@@ -1,0 +1,90 @@
+﻿  AABB.cpp
+  Buffer.cpp
+  Camera.cpp
+  CameraEditor.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(135,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(167,54): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(186,19): warning C4244:         ]
+  Cube.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:             T=glm::i32
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         and
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(204,54): warning C4244:         ]
+  Debug.cpp
+  DefaultScene.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Cube.cpp(60,2): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  EmptyGameObject.cpp
+  GameObject.cpp
+  Grid.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_impl_sdl.cpp
+  imgui_widgets.cpp
+  Input.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(50,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(102,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(102,36): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(102,36): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(102,36): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(102,36): warning C4244:         ]
+  Interface.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(103,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(103,36): warning C4244:         with
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(103,36): warning C4244:         [
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(103,36): warning C4244:             T=float
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(103,36): warning C4244:         ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Light.cpp
+  Line.cpp
+  Compiling...
+  main.cpp
+  Material.cpp
+  Model.cpp
+  Physics.cpp
+  Primitives.cpp
+  Quad.cpp
+  Scene.cpp
+  SceneManager.cpp
+  Screen.cpp
+  Shader.cpp
+  SkyBox.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(161,20): warning C4018: '<': signed/unsigned mismatch
+  SphereCollider.cpp
+  Texture.cpp
+  Transform.cpp
+  TransformLine.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\SkyBox.cpp(53,2): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\Sioyth\Desktop\phantom\Shaders\TransformLine.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  glad.c
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\Users\Sioyth\Desktop\phantom\Shaders\SceneManager.cpp(49): warning C4715: 'SceneManager::GetCurrentScene': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(67): warning C4715: 'Input::GetMouseButtonDown': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\GameObject.cpp(176): warning C4715: 'GameObject::GetTransformLines': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\Shader.cpp(216): warning C4715: 'Shader::GetShaderProgram': not all control paths return a value
+  All 2309 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\Release\Phantom.exe
