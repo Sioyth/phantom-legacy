@@ -4,11 +4,11 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
+#include "Time.h"
 #include "Debug.h"
 #include "Input.h"
 #include "Screen.h"
 #include "Interface.h"
-
 #include "SceneManager.h"
 #include "DefaultScene.h"
 
@@ -59,6 +59,9 @@ int main(int argc, char* args[])
 	while (IsGameEngineRunning)
 	{
 		// -------------------------------------------# 
+
+		// Updates Time
+		Time::Update();
 
 		// Clears the buffers
 		Screen::Instance()->ClearBuffers();

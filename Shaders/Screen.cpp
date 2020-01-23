@@ -151,6 +151,15 @@ int Screen::GetScreenHeight()
 
 void Screen::SetDepthTest(bool flag)
 {
+	if(flag)
+	{
+		glEnable(GL_DEPTH_TEST);
+	}
+	else
+	{
+		glDisable(GL_DEPTH_TEST);
+	}
+
 	m_depthTest = flag;
 }
 

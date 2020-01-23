@@ -396,6 +396,7 @@ public:
 	glm::vec2 GetMousePosition();
 
 	bool GetMouseButtonDown(int mouseid);
+	bool GetMouseButtonClick(int mouseid);
 
 public:
 
@@ -409,10 +410,15 @@ private:
 
 private:
 
+	bool m_clicked[3];
+	bool m_oneClick[3];
+	bool m_cooldown[3];
 	bool m_IsKeyPressed;
 	bool m_IsLeftMouseButtonPressed;
 	bool m_IsRightMouseButtonPressed;
 	bool m_IsMiddleMouseButtonPressed;
+
+	float m_startTimer[3];
 
 	KeyState m_keyStates;
 	glm::ivec2 m_mouseMotion;

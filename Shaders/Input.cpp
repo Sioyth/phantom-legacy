@@ -1,4 +1,7 @@
 #include "Input.h"
+#include "Time.h"
+
+#include "Debug.h" // renmve after
 
 Input* Input::Instance()
 {
@@ -64,6 +67,54 @@ bool Input::GetMouseButtonDown(int mouseid)
 	default:
 		break;
 	}
+}
+
+bool Input::GetMouseButtonClick(int mouseid)
+{
+	float currentTime = Time::GetDeltaTime();
+
+	if (GetMouseButtonDown(mouseid))
+	{
+		if (!m_clicked[mouseid])
+		{
+			m_cooldown[mouseid] = true;
+			m_startTimer[mouseid] = Time::GetDeltaTime();
+		}
+
+		m_clicked[mouseid] = true;
+	}
+	else
+	{
+		m_startTimer[mouseid] = 0;
+		m_clicked[mouseid] = false;
+		m_oneClick[mouseid] = false;
+	}
+
+	// 0.2f is the time of the cooldown, if it's within tht time it counts as one click
+	if (currentTime - 0.2f > m_startTimer[mouseid] && m_cooldown[mouseid])
+	{
+		if (m_clicked[mouseid])
+		{
+			m_oneClick[mouseid] = false;
+			m_cooldown[mouseid] = false;
+
+		}
+		else
+		{
+			m_oneClick[mouseid] = true;
+			m_cooldown[mouseid] = false;
+		}
+	}
+	
+	if (m_oneClick[mouseid])
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 }
 
 bool Input::KeyDown(Keycode keycode)

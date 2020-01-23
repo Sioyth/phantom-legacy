@@ -1,5 +1,6 @@
 #include "TransformLine.h"
 #include "Debug.h";
+#include "Screen.h"
 
 TransformLine::TransformLine()
 {
@@ -60,19 +61,19 @@ void TransformLine::Update(glm::vec3 bound)
 
 void TransformLine::Render()
 {
-	{
-		// Send Uniforms Data
-		m_material.SendUniformData("isLit", m_isLit);
-		m_material.SendUniformData("isTextured", m_isTextured);
-		m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+	
+	// Send Uniforms Data
+	m_material.SendUniformData("isLit", m_isLit);
+	m_material.SendUniformData("isTextured", m_isTextured);
+	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
 
-		//glLineWidth(5.0f);
+	//glLineWidth(5.0f);
 
-		// Render Line
-		m_material.BindVertexArray();
-		m_material.DrawVertexArray(GL_LINES, 0, 2);
-		m_material.UnbindVertexArray();
-	}
+	// Render Line
+	m_material.BindVertexArray();
+	m_material.DrawVertexArray(GL_LINES, 0, 2);
+	m_material.UnbindVertexArray();
+
 }
 
 void TransformLine::SetVertex(GLfloat* vertex)

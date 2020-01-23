@@ -5,6 +5,7 @@
 
 #include "SceneManager.h"
 #include "Physics.h"
+#include "Ray.h"
 
 CameraEditor::CameraEditor()
 {
@@ -94,48 +95,21 @@ void CameraEditor::Update()
 	}
 	else if (Input::Instance()->GetMouseButtonDown(0))
 	{
-		// TODO RAYCAST CLASS
-		// Ray Cast
+		
+
+		Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
 
 		m_isMoving = false;
 
-		glm::vec2 mousePosition = Input::Instance()->GetMousePosition();
-		float height = (float)Screen::Instance()->GetScreenHeight();
-		float width = (float)Screen::Instance()->GetScreenWidth();
-
-		// Normalized Ray
-		glm::vec3 ray;
-		ray.x = (2.0f * mousePosition.x) / width - 1.0f;
-		ray.y = 1.0f - (2.0f * mousePosition.y) / height;
-		ray.z = 1.0f;
-
-		// Convert into clip space
-		glm::vec4 rayClipCoords = glm::vec4(ray.x, ray.y, -1.0f, 1.0f);
-
-		// Inverse Projection Matrix
-		glm::mat4 invertedProjectionMatrix = glm::inverse(m_projectionMatrix);
-
-		// Convert it to eye Space
-		glm::vec4 rayEyeCoords = invertedProjectionMatrix * rayClipCoords;
-		rayEyeCoords.z = -1.0f;
-		rayEyeCoords.w = 0.0f;
-
-		// Inverse Projection Matrix
-		glm::mat4 invertedViewMatrix = glm::inverse(m_viewMatrix);
-
-		// Convert to world coords (ray direction)
-		glm::vec3 rayWorldCoords = invertedViewMatrix * rayEyeCoords;
-
-		// Normalize / Ray Direction
-		rayWorldCoords = glm::normalize(rayWorldCoords);
 
 		//TODO move this out of camera editor class.
 
 		// Checks all objects int he scene to see if it's colliding with it
 		for (int i = 0; i < SceneManager::Instance()->GetCurrentScene().GetGameObjects().size(); i++)
 		{
-			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetCollider(), m_transform.GetPosition(), rayWorldCoords))
+			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[i]->GetCollider(), m_transform.GetPosition(), ray.GetDirection()))
 			{
+
 				if (lastSelectedGameObject > -1)
 				{
 					// First set last selected object to false
@@ -161,7 +135,7 @@ void CameraEditor::Update()
 			static const int NUMBER_LINES = 3;
 
 			// Check Collision with transform Lines
-			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[0].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
+			if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[0].GetCollider(), m_transform.GetPosition(), ray.GetDirection()))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
 				translate.x = Input::Instance()->GetMouseMotion().x;
@@ -180,7 +154,7 @@ void CameraEditor::Update()
 			}
 
 			// Check Collision with transform Lines
-			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[1].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
+			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[1].GetCollider(), m_transform.GetPosition(), ray.GetDirection()))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
 				translate.y = -Input::Instance()->GetMouseMotion().y;
@@ -198,7 +172,7 @@ void CameraEditor::Update()
 			}
 
 			// Check Collision with transform Lines
-			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[2].GetCollider(), m_transform.GetPosition(), rayWorldCoords))
+			else if (Physics::RayAABBCollision(SceneManager::Instance()->GetCurrentScene().GetGameObjects()[lastSelectedGameObject]->GetTransformLines()[2].GetCollider(), m_transform.GetPosition(), ray.GetDirection()))
 			{
 				glm::vec3 translate = glm::vec3(0.0f);
 				translate.z = Input::Instance()->GetMouseMotion().x;

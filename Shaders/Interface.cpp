@@ -281,47 +281,14 @@ void Interface::RightClickMenu()
 		}
 	}
 
-	// TODO add function GetMouseButtonClick() in input class.
-	
-	float currentTime = SDL_GetTicks() / 1000.0f;
-
-	//Debug::Log(currentTime);
-	
-	if (Input::Instance()->GetMouseButtonDown(1))
+	if (Input::Instance()->GetMouseButtonClick(1))
 	{
-		if (!m_click)
-		{
-			m_cooldown = true;
-			m_isRightMenuEnabled = false;
-			startTimer = SDL_GetTicks() / 1000.0f;
-		}
-
-		m_click = true;
-	}
-	else 
-	{
-		startTimer = 0;
-		m_click = false;
-	}
-	
-	if (currentTime - 0.2f > startTimer && m_cooldown)
-	{
-		if (m_click)
-		{
-			m_cooldown = false;
-		}
-		else
+		if (!ImGui::IsAnyWindowHovered())
 		{
 			m_isRightMenuEnabled = true;
-			m_cooldown = false;
 		}
 	}
-	
 
-	if (Input::Instance()->GetMouseButtonDown(0))
-	{
-		//m_isRightMenuEnabled = false;
-	}
 }
 
 void Interface::ToolBar()

@@ -162,6 +162,7 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Screen.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TransformLine.cpp" />
   </ItemGroup>
@@ -200,6 +202,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Ray.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Screen.h" />
@@ -207,6 +210,7 @@
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TransformLine.h" />
   </ItemGroup>
