@@ -322,6 +322,7 @@ void Interface::Inspector()
 		{
 			GameObject* obj = SceneManager::Instance()->GetCurrentScene().GetGameObjects()[SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject()];
 
+			//TODO make this a function
 			float position[3] = { obj->GetPosition().x, obj->GetPosition().y, obj->GetPosition().z};
 			float rotation[3] = { obj->GetRotation().x, obj->GetRotation().y, obj->GetRotation().z };
 			float scale[3] = { obj->GetScale().x, obj->GetScale().y, obj->GetScale().z };
@@ -331,6 +332,7 @@ void Interface::Inspector()
 
 			ImGui::Text("Transform");
 
+			// TODO Wrap ImGui
 			if (ImGui::InputFloat3("Position", position, "%.3f", ImGuiInputTextFlags_AlwaysInsertMode))
 			{
 

@@ -199,6 +199,7 @@
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraEditor.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
@@ -219,6 +220,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PhantomEngine.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Quad.cpp" />
@@ -239,6 +241,7 @@
     <ClInclude Include="Buffer.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraEditor.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DefaultScene.h" />
@@ -259,6 +262,7 @@
     <ClInclude Include="Line.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="PhantomEngine.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Quad.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <PxPhysicsAPI.h>
 
 #include "GameObject.h"
 
@@ -21,6 +22,8 @@ public:
 	bool GetGrid();
 	bool GetPlane();
 
+	void CreateScene();
+
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();
 
@@ -34,6 +37,8 @@ protected:
 	bool m_isGridActive;
 	bool m_isPlaneActive;
 	std::vector<GameObject*> m_gameObjects;
+
+	physx::PxScene* m_scene;
 
 	static int s_currentSelectedGameObject;
 };

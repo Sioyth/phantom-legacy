@@ -8,6 +8,7 @@
 #include "Debug.h"
 #include "Input.h"
 #include "Screen.h"
+#include "Physics.h"
 #include "Interface.h"
 #include "SceneManager.h"
 #include "DefaultScene.h"
@@ -23,6 +24,8 @@ int main(int argc, char* args[])
 	// -------------------------------------------#  Initilize the Screen
 
 	Screen::Instance()->Initialize(1280, 720, 4, 6, true);
+
+	Physics::InitializePhysics();
 
 	// -------------------------------------------#  Instanciate Game Objects
 
@@ -78,8 +81,8 @@ int main(int argc, char* args[])
 		//-------------------------------------------# Update and Render Scene
 
 		SceneManager::Instance()->GetCurrentScene().Update();
-		Screen::Instance()->PhysX();
 		SceneManager::Instance()->GetCurrentScene().Render();
+		Physics::SimulatePhysics();
 
 		// -------------------------------------------# 
 		// TESTING CODE FOR A NEW VIEW PORT

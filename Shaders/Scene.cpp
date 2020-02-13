@@ -32,6 +32,10 @@ bool Scene::GetPlane()
 	return m_isPlaneActive;
 }
 
+void Scene::CreateScene()
+{
+}
+
 void Scene::PushGameObject(GameObject* obj)
 {
 	m_gameObjects.push_back(obj);

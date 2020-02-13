@@ -10,8 +10,6 @@
 
 #include <PxPhysicsAPI.h>
 
-#define PVD_HOST "127.0.0.1"
-
 class Screen
 {
 public:
@@ -22,8 +20,6 @@ public:
 
 	void Initialize(int widht, int height, int major, int minor, bool mode);
 	void ShutDown();
-
-	void PhysX();
 
 	void ImGuiFrame();
 	void ImGuiRender();
@@ -36,10 +32,6 @@ public:
 
 	int GetScreenWidth();
 	int GetScreenHeight();
-
-public:
-
-	const physx::PxPhysics* GetPxPhysics();
 
 public:
 
@@ -59,23 +51,10 @@ private:
 	SDL_Window* m_window;
 	SDL_GLContext m_context;
 
-	physx::PxDefaultAllocator m_allocator;
-	physx::PxDefaultErrorCallback m_errorCallback;
-
-	physx::PxPhysics* m_physics;
-	physx::PxFoundation* m_foundation;
-	physx::PxDefaultCpuDispatcher* m_dispatcher;
-
-	physx::PxScene* m_scene;
-
-
-	physx::PxPvd* m_pvd; // Physx Visual debuger
-
 private:
 
 	int m_widht;
 	int m_height;
-
 	bool m_depthTest;
 
 	glm::vec4 m_backgroundColor;
