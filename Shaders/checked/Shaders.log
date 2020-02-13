@@ -1,0 +1,9 @@
+﻿  Screen.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(135,13): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(138,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(137,18): warning C4930: 'physx::PxQuat quaternion(physx::PxIDENTITY)': prototyped function not called (was a variable definition intended?)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\ostream(281,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.24.28314\include\ostream(266): message : while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)'
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(196): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)' being compiled
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(21): message : see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+  Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\checked\Phantom.exe

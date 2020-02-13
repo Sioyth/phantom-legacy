@@ -78,6 +78,7 @@ int main(int argc, char* args[])
 		//-------------------------------------------# Update and Render Scene
 
 		SceneManager::Instance()->GetCurrentScene().Update();
+		Screen::Instance()->PhysX();
 		SceneManager::Instance()->GetCurrentScene().Render();
 
 		// -------------------------------------------# 

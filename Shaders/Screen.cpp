@@ -93,6 +93,64 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 		ImGui_ImplSDL2_InitForOpenGL(m_window, m_context);
 		ImGui_ImplOpenGL3_Init();
 
+		// -------------------------------------------# Setup Dear PhysX context
+
+		m_foundation = PxCreateFoundation(PX_PHYSICS_VERSION, m_allocator, m_errorCallback);
+
+		if (!m_foundation)
+			std::cout << "PxCreate Foundation Failed!";
+		
+		m_pvd = PxCreatePvd(*m_foundation);
+		physx::PxPvdTransport* transport = physx::PxDefaultPvdSocketTransportCreate(PVD_HOST, 5425, 10);
+		m_pvd->connect(*transport, physx::PxPvdInstrumentationFlag::eALL);
+
+		m_physics = PxCreatePhysics(PX_PHYSICS_VERSION, *m_foundation, physx::PxTolerancesScale(), true, m_pvd);
+
+		if(!m_physics)
+			std::cout << "PxCreate Physics Failed!";
+
+		physx::PxSceneDesc sceneDesc(m_physics->getTolerancesScale());
+		sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
+		m_dispatcher = physx::PxDefaultCpuDispatcherCreate(2);
+		sceneDesc.cpuDispatcher = m_dispatcher;
+		sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+		m_scene = m_physics->createScene(sceneDesc);
+
+		if (!m_scene)
+			std::cout << "PxCreate Scene Failed!";
+
+		//====== PROTOTYPE
+
+		physx::PxMaterial* gMaterial = m_physics->createMaterial(0.5f, 0.5f, 0.6f);
+		physx::PxRigidStatic* groundPlane = physx::PxCreatePlane(*m_physics, physx::PxPlane(0, 1, 0, 0), *gMaterial);
+
+		m_scene->addActor(*groundPlane);
+
+		if(!groundPlane)
+			std::cout << "PxCreate Ground Plane Failed!";
+		
+		int j = 0;
+		for (int i = 0; i < 10; i++)
+		{
+			j += 0.2f;
+			physx::PxReal density = 1.0f;
+			physx::PxQuat quaternion(physx::PxIDENTITY);
+			physx::PxTransform transform(physx::PxVec3(0.0f, j, 0.0f));
+			physx::PxBoxGeometry box(physx::PxVec3(1, 1, 1));
+			physx::PxRigidDynamic* boxActor = physx::PxCreateDynamic(*m_physics, transform, box, *gMaterial, density);
+
+			boxActor->setAngularDamping(0.75);
+			boxActor->setLinearVelocity(physx::PxVec3(0, 0, 0));
+
+			if (!boxActor)
+				std::cout << "Box Actor Failed!";
+
+
+			m_scene->addActor(*boxActor);
+
+		}
+
+		//m_scene->getScenePvdClient()->setScenePvdFlags(physx::PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS | physx::PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES | physx::PxPvdSceneFlag::eTRANSMIT_CONTACTS);
 	}
 }
 
@@ -205,3 +263,10 @@ void Screen::ShutDown()
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();
 }
+
+void Screen::PhysX()
+{
+	m_scene->simulate(1.0f / 60.0f);
+	m_scene->fetchResults(true);
+}
+
