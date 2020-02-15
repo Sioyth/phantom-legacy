@@ -1,4 +1,231 @@
-﻿PhysXExtensions_static_32.lib(ExtDefaultErrorCallback.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+﻿  AABB.cpp
+  Buffer.cpp
+  Camera.cpp
+  CameraEditor.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(108,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(141,54): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(160,19): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\CameraEditor.cpp(178,54): warning C4244: '=': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=glm::i32
+          ]
+          and
+          [
+              T=float
+          ]
+  Component.cpp
+  Cube.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Cube.cpp(62,2): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(390,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(383): message : while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)'
+C:\Users\Sioyth\Desktop\phantom\Shaders\Cube.cpp(131): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)' being compiled
+C:\Users\Sioyth\Desktop\phantom\Shaders\Cube.cpp(131): message : see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+  Debug.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(726,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(701): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> *std::vector<std::string,std::allocator<std::string>>::_Emplace_reallocate<const _Ty&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> *const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(709): message : see reference to function template instantiation 'std::basic_string<char,std::char_traits<char>,std::allocator<char>> *std::vector<std::string,std::allocator<std::string>>::_Emplace_reallocate<const _Ty&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> *const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(718): message : see reference to function template instantiation 'void std::vector<std::string,std::allocator<std::string>>::emplace_back<const _Ty&>(const _Ty &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(717): message : while compiling class template member function 'void std::vector<std::string,std::allocator<std::string>>::push_back(const _Ty &)'
+          with
+          [
+              _Ty=std::string
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Debug.cpp(10): message : see reference to function template instantiation 'void std::vector<std::string,std::allocator<std::string>>::push_back(const _Ty &)' being compiled
+          with
+          [
+              _Ty=std::string
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Debug.cpp(4): message : see reference to class template instantiation 'std::vector<std::string,std::allocator<std::string>>' being compiled
+  DefaultScene.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(726,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(701): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(709): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(718): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::emplace_back<const _Ty&>(const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(717): message : while compiling class template member function 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)'
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(28): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Scene.h(39): message : see reference to class template instantiation 'std::vector<GameObject *,std::allocator<GameObject *>>' being compiled
+  EmptyGameObject.cpp
+  GameObject.cpp
+  Grid.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_impl_sdl.cpp
+  imgui_widgets.cpp
+  Input.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(153,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(154,36): warning C4244: '=': conversion from 'Sint32' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Interface.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Sioyth\Desktop\phantom\Shaders\Interface.cpp(161,20): warning C4018: '<': signed/unsigned mismatch
+  Light.cpp
+  Generating Code...
+C:\Users\Sioyth\Desktop\phantom\Shaders\Input.cpp(70): warning C4715: 'Input::GetMouseButtonDown': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\GameObject.cpp(176): warning C4715: 'GameObject::GetTransformLines': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\GameObject.cpp(214): warning C4715: 'GameObject::GetTransformLineCollider': not all control paths return a value
+  Compiling...
+  Line.cpp
+  main.cpp
+  Material.cpp
+  Model.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(299,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(292): message : while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)'
+C:\Users\Sioyth\Desktop\phantom\Shaders\Model.cpp(288): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\istream(704): message : see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\fstream(1189): message : see reference to class template instantiation 'std::basic_iostream<char,std::char_traits<char>>' being compiled
+C:\Users\Sioyth\Desktop\phantom\Shaders\Model.cpp(122): message : see reference to class template instantiation 'std::basic_fstream<char,std::char_traits<char>>' being compiled
+  PhantomEngine.cpp
+  Physics.cpp
+  PhantomPhysX.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\PhantomPhysX.cpp(62,17): warning C4930: 'physx::PxQuat quaternion(physx::PxIDENTITY)': prototyped function not called (was a variable definition intended?)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(743,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Users\Sioyth\Desktop\phantom\Shaders\PhantomPhysX.cpp(20): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const char *)' being compiled
+  Primitives.cpp
+  Quad.cpp
+  Ray.cpp
+  Scene.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(726,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(701): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(709): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(718): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::emplace_back<const _Ty&>(const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(717): message : while compiling class template member function 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)'
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Scene.cpp(41): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)' being compiled
+          with
+          [
+              _Ty=GameObject *
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Scene.h(39): message : see reference to class template instantiation 'std::vector<GameObject *,std::allocator<GameObject *>>' being compiled
+  SceneManager.cpp
+  Screen.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(281,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\ostream(266): message : while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)'
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(139): message : see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)' being compiled
+C:\Users\Sioyth\Desktop\phantom\Shaders\Screen.cpp(21): message : see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+  Shader.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\string(37,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\string(84): message : see reference to function template instantiation 'std::basic_istream<char,std::char_traits<char>> &std::getline<char,std::char_traits<char>,std::allocator<char>>(std::basic_istream<char,std::char_traits<char>> &&,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &,const _Elem)' being compiled
+          with
+          [
+              _Elem=char
+          ]
+C:\Users\Sioyth\Desktop\phantom\Shaders\Shader.cpp(188): message : see reference to function template instantiation 'std::basic_istream<char,std::char_traits<char>> &std::getline<char,std::char_traits<char>,std::allocator<char>>(std::basic_istream<char,std::char_traits<char>> &,std::basic_string<char,std::char_traits<char>,std::allocator<char>> &)' being compiled
+  SkyBox.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\SkyBox.cpp(53,2): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  SphereCollider.cpp
+  Texture.cpp
+  Time.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\Time.cpp(11,30): warning C4244: '=': conversion from 'Uint32' to 'float', possible loss of data
+  Transform.cpp
+  TransformLine.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\TransformLine.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+C:\Users\Sioyth\Desktop\phantom\Shaders\Shader.cpp(216): warning C4715: 'Shader::GetShaderProgram': not all control paths return a value
+C:\Users\Sioyth\Desktop\phantom\Shaders\SceneManager.cpp(49): warning C4715: 'SceneManager::GetCurrentScene': not all control paths return a value
+  glad.c
+PhysXExtensions_static_32.lib(ExtDefaultErrorCallback.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
 PhysXExtensions_static_32.lib(ExtDefaultErrorCallback.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXExtensions_static_32.lib(ExtDefaultSimulationFilterShader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXExtensions_static_32.lib(ExtDefaultSimulationFilterShader.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXExtensions_static_32.lib(ExtDefaultCpuDispatcher.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXExtensions_static_32.lib(ExtDefaultCpuDispatcher.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXExtensions_static_32.lib(ExtSimpleFactory.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXExtensions_static_32.lib(ExtSimpleFactory.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXExtensions_static_32.lib(ExtCpuWorkerThread.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXExtensions_static_32.lib(ExtCpuWorkerThread.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXExtensions_static_32.lib(ExtRigidBodyExt.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXExtensions_static_32.lib(ExtRigidBodyExt.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvd.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvd.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdDefaultSocketTransport.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdDefaultSocketTransport.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdImpl.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdImpl.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdDataStream.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdDataStream.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdObjectModelMetaData.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdObjectModelMetaData.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdObjectRegistrar.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdObjectRegistrar.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdMemClient.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdMemClient.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxProfileEventImpl.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxProfileEventImpl.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdProfileZoneClient.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '0' doesn't match value '2' in AABB.obj
+PhysXPvdSDK_static_32.lib(PxPvdProfileZoneClient.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MT_StaticRelease' doesn't match value 'MTd_StaticDebug' in AABB.obj
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe : fatal error LNK1319: 2 mismatches detected
+C:\Users\Sioyth\Desktop\phantom\Debug\Phantom.exe : fatal error LNK1319: 30 mismatches detected

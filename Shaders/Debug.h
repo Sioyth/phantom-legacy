@@ -32,11 +32,5 @@ public:
 private:
 
 	static std::vector<std::string> m_logs;
-
-public:
-	
-	Debug() {};
-	Debug(const Debug&);
-	Debug operator=(const Debug);
 };
 

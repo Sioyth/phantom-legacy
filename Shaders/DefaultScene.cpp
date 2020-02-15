@@ -2,6 +2,10 @@
 #include "SceneManager.h"
 #include <iostream>
 
+#include "Cube.h"
+
+Cube* m_cube = new Cube;
+
 DefaultScene::DefaultScene()
 {
 
@@ -31,6 +35,9 @@ DefaultScene::DefaultScene()
 
 	m_grid.Create();
 	m_skyBox.Create();
+
+	m_cube->Create();
+	m_gameObjects.push_back(m_cube);
 
 	// -------------------------------------------#  Create Camera Perspective
 

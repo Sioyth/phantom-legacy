@@ -5,8 +5,7 @@
 #include "AABB.h"
 #include "Time.h"
 
-#include <PxPhysicsAPI.h>
-
+#include "PhantomPhysx.h"
 
 class Physics
 {
@@ -22,13 +21,6 @@ public:
 private:
 
 	 bool m_initialized;
-
-	static physx::PxPvd* m_pvd; // Physx Visual debuger
-	static physx::PxScene* m_scene;
-	static physx::PxPhysics* m_physics;
-	static physx::PxFoundation* m_foundation;
-	static physx::PxDefaultAllocator m_allocator;
-	static physx::PxDefaultCpuDispatcher* m_dispatcher;
-	static physx::PxDefaultErrorCallback m_errorCallback;
+	 
 };
 

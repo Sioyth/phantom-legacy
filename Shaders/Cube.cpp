@@ -1,4 +1,6 @@
 #include "Cube.h"
+#include "PhantomPhysX.h"
+#include <vector>
 
 Cube::Cube()
 {
@@ -119,6 +121,23 @@ void Cube::Update()
 void Cube::Render()
 {
 
+	physx::PxScene* scene;
+	PxGetPhysics().getScenes(&scene, 1);
+	physx::PxU32 nbActors = scene->getNbActors(physx::PxActorTypeFlag::eRIGID_DYNAMIC | physx::PxActorTypeFlag::eRIGID_STATIC);
+	if (nbActors)
+	{
+		std::vector<physx::PxRigidActor*> actors(nbActors);
+		scene->getActors(physx::PxActorTypeFlag::eRIGID_DYNAMIC | physx::PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<physx::PxActor**>(&actors[0]), nbActors);
+		std::cout << actors[1]->getGlobalPose().p.y;
+		glm::vec3 p;
+		p.x = actors[1]->getGlobalPose().p.x;
+		p.y = actors[1]->getGlobalPose().p.y;
+		p.z = actors[1]->getGlobalPose().p.z;
+		m_transform.SetPosition(p);
+	}
+
+	
+	
 	m_collider.SetPosition(m_transform.GetPosition());
 	m_collider.CalculateMinMax();
 
