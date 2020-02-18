@@ -1,30 +1,5 @@
-﻿  DefaultScene.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(726,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(701): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
-          with
-          [
-              _Ty=GameObject *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(709): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
-          with
-          [
-              _Ty=GameObject *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(718): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::emplace_back<const _Ty&>(const _Ty &)' being compiled
-          with
-          [
-              _Ty=GameObject *
-          ]
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(717): message : while compiling class template member function 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)'
-          with
-          [
-              _Ty=GameObject *
-          ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(28): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)' being compiled
-          with
-          [
-              _Ty=GameObject *
-          ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\Scene.h(39): message : see reference to class template instantiation 'std::vector<GameObject *,std::allocator<GameObject *>>' being compiled
+﻿  BoxCollider.cpp
+C:\Users\Sioyth\Desktop\phantom\Shaders\BoxCollider.cpp(16,16): warning C4930: 'physx::PxQuat quaternion(physx::PxIDENTITY)': prototyped function not called (was a variable definition intended?)
+  Physics.cpp
+  Generating Code...
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\checked\Phantom.exe

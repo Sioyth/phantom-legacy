@@ -17,6 +17,7 @@ void SceneManager::ChangeScene(std::string name)
 	if (m_scenes.find(name) != m_scenes.end())
 	{
 		m_currentScene = m_scenes[name];
+		m_currentScene->Start();
 	}
 	else
 	{

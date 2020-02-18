@@ -229,6 +229,9 @@ void GameObject::SetPosition(glm::vec3 position)
 
 	m_transform.SetPosition(position);
 
+	if (!m_transformLine)
+		return;
+
 	for (int i = 0; i < NUMBER_LINES; i++)
 	{
 		m_transformLine[i].SetPosition(position);

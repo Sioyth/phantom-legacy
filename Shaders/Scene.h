@@ -11,8 +11,7 @@ public:
 	void Pause();
 	void Resume();
 
-	void Editing();
-
+	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 

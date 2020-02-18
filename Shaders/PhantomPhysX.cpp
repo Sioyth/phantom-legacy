@@ -54,26 +54,6 @@ bool PhantomPhysx::InitializePhysics()
 	if (!groundPlane)
 		std::cout << "PxCreate Ground Plane Failed!";
 
-	float j = 2;
-	//for (int i = 0; i < 1; i++)
-	{
-		j += 0.5f;
-		physx::PxReal density = 1.0f;
-		physx::PxQuat quaternion(physx::PxIDENTITY);
-		physx::PxTransform transform(physx::PxVec3(0.0f, j, 0.0f));
-		physx::PxBoxGeometry box(physx::PxVec3(0.5f, 0.5f, 0.5f));
-		physx::PxRigidDynamic* boxActor = physx::PxCreateDynamic(*m_physics, transform, box, *gMaterial, density);
-
-		boxActor->setAngularDamping(0.75);
-		boxActor->setLinearVelocity(physx::PxVec3(0, 0, 0));
-
-		if (!boxActor)
-			std::cout << "Box Actor Failed!";
-
-		m_scene->addActor(*boxActor);
-
-	}
-
 	return true;
 }
 

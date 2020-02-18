@@ -21,6 +21,8 @@ CameraEditor::CameraEditor()
 
 	m_aspectRatio = (float)Screen::Instance()->GetScreenWidth() /
 					(float)Screen::Instance()->GetScreenHeight();
+
+	m_transform.SetPosition(glm::vec3(0.0f, 5.0f, 20.0f));
 	
 }
 

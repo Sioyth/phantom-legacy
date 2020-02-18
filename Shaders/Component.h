@@ -8,8 +8,9 @@ public:
 
 	virtual void Update() = 0;
 
-private:
+protected:
 
+	bool m_enabled;
 	std::string name;
 };
 

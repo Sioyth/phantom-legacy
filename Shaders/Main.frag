@@ -163,7 +163,7 @@ vec3 CalculateDiffuse(Light light)
 	}
 
 	//calculate the light intensity value
-	float lightIntensity = max(dot(lightDirection, normal), 0.0);
+	float lightIntensity = max(dot(lightDirection, normal), 0.0) * 500;
 		
 	//calculate the diffuse color
 	return light.diffuse * material.diffuse * lightIntensity;

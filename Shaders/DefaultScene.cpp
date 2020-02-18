@@ -4,7 +4,7 @@
 
 #include "Cube.h"
 
-Cube* m_cube = new Cube;
+Cube* m_cube[10];
 
 DefaultScene::DefaultScene()
 {
@@ -22,7 +22,7 @@ DefaultScene::DefaultScene()
 
 	Light* light = new Light(PointLight);
 	light->Create();
-	light->Translate(0.0f, 1.0f, 0.0f);
+	light->Translate(0.0f, 20.0f, 0.0f);
 	light->SetLightColor(glm::vec3(0.8f, 0.6f, 0.0f));
 
 	m_gameObjects.push_back(light);
@@ -36,8 +36,19 @@ DefaultScene::DefaultScene()
 	m_grid.Create();
 	m_skyBox.Create();
 
-	m_cube->Create();
-	m_gameObjects.push_back(m_cube);
+	float j = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		j = j + 1.0f;
+		m_cube[i] = new Cube;
+		m_cube[i]->SetPosition(glm::vec3(0.0f, j, 0.0f));
+		if(i == 9)
+			m_cube[i]->SetPosition(glm::vec3(0.0f, 30, 0.0f));
+		m_cube[i]->Create();
+		m_gameObjects.push_back(m_cube[i]);
+
+	}
+	
 
 	// -------------------------------------------#  Create Camera Perspective
 
@@ -48,6 +59,11 @@ void DefaultScene::Update()
 {
 	// -------------------------------------------# Update Game Objects
 	m_camera.Update();
+
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		(*m_gameObjects[i]).Update();
+	}
 }
 
 void DefaultScene::Render()

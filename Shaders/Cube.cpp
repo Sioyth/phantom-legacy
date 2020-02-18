@@ -11,10 +11,13 @@ Cube::Cube()
 	m_isLit = true;
 	m_isTextured = false;
 	m_collider.SetDimension(glm::vec3(1.0f));
+	m_transform.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 }
 
 void Cube::Create()
 {
+	m_enabled = true;
+
 	GLfloat vertices3d[] = { -0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f,
 							  0.5f, -0.5f, 0.5f, -0.5f, -0.5f, 0.5f,
 							 -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f,
@@ -102,7 +105,6 @@ void Cube::Create()
 	m_material.UnbindVertexArray();
 
 	// Uniforms
-	m_material.BindUniform("colorInt");
 	m_material.BindUniform("isLit");
 	m_material.BindUniform("model");
 	m_material.BindUniform("isTextured");
@@ -112,51 +114,45 @@ void Cube::Create()
 	m_material.BindUniform("material.specular");
 	m_material.BindUniform("material.metallic");
 
+	m_boxCollider = new BoxCollider(m_transform);
+
 }
 
 void Cube::Update()
 {
+	if (m_enabled)
+	{
+		m_boxCollider->Update();
+	}
 }
 
 void Cube::Render()
 {
 
-	physx::PxScene* scene;
-	PxGetPhysics().getScenes(&scene, 1);
-	physx::PxU32 nbActors = scene->getNbActors(physx::PxActorTypeFlag::eRIGID_DYNAMIC | physx::PxActorTypeFlag::eRIGID_STATIC);
-	if (nbActors)
+	if (m_enabled)
 	{
-		std::vector<physx::PxRigidActor*> actors(nbActors);
-		scene->getActors(physx::PxActorTypeFlag::eRIGID_DYNAMIC | physx::PxActorTypeFlag::eRIGID_STATIC, reinterpret_cast<physx::PxActor**>(&actors[0]), nbActors);
-		std::cout << actors[1]->getGlobalPose().p.y;
-		glm::vec3 p;
-		p.x = actors[1]->getGlobalPose().p.x;
-		p.y = actors[1]->getGlobalPose().p.y;
-		p.z = actors[1]->getGlobalPose().p.z;
-		m_transform.SetPosition(p);
+
+		m_collider.SetPosition(m_transform.GetPosition());
+		m_collider.CalculateMinMax();
+
+		m_material.SendUniformData("isLit", m_isLit);
+		m_material.SendUniformData("isTextured", m_isTextured);
+
+		m_material.SendUniformData("material.ambient", m_material.GetAmbient());
+		m_material.SendUniformData("material.diffuse", m_material.GetDiffuse());
+		m_material.SendUniformData("material.specular", m_material.GetSpecular());
+		m_material.SendUniformData("material.metallic", m_material.GetMetallic());
+
+		m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
+
+		//m_material.BindTexture();
+
+		m_material.BindVertexArray();
+		m_material.DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		m_material.UnbindVertexArray();
+
+		//m_material.UnbindTexture();
+
 	}
-
-	
-	
-	m_collider.SetPosition(m_transform.GetPosition());
-	m_collider.CalculateMinMax();
-
-	m_material.SendUniformData("isLit", m_isLit);
-	m_material.SendUniformData("isTextured", m_isTextured);
-
-	m_material.SendUniformData("material.ambient", m_material.GetAmbient());
-	m_material.SendUniformData("material.diffuse", m_material.GetDiffuse());
-	m_material.SendUniformData("material.specular", m_material.GetSpecular());
-	m_material.SendUniformData("material.metallic", m_material.GetMetallic());
-
-	m_material.SendUniformData("model", 1, GL_FALSE, m_transform.GetTransformMatrix());
-
-	//m_material.BindTexture();
-
-	m_material.BindVertexArray();
-	m_material.DrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-	m_material.UnbindVertexArray();
-
-	//m_material.UnbindTexture();
 
 }

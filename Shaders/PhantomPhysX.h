@@ -2,8 +2,6 @@
 
 #include <PxPhysicsAPI.h>
 
-
-
 namespace PhantomPhysx
 {
 

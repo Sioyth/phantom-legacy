@@ -17,6 +17,7 @@ public:
 
 public:
 
+	void Start() {};
 	void Update();
 	void Render();
 

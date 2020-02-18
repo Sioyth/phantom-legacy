@@ -2,8 +2,6 @@
 #include <gtx/intersect.hpp>
 #include "Debug.h"
 
-
-
 void Physics::SimulatePhysics()
 {
 	PhantomPhysx::SimulatePhysics();
