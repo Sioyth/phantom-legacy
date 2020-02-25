@@ -20,8 +20,8 @@ Light::Light(LightType type)
 	}
 
 	m_attenuationConst = 1.0f;
-	m_attenuationLinear = 0.15f;
-	m_attenuationQuad = 2.0f;
+	m_attenuationLinear = 0.027f;
+	m_attenuationQuad = 0.0028;
 
 	m_collider.SetDimension(glm::vec3(0.5f));
 
@@ -117,7 +117,6 @@ void Light::Render()
 
 		m_material.BindVertexArray();
 		glPointSize(20.0f); // TODO put this in shader class
-		glDrawArrays(GL_POINTS, 0, 1); // TODO put this in shader class.
 		m_material.DrawVertexArray(GL_POINTS, 0, 1);
 
 	

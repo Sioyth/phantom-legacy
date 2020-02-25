@@ -24,7 +24,9 @@ public:
 	void SetScale();
 	void SetRotation();
 	void SetPosition(glm::vec3 position);
+	void SetMatrix(glm::mat4 matrix);
 
+	const glm::mat4& GetMatrix();
 	const glm::vec3& GetPosition();
 	const glm::vec3& GetRotation();
 	const glm::vec3& GetScale();

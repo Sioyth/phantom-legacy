@@ -1,6 +1,7 @@
 #pragma once
 #include "Transform.h"
 #include "Component.h"
+#include "GameObject.h"
 
 #include <PxPhysicsAPI.h>
 
@@ -16,7 +17,7 @@ protected:
 	bool m_trigger;
 
 	Transform m_transform;
-	Transform* m_objectTransform;
+	GameObject* m_gameObject;
 
 	physx::PxActor* m_actor;
 };

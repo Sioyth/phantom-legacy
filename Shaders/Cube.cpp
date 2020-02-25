@@ -1,5 +1,4 @@
 #include "Cube.h"
-#include "PhantomPhysX.h"
 #include <vector>
 
 Cube::Cube()
@@ -12,6 +11,11 @@ Cube::Cube()
 	m_isTextured = false;
 	m_collider.SetDimension(glm::vec3(1.0f));
 	m_transform.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	m_material.SetAmbient(glm::vec3(1.0f, 0.5f, 0.31f));
+	m_material.SetDiffuse(glm::vec3(1.0f, 0.5f, 0.31f));
+	m_material.SetSpecular(glm::vec3(0.5f, 0.5f, 0.5f));
+	m_material.SetMetallic(32.0f);
 }
 
 void Cube::Create()
@@ -100,6 +104,12 @@ void Cube::Create()
 	m_material.BufferData(UVs, sizeof(UVs), "textureIn", GL_DYNAMIC_DRAW);
 	m_material.UnbindBuffer();
 
+	m_material.CreateBuffer("NormalVBO");
+	m_material.BindBuffer("NormalVBO");
+	m_material.BufferSetAttribute("normalIn", 3, GL_FLOAT, GL_FALSE, 0);
+	m_material.BufferData(normals, sizeof(normals), "normalIn", GL_DYNAMIC_DRAW);
+	m_material.UnbindBuffer();
+
 	m_material.CreateElementBuffer(sizeof(indices3d), indices3d, GL_DYNAMIC_DRAW);
 
 	m_material.UnbindVertexArray();
@@ -114,7 +124,7 @@ void Cube::Create()
 	m_material.BindUniform("material.specular");
 	m_material.BindUniform("material.metallic");
 
-	m_boxCollider = new BoxCollider(m_transform);
+	m_boxCollider = new BoxCollider(*this);
 
 }
 

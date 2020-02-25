@@ -8,6 +8,7 @@ Screen* Screen::Instance()
 	return screen;
 }
 
+//-----------------------------------------------------------------------------
 void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 {
 	m_widht = widht;
@@ -97,6 +98,7 @@ void Screen::Initialize(int widht, int height, int major, int minor, bool mode)
 	}
 }
 
+//-----------------------------------------------------------------------------
 void Screen::ClearBuffers()
 {
 	glClearColor(m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b, m_backgroundColor.a);
@@ -112,11 +114,13 @@ void Screen::ClearBuffers()
 
 }
 
+//-----------------------------------------------------------------------------
 void Screen::SwapBuffers()
 {
 	SDL_GL_SwapWindow(m_window);
 }
 
+//-----------------------------------------------------------------------------
 void Screen::DisplayGraphicsInfo()
 {
 	// Display graphics card info
@@ -127,6 +131,7 @@ void Screen::DisplayGraphicsInfo()
 
 }
 
+//-----------------------------------------------------------------------------
 void Screen::DisplayExtensionsInfo()
 {
 	// Extensions
@@ -140,16 +145,19 @@ void Screen::DisplayExtensionsInfo()
 	}
 }
 
+//-----------------------------------------------------------------------------
 int Screen::GetScreenWidth()
 {
 	return m_widht;
 }
 
+//-----------------------------------------------------------------------------
 int Screen::GetScreenHeight()
 {
 	return m_height;
 }
 
+//-----------------------------------------------------------------------------
 void Screen::SetDepthTest(bool flag)
 {
 	if(flag)
@@ -164,6 +172,7 @@ void Screen::SetDepthTest(bool flag)
 	m_depthTest = flag;
 }
 
+//-----------------------------------------------------------------------------
 void Screen::SetBackgroundColor(glm::vec4 bgcolor)
 {
 	m_backgroundColor.r = bgcolor.r;
@@ -172,6 +181,7 @@ void Screen::SetBackgroundColor(glm::vec4 bgcolor)
 	m_backgroundColor.a = bgcolor.a;
 }
 
+//-----------------------------------------------------------------------------
 void Screen::SetBackgroundColor(float r, float g, float b, float a)
 {
 	m_backgroundColor.r = r;
@@ -180,6 +190,7 @@ void Screen::SetBackgroundColor(float r, float g, float b, float a)
 	m_backgroundColor.a = a;
 }
 
+//-----------------------------------------------------------------------------
 void Screen::ImGuiFrame()
 {
 	ImGui_ImplOpenGL3_NewFrame();
@@ -187,6 +198,7 @@ void Screen::ImGuiFrame()
 	ImGui::NewFrame();
 }
 
+//-----------------------------------------------------------------------------
 void Screen::ImGuiRender()
 {
 	// Rendering
@@ -195,6 +207,7 @@ void Screen::ImGuiRender()
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
+//-----------------------------------------------------------------------------
 void Screen::ShutDown()
 {
 	// Cleanup

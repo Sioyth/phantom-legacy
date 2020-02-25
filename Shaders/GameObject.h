@@ -36,6 +36,8 @@ public:
 	void Scale(const glm::vec3& scale);
 	void Scale(const float& x, const float& y, const float& z);
 
+	void SetMatrix(glm::mat4 matrix);
+
 	void LoadModel(const std::string& filename);
 
 	void Selected(); // TODO find better name
@@ -45,6 +47,7 @@ public:
 	void SetIsSelected(bool flag) { m_isSelected = flag; };
 	TransformLine* GetTransformLines();
 
+	const glm::mat4& GetMatrix();
 	const glm::vec3& GetAmbient();
 	const glm::vec3& GetDiffuse();
 	const glm::vec3& GetSpecular();

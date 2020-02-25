@@ -7,7 +7,7 @@ class BoxCollider : public Collider
 public:
 
 	BoxCollider() {};
-	BoxCollider(Transform & transform);
+	BoxCollider(GameObject &obj);
 
 	void Update();
 

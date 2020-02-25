@@ -1,5 +1,5 @@
 ﻿  BoxCollider.cpp
 C:\Users\Sioyth\Desktop\phantom\Shaders\BoxCollider.cpp(16,16): warning C4930: 'physx::PxQuat quaternion(physx::PxIDENTITY)': prototyped function not called (was a variable definition intended?)
-  Physics.cpp
+  CameraEditor.cpp
   Generating Code...
   Shaders.vcxproj -> C:\Users\Sioyth\Desktop\phantom\checked\Phantom.exe

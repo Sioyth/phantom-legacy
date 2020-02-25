@@ -2,16 +2,98 @@
 #include <gtx/intersect.hpp>
 #include "Debug.h"
 
+#define PVD_HOST "127.0.0.1"
+
+//-----------------------------------------------------------------------------
+bool Physics::Raycast(Ray& ray, RayCastHit& hit, float maxDistance)
+{
+	physx::PxRaycastBuffer hitBuffer;
+
+	physx::PxVec3 o(ray.GetOrigin().x, ray.GetOrigin().y, ray.GetOrigin().z);
+	physx::PxVec3 d(ray.GetDirection().x, ray.GetDirection().y, ray.GetDirection().z);
+
+	if (!m_scene->raycast(o, d, maxDistance, hitBuffer))
+		return false;
+	
+	physx::PxRigidDynamic* pickedActor = hitBuffer.getAnyHit(0).actor->is<physx::PxRigidDynamic>();
+
+	if(pickedActor && pickedActor->userData != nullptr)
+		hit.SetGameObject(pickedActor->userData);
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
 void Physics::SimulatePhysics()
 {
-	PhantomPhysx::SimulatePhysics();
+	m_scene->simulate(1.0f / 60.0f);
+	m_scene->fetchResults(true);
 }
 
+//-----------------------------------------------------------------------------
 bool Physics::InitializePhysics()
 {
-	return PhantomPhysx::InitializePhysics();
+	// -------------------------------------------# Setup PhysX context
+
+	m_foundation = PxCreateFoundation(PX_PHYSICS_VERSION, m_allocator, m_errorCallback);
+
+	if (!m_foundation)
+	{
+		std::cout << "PxCreate Foundation Failed!";
+		return false;
+	}
+
+	m_pvd = PxCreatePvd(*m_foundation);
+	physx::PxPvdTransport* transport = physx::PxDefaultPvdSocketTransportCreate(PVD_HOST, 5425, 10);
+	m_pvd->connect(*transport, physx::PxPvdInstrumentationFlag::eALL);
+
+	m_physics = PxCreatePhysics(PX_PHYSICS_VERSION, *m_foundation, physx::PxTolerancesScale(), true, m_pvd);
+
+	if (!m_physics)
+	{
+		std::cout << "PxCreate Physics Failed!";
+		return false;
+	}
+
+	// do in scene 
+	physx::PxSceneDesc sceneDesc(m_physics->getTolerancesScale());
+	sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
+	m_dispatcher = physx::PxDefaultCpuDispatcherCreate(2);
+	sceneDesc.cpuDispatcher = m_dispatcher;
+	sceneDesc.filterShader = physx::PxDefaultSimulationFilterShader;
+	m_scene = m_physics->createScene(sceneDesc);
+
+	if (!m_scene)
+		std::cout << "PxCreate Scene Failed!";
+
+	//-----------------------------
+	m_scene->getScenePvdClient()->setScenePvdFlag(physx::PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
+
+	//====== PROTOTYPE
+
+	physx::PxMaterial* gMaterial = m_physics->createMaterial(0.5f, 0.5f, 0.6f);
+	physx::PxRigidStatic* groundPlane = physx::PxCreatePlane(*m_physics, physx::PxPlane(0, 1, 0, 0), *gMaterial);
+
+	m_scene->addActor(*groundPlane);
+
+	if (!groundPlane)
+		std::cout << "PxCreate Ground Plane Failed!";
+
+	return true;
 }
 
+//-----------------------------------------------------------------------------
+physx::PxRigidDynamic* Physics::CreateDynamic(const physx::PxTransform& t, const physx::PxGeometry& geometry, const physx::PxVec3& velocity)
+{
+	physx::PxMaterial* material = m_physics->createMaterial(0.5f, 0.5f, 0.6f);
+	physx::PxRigidDynamic* dynamic = physx::PxCreateDynamic(*m_physics, t, geometry, *material, 10.0f);
+	dynamic->setAngularDamping(0.5f);
+	dynamic->setLinearVelocity(velocity);
+	m_scene->addActor(*dynamic);
+	return dynamic;
+}
+
+//-----------------------------------------------------------------------------
 bool Physics::RaySphereCollision(SphereCollider sphereCollider, glm::vec3 rayStart, glm::vec3 rayDir)
 {
 	// Used to store the normal and position of the collision
@@ -29,6 +111,7 @@ bool Physics::RaySphereCollision(SphereCollider sphereCollider, glm::vec3 raySta
 	}
 }
 
+//-----------------------------------------------------------------------------
 bool Physics::RayAABBCollision(AABB collider, glm::vec3 rayPost, glm::vec3 rayDir)
 {
 	float t;

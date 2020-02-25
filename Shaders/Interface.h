@@ -17,6 +17,7 @@ public:
 public:
 
 	void DrawUi();
+	bool IsMouseOverUI();
 
 private:
 

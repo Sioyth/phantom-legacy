@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-#include <PxPhysicsAPI.h>
 
 #include "GameObject.h"
+#include "Physics.h"
 
 class Scene
 {
@@ -23,11 +23,13 @@ public:
 
 	void CreateScene();
 
+	bool Raycast(Ray& ray, RayCastHit& hit, float maxDistance);
+
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();
 
-	static void SetSelectedObject(int objNr);
-	static int GetSelectedGameObject();
+	void SetSelectedObject(GameObject* selected);
+	GameObject* GetSelectedGameObject();
 
 protected:
 
@@ -35,9 +37,9 @@ protected:
 	bool m_isRunning;
 	bool m_isGridActive;
 	bool m_isPlaneActive;
-	std::vector<GameObject*> m_gameObjects;
 
-	physx::PxScene* m_scene;
+	GameObject* m_selectedObject;
+	std::vector<GameObject*> m_gameObjects;
 
 	static int s_currentSelectedGameObject;
 };

@@ -38,7 +38,7 @@ float metallic;
 in vec2 textureOut;
 in vec3 colorOut;
 in vec3 vertexOut;
-//in vec3 normalOut;
+in vec3 normalOut;
 
 // -------------------------------------------# Out
 
@@ -88,10 +88,7 @@ void main()
    }
    else
    {
-		 // -------------------------------------------# normalize normal
-
-		//vec3 normal = normalize(normalOut);
-
+		 
 		for(int i = 0; i < lightsActiveNumber; i++)
 		{
 
@@ -118,7 +115,7 @@ void main()
 			   }
 			   else
 			   {
-					pixelColor +=  vec4((ambientColor + diffuseColor + specularColor) * attenuation, 1.0);
+					pixelColor +=  vec4((ambientColor + diffuseColor + specularColor)* attenuation, 1.0);
 			   }
 
 			}
@@ -149,7 +146,7 @@ vec3 CalculateDiffuse(Light light)
 {
 	// -------------------------------------------# calculate the diffuse color
 
-	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
+	vec3 normal = normalize(normalOut);
 
 	//calculate the light direction based on light�s position and vertex position
 	
@@ -163,7 +160,7 @@ vec3 CalculateDiffuse(Light light)
 	}
 
 	//calculate the light intensity value
-	float lightIntensity = max(dot(lightDirection, normal), 0.0) * 500;
+	float lightIntensity = max(dot(lightDirection, normal), 0.0);
 		
 	//calculate the diffuse color
 	return light.diffuse * material.diffuse * lightIntensity;
@@ -173,9 +170,9 @@ vec3 CalculeSpecular(Light light)
 {
 	// -------------------------------------------# calculate the specular color
 		
-	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
+	vec3 normal = normalize(normalOut);
 
-	//calculate the view direction based on camera�s position and vertex position
+	//calculate the view direction based on camera's position and vertex position
 	vec3 viewDirection = normalize(cameraPosition - vertexOut);
 
 	//calculate the reflection based on reversed light direction and normal vectors
@@ -185,7 +182,7 @@ vec3 CalculeSpecular(Light light)
 	float specularTerm = pow(max(dot(viewDirection, reflection), 0.0), material.metallic);
 
 	//calculate the specular color
-	return light.specular * material.specular * specularTerm;
+	return light.specular * (material.specular * specularTerm);
 }
 
 float CalculateAttenuation(Light light)

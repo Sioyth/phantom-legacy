@@ -14,5 +14,9 @@ public:
 	void Render() {};
 	void Create();
 
+private:
+
+	GameObject* m_selectedObject;
+
 };
 

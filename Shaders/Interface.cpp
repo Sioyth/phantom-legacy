@@ -118,6 +118,11 @@ void Interface::DrawUi()
 	//ImGui::ShowDemoWindow(); 
 }
 
+bool Interface::IsMouseOverUI()
+{
+	return !ImGui::IsAnyWindowHovered();
+}
+
 void Interface::DrawConsole()
 {
 	// #------------------------------------------#
@@ -316,11 +321,11 @@ void Interface::Inspector()
 {
 	static const int NUMBER_LINES = 3;
 
-	if (SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject() >= 0)
+	if (SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject())
 	{
 		ImGui::Begin("Inspector");
 		{
-			GameObject* obj = SceneManager::Instance()->GetCurrentScene().GetGameObjects()[SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject()];
+			GameObject* obj = SceneManager::Instance()->GetCurrentScene().GetSelectedGameObject();
 
 			//TODO make this a function
 			float position[3] = { obj->GetPosition().x, obj->GetPosition().y, obj->GetPosition().z};

@@ -2,30 +2,7 @@
 #include "Screen.h"
 #include "Input.h"
 
-Ray::Ray(glm::vec3 origin, glm::vec3 direction)
-{
-
-	//// Convert into clip space
-	//glm::vec4 rayClipCoords = glm::vec4(ray.x, ray.y, -1.0f, 1.0f);
-
-	//// Inverse Projection Matrix
-	//glm::mat4 invertedProjectionMatrix = glm::inverse(m_projectionMatrix);
-
-	//// Convert it to eye Space
-	//glm::vec4 rayEyeCoords = invertedProjectionMatrix * rayClipCoords;
-	//rayEyeCoords.z = -1.0f;
-	//rayEyeCoords.w = 0.0f;
-
-	//// Inverse Projection Matrix
-	//glm::mat4 invertedViewMatrix = glm::inverse(m_viewMatrix);
-
-	//// Convert to world coords (ray direction)
-	//glm::vec3 rayWorldDirection = invertedViewMatrix * rayEyeCoords;
-
-	//// Normalize / Ray Direction
-	//rayWorldDirection = glm::normalize(rayWorldDirection);
-}
-
+//-----------------------------------------------------------------------------
 Ray::Ray(const glm::vec3& origin, const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix)
 {
 	// Stores origin of the ray.
@@ -62,6 +39,13 @@ Ray::Ray(const glm::vec3& origin, const glm::mat4& projectionMatrix, const glm::
 	m_direction = glm::normalize(m_direction);
 }
 
+//-----------------------------------------------------------------------------
+const glm::vec3& Ray::GetOrigin()
+{
+	return m_origin;
+}
+
+//-----------------------------------------------------------------------------
 const glm::vec3& Ray::GetDirection()
 {
 	return m_direction;

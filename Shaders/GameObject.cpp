@@ -45,6 +45,11 @@ void GameObject::Scale(const float& x, const float& y, const float& z)
 	m_transform.Scale(x, y, z);
 }
 
+void GameObject::SetMatrix(glm::mat4 matrix)
+{
+	m_transform.SetMatrix(matrix);
+}
+
 void GameObject::LoadModel(const std::string& filename)
 {
 
@@ -173,6 +178,11 @@ TransformLine* GameObject::GetTransformLines()
 	{
 		return m_transformLine;
 	}
+}
+
+const glm::mat4& GameObject::GetMatrix()
+{
+	return m_transform.GetMatrix();
 }
 
 const glm::vec3& GameObject::GetAmbient()

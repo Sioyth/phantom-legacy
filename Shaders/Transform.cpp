@@ -90,6 +90,16 @@ void Transform::SetPosition(glm::vec3 position)
 	m_transform = glm::translate(glm::mat4(1.0f), position);
 }
 
+void Transform::SetMatrix(glm::mat4 matrix)
+{
+	m_transform = matrix;
+}
+
+const glm::mat4& Transform::GetMatrix()
+{
+	return m_transform;
+}
+
 const glm::vec3& Transform::GetPosition()
 {
 	return m_position;

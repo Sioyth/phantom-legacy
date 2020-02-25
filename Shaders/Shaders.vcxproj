@@ -224,10 +224,10 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PhantomEngine.cpp" />
     <ClCompile Include="Physics.cpp" />
-    <ClCompile Include="PhantomPhysX.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="RayCastHit.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Screen.cpp" />
@@ -269,10 +269,10 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="PhantomEngine.h" />
     <ClInclude Include="Physics.h" />
-    <ClInclude Include="PhantomPhysX.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Ray.h" />
+    <ClInclude Include="RayCastHit.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Screen.h" />

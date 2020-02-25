@@ -40,6 +40,9 @@
 #include "PxClient.h"
 #include "common/PxBase.h"
 
+// ======
+#include "../../../Shaders/GameObject.h"
+
 #if !PX_DOXYGEN
 namespace physx
 {
@@ -311,7 +314,7 @@ public:
 	virtual		PxAggregate*	getAggregate()	const = 0;
 
 	//public variables:
-				void*			userData;	//!< user can assign this to whatever, usually to create a 1:1 relationship with a user object.
+				GameObject*			userData;	//!< user can assign this to whatever, usually to create a 1:1 relationship with a user object.
 
 protected:
 	PX_INLINE					PxActor(PxType concreteType, PxBaseFlags baseFlags) : PxBase(concreteType, baseFlags), userData(NULL) {}
