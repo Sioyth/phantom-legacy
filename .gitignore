@@ -1,0 +1,16 @@
+#main stuff not needed to build project
+.vs
+
+#the outer Debug/Release folders
+Debug
+Release
+checked
+
+#the inner Debug/Release folders
+Shaders/Debug
+Shaders/Release
+Shaders/checked
+
+*.obj
+
+*.ipch
