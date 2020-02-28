@@ -1,7 +1,6 @@
 #pragma once
 
 #include <glm.hpp>
-#include "SphereCollider.h"
 
 class AABB
 {
@@ -16,7 +15,6 @@ public:
 	void Render(); // debug only
 
 	bool IsColliding(const AABB& second);
-	bool IsColliding(SphereCollider& second);
 
 public:
 

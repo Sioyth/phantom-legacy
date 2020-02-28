@@ -94,24 +94,6 @@ physx::PxRigidDynamic* Physics::CreateDynamic(const physx::PxTransform& t, const
 }
 
 //-----------------------------------------------------------------------------
-bool Physics::RaySphereCollision(SphereCollider sphereCollider, glm::vec3 rayStart, glm::vec3 rayDir)
-{
-	// Used to store the normal and position of the collision
-	glm::vec3 normal;
-	glm::vec3 position;
-
-	// Calculates Intersection
-	if (glm::intersectRaySphere(rayStart, rayDir, sphereCollider.GetPosition(), sphereCollider.GetRadius(), position, normal))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-//-----------------------------------------------------------------------------
 bool Physics::RayAABBCollision(AABB collider, glm::vec3 rayPost, glm::vec3 rayDir)
 {
 	float t;

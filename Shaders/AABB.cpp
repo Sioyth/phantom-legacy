@@ -36,28 +36,6 @@ bool AABB::IsColliding(const AABB& second)
 
 }
 
-bool AABB::IsColliding(SphereCollider& second)
-{
-	//Distance Beetween The bounds
-	m_distance = m_position - second.GetPosition();
-
-	m_distanceFromBound = sqrt(m_distance.x * m_distance.x +
-		m_distance.y * m_distance.y +
-		m_distance.z * m_distance.z);
-
-	// Half of the Widh, Height and depth
-	m_halfDimension = m_dimension * .5f;
-
-	// Clamps m_clamped = glm::clamp(m_distance, -m_halfDimension, m_halfDimension);
-	m_clamped = glm::clamp(m_distance, -m_halfDimension, m_halfDimension);
-
-	// nearest edge point
-	m_pointOnEdge = m_position - m_clamped;
-
-	return (glm::distance(second.GetPosition(), m_pointOnEdge) <= second.GetRadius());
-
-}
-
 glm::vec3 AABB::Overlap(const AABB& second)
 {
 	m_totalDimensions = m_min + m_max;

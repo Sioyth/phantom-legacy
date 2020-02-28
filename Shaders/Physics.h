@@ -12,12 +12,10 @@
 namespace Physics
 {
 	
-
 	void SimulatePhysics();
 	bool InitializePhysics();
 	
 	bool Raycast(Ray& ray, RayCastHit& hit ,float maxDistance = 1000.0f);
-	bool RaySphereCollision(SphereCollider sphereCollider, glm::vec3 rayPos, glm::vec3 rayDir);
 	bool RayAABBCollision(AABB collider, glm::vec3 rayPost, glm::vec3 rayDir);
 	
 	physx::PxRigidDynamic* CreateDynamic(const physx::PxTransform& t, const physx::PxGeometry& geometry, const physx::PxVec3& velocity = physx::PxVec3(0));
