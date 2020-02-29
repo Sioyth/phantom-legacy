@@ -1,6 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 
 class Camera : public GameObject

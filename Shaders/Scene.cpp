@@ -48,6 +48,21 @@ bool Scene::Raycast(Ray& ray, RayCastHit& hit, float maxDistance)
 	return Physics::Raycast(ray, hit, maxDistance);
 }
 
+bool Scene::PickObject(Ray& ray, RayCastHit& hit)
+{
+	return Physics::PickObject(ray, hit);
+}
+
+void Scene::PickMove(Ray& ray)
+{
+	Physics::PickMove(ray);
+}
+
+void Scene::PickRelease()
+{
+	Physics::PickRealease();
+}
+
 //-----------------------------------------------------------------------------
 void Scene::PushGameObject(GameObject* obj)
 {

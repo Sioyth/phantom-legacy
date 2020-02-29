@@ -55,6 +55,9 @@ bool Physics::InitializePhysics()
 		return false;
 	}
 
+	if (!PxInitExtensions(*m_physics, m_pvd))
+		std::cout << "Px Extensions Failed!";
+
 	// do in scene 
 	physx::PxSceneDesc sceneDesc(m_physics->getTolerancesScale());
 	sceneDesc.gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);
@@ -91,6 +94,86 @@ physx::PxRigidDynamic* Physics::CreateDynamic(const physx::PxTransform& t, const
 	dynamic->setLinearVelocity(velocity);
 	m_scene->addActor(*dynamic);
 	return dynamic;
+}
+
+physx::PxRigidDynamic* Physics::GetPickActor()
+{
+	return m_pickActor;
+}
+
+//-----------------------------------------------------------------------------
+bool Physics::PickObject(Ray& ray, RayCastHit& hit)
+{
+	float distance = 1000.0f;
+
+	physx::PxRaycastBuffer hitBuffer;
+
+	physx::PxVec3 o(ray.GetOrigin().x, ray.GetOrigin().y, ray.GetOrigin().z);
+	physx::PxVec3 d(ray.GetDirection().x, ray.GetDirection().y, ray.GetDirection().z);
+
+	if (!m_scene->raycast(o, d, distance, hitBuffer))
+		return false;
+
+	distance = hitBuffer.getAnyHit(0).distance;
+	physx::PxRigidDynamic* pickedActor = hitBuffer.getAnyHit(0).actor->is<physx::PxRigidDynamic>();
+
+	if (!pickedActor)
+		return false;
+
+	pickedActor->wakeUp();
+
+	// Store gameobject in HitCallback.
+	if (pickedActor->userData != nullptr)
+		hit.SetGameObject(pickedActor->userData);
+
+	m_pickPos = o + d * distance;
+	m_pickActor = PxGetPhysics().createRigidDynamic(physx::PxTransform(m_pickPos));
+	m_pickActor->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, true);
+
+	physx::PxScene* scene;
+	PxGetPhysics().getScenes(&scene, 1);
+	scene->addActor(*m_pickActor);
+
+	//local pos = physx::PxVec3(0.f);
+	m_pickJoint = PxD6JointCreate(PxGetPhysics(), m_pickActor, physx::PxTransform(physx::PxIdentity), pickedActor, physx::PxTransform(pickedActor->getGlobalPose().transformInv(m_pickPos)));
+
+	if (m_pickJoint)
+	{
+		m_pickJoint->setMotion(physx::PxD6Axis::eSWING1, physx::PxD6Motion::eFREE);
+		m_pickJoint->setMotion(physx::PxD6Axis::eSWING2, physx::PxD6Motion::eFREE);
+		m_pickJoint->setMotion(physx::PxD6Axis::eTWIST, physx::PxD6Motion::eFREE);
+	}
+
+	m_pickDepth = distance;
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+void Physics::PickMove(Ray& ray)
+{
+	if (!m_pickActor)
+		return;
+
+	physx::PxVec3 o(ray.GetOrigin().x, ray.GetOrigin().y, ray.GetOrigin().z);
+	physx::PxVec3 d(ray.GetDirection().x, ray.GetDirection().y, ray.GetDirection().z);
+
+	m_pickPos = o + d * m_pickDepth;
+	m_pickActor->setKinematicTarget(physx::PxTransform(m_pickPos));
+}
+
+//-----------------------------------------------------------------------------
+void Physics::PickRealease()
+{
+	if (m_pickJoint)
+		m_pickJoint->release();
+
+	m_pickJoint = NULL;
+
+	if (m_pickActor)
+		m_pickActor->release();
+
+	m_pickActor = NULL;
 }
 
 //-----------------------------------------------------------------------------

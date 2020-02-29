@@ -31,5 +31,17 @@ namespace Physics
 	static physx::PxDefaultCpuDispatcher* m_dispatcher;
 	static physx::PxDefaultErrorCallback m_errorCallback;
 
+
+	// -- 
+
+	static float m_pickDepth;
+	static physx::PxVec3 m_pickPos;
+	static physx::PxD6Joint* m_pickJoint;
+	static physx::PxRigidDynamic* m_pickActor;
+
+	physx::PxRigidDynamic* GetPickActor();
+	bool PickObject(Ray& ray, RayCastHit& hit);
+	void PickMove(Ray& ray);
+	void PickRealease();
 };
 

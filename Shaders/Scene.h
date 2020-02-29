@@ -24,6 +24,10 @@ public:
 	void CreateScene();
 
 	bool Raycast(Ray& ray, RayCastHit& hit, float maxDistance);
+	bool PickObject(Ray& ray, RayCastHit& hit);
+
+	void PickMove(Ray& ray);
+	void PickRelease();
 
 	void PushGameObject(GameObject* obj);
 	std::vector<GameObject*>& GetGameObjects();

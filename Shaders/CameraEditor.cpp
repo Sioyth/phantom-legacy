@@ -34,93 +34,36 @@ void CameraEditor::Create()
 
 void CameraEditor::Update()
 {
-	static int lastSelectedGameObject = -1; // starting at -1 to check until it has a value
-
+	static bool picked = true;
 	m_material.SendUniformData("cameraPosition", m_transform.GetPosition());
+
+	Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
+	SceneManager::Instance()->GetCurrentScene().PickMove(ray);
 
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{
-		m_isMoving = true;
-
-		glm::ivec2 mouseMotion;
-
-		// Get Mouse Motion
-		mouseMotion = Input::Instance()->GetMouseMotion();
-
-		static GLfloat yaw = -90.0f;
-		static GLfloat pitch = 0.0f;
-
-		yaw += mouseMotion.x * m_sensitivity;
-		pitch += -mouseMotion.y * m_sensitivity;
-
-		m_forward.x = glm::cos(glm::radians(pitch)) * glm::cos(glm::radians(yaw));
-		m_forward.y = glm::sin(glm::radians(pitch));
-		m_forward.z = glm::cos(glm::radians(pitch)) * glm::sin(glm::radians(yaw));
-
-		// Camera Movement
-		if (Input::Instance()->KeyDown(Keycode::W))
-		{
-			m_transform.Translate(m_forward * m_velocity);
-		}
-
-		if (Input::Instance()->KeyDown(Keycode::S))
-		{
-			m_transform.Translate(-m_forward * m_velocity);
-		}
-
-		if (Input::Instance()->KeyDown(Keycode::A))
-		{
-			m_transform.Translate(-glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
-		}
-
-		if (Input::Instance()->KeyDown(Keycode::D))
-		{
-			m_transform.Translate(glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
-		}
-
-		// Down
-		if (Input::Instance()->KeyDown(Keycode::C))
-		{
-			glm::vec3 right = glm::cross(m_forward, m_up);
-			glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
-
-			m_transform.Translate(up * m_velocity);
-		}
-
-		// Up
-		if (Input::Instance()->KeyDown(Keycode::E))
-		{
-			glm::vec3 right = glm::cross(m_forward, m_up);
-			glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
-
-			m_transform.Translate(-up * m_velocity);
-		}
-	}
-	else if (Input::Instance()->GetMouseButtonDown(0))
-	{
-
-		if (!Interface::Instance()->IsMouseOverUI())
-			return;
-		
-		RayCastHit hit;
-		m_isMoving = false;
-		Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
-
-		if (!SceneManager::Instance()->GetCurrentScene().Raycast(ray, hit, 10000.0f))
-			return;
-
-		if (!hit.GetGameObject())
-			return;
-
-		m_selectedObject = hit.GetGameObject();
-		m_selectedObject->SetIsSelected(true);
-
-		SceneManager::Instance()->GetCurrentScene().SetSelectedObject(m_selectedObject);
-
+		CameraMovement();
 	}
 	else 
 	{
 		m_isMoving = false;
+	}
+
+	if (!m_isMoving && Input::Instance()->GetMouseButtonDown(0))
+	{
+		
+		if (!picked)
+		{
+			Debug::Log("Picked!");
+			MousePicking();
+			picked = true;
+		}
+		
+	}
+	else
+	{
+		SceneManager::Instance()->GetCurrentScene().PickRelease();
+		picked = false;
 	}
 
 	if (m_selectedObject)
@@ -128,4 +71,85 @@ void CameraEditor::Update()
 
 	CalulateLookAt();
 }
+
+void CameraEditor::CameraMovement()
+{
+	m_isMoving = true;
+
+	glm::ivec2 mouseMotion;
+
+	// Get Mouse Motion
+	mouseMotion = Input::Instance()->GetMouseMotion();
+
+	static GLfloat yaw = -90.0f;
+	static GLfloat pitch = 0.0f;
+
+	yaw += mouseMotion.x * m_sensitivity;
+	pitch += -mouseMotion.y * m_sensitivity;
+
+	m_forward.x = glm::cos(glm::radians(pitch)) * glm::cos(glm::radians(yaw));
+	m_forward.y = glm::sin(glm::radians(pitch));
+	m_forward.z = glm::cos(glm::radians(pitch)) * glm::sin(glm::radians(yaw));
+
+	// Camera Movement
+	if (Input::Instance()->KeyDown(Keycode::W))
+	{
+		m_transform.Translate(m_forward * m_velocity);
+	}
+
+	if (Input::Instance()->KeyDown(Keycode::S))
+	{
+		m_transform.Translate(-m_forward * m_velocity);
+	}
+
+	if (Input::Instance()->KeyDown(Keycode::A))
+	{
+		m_transform.Translate(-glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
+	}
+
+	if (Input::Instance()->KeyDown(Keycode::D))
+	{
+		m_transform.Translate(glm::normalize(glm::cross(m_forward, m_up)) * m_velocity);
+	}
+
+	// Down
+	if (Input::Instance()->KeyDown(Keycode::C))
+	{
+		glm::vec3 right = glm::cross(m_forward, m_up);
+		glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
+
+		m_transform.Translate(up * m_velocity);
+	}
+
+	// Up
+	if (Input::Instance()->KeyDown(Keycode::E))
+	{
+		glm::vec3 right = glm::cross(m_forward, m_up);
+		glm::vec3 up = glm::normalize(glm::cross(m_forward, right));
+
+		m_transform.Translate(-up * m_velocity);
+	}
+}
+
+void CameraEditor::MousePicking()
+{
+	if (!Interface::Instance()->IsMouseOverUI())
+		return;
+
+	RayCastHit hit;
+	m_isMoving = false;
+	Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
+
+	if (!SceneManager::Instance()->GetCurrentScene().PickObject(ray, hit))
+		return;
+
+	if (!hit.GetGameObject())
+		return;
+
+	m_selectedObject = hit.GetGameObject();
+	m_selectedObject->SetIsSelected(true);
+
+	SceneManager::Instance()->GetCurrentScene().SetSelectedObject(m_selectedObject);
+}
+
 

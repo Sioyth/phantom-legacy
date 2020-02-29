@@ -14,6 +14,9 @@ public:
 	void Render() {};
 	void Create();
 
+	void CameraMovement();
+	void MousePicking();
+
 private:
 
 	GameObject* m_selectedObject;
