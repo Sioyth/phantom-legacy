@@ -1,6 +1,7 @@
 #include "BoxCollider.h"
 #include "Debug.h"
 
+//-----------------------------------------------------------------------------
 BoxCollider::BoxCollider(GameObject& obj)
 {
 	m_gameObject = &obj;
@@ -27,6 +28,7 @@ BoxCollider::BoxCollider(GameObject& obj)
 	scene->addActor(*m_actor);
 }
 
+//-----------------------------------------------------------------------------
 void BoxCollider::Update()
 {
 	// Only updates them when the actor is not sleeping

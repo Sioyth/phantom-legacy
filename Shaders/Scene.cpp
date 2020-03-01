@@ -43,21 +43,25 @@ void Scene::CreateScene()
 {
 }
 
+//-----------------------------------------------------------------------------
 bool Scene::Raycast(Ray& ray, RayCastHit& hit, float maxDistance)
 {
 	return Physics::Raycast(ray, hit, maxDistance);
 }
 
+//-----------------------------------------------------------------------------
 bool Scene::PickObject(Ray& ray, RayCastHit& hit)
 {
 	return Physics::PickObject(ray, hit);
 }
 
+//-----------------------------------------------------------------------------
 void Scene::PickMove(Ray& ray)
 {
 	Physics::PickMove(ray);
 }
 
+//-----------------------------------------------------------------------------
 void Scene::PickRelease()
 {
 	Physics::PickRealease();
@@ -83,6 +87,7 @@ void Scene::SetSelectedObject(GameObject* selected)
 	m_selectedObject = selected;
 }
 
+//-----------------------------------------------------------------------------
 GameObject* Scene::GetSelectedGameObject()
 {
 	return m_selectedObject;

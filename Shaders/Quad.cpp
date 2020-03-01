@@ -1,5 +1,6 @@
 #include "Quad.h"
 
+//-----------------------------------------------------------------------------
 Quad::Quad()
 {
 	m_color.r = 1.0f;
@@ -12,6 +13,7 @@ Quad::Quad()
 	m_collider.SetDimension(glm::vec3(0.3f));
 }
 
+//-----------------------------------------------------------------------------
 void Quad::Create()
 {
 
@@ -75,6 +77,7 @@ void Quad::Create()
 
 }
 
+//-----------------------------------------------------------------------------
 void Quad::Render()
 {
 	m_collider.SetPosition(m_transform.GetPosition());

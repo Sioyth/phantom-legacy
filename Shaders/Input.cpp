@@ -3,28 +3,33 @@
 
 #include "Debug.h" // renmve after
 
+//-----------------------------------------------------------------------------
 Input* Input::Instance()
 {
 	static Input* input = new Input;
 	return input;
 }
 
+//-----------------------------------------------------------------------------
 //KeyState Input::GetKeyStates()
 //{
 //	return m_keyStates;
 //}
 
+//-----------------------------------------------------------------------------
 glm::ivec2 Input::GetMouseMotion()
 {
 	return m_mouseMotion;
 	
 }
 
+//-----------------------------------------------------------------------------
 glm::vec2 Input::GetMousePosition()
 {
 	return m_mousePosition;
 }
 
+//-----------------------------------------------------------------------------
 bool Input::GetMouseButtonDown(int mouseid)
 {
 	switch (mouseid)
@@ -69,6 +74,7 @@ bool Input::GetMouseButtonDown(int mouseid)
 	}
 }
 
+//-----------------------------------------------------------------------------
 bool Input::GetMouseButtonClick(int mouseid)
 {
 	float currentTime = Time::GetDeltaTime();
@@ -117,6 +123,7 @@ bool Input::GetMouseButtonClick(int mouseid)
 
 }
 
+//-----------------------------------------------------------------------------
 bool Input::KeyDown(Keycode keycode)
 {
 	if (m_keyStates[keycode])
@@ -129,6 +136,7 @@ bool Input::KeyDown(Keycode keycode)
 	}
 }
 
+//-----------------------------------------------------------------------------
 void Input::PollEvents()
 {
 	SDL_Event events;

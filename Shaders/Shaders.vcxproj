@@ -224,6 +224,7 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PhantomEngine.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Primitives.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Ray.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="PhantomEngine.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="Primitives.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Ray.h" />

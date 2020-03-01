@@ -1,7 +1,7 @@
 ﻿  DefaultScene.cpp
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(43,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(109,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(119,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(44,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(111,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(122,20): warning C4018: '<': signed/unsigned mismatch
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(726,1): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.24.28314\include\vector(701): message : see reference to function template instantiation 'GameObject **std::vector<GameObject *,std::allocator<GameObject *>>::_Emplace_reallocate<const _Ty&>(GameObject **const ,const _Ty &)' being compiled
           with
@@ -23,7 +23,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.
           [
               _Ty=GameObject *
           ]
-C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(32): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)' being compiled
+C:\Users\Sioyth\Desktop\phantom\Shaders\DefaultScene.cpp(33): message : see reference to function template instantiation 'void std::vector<GameObject *,std::allocator<GameObject *>>::push_back(const _Ty &)' being compiled
           with
           [
               _Ty=GameObject *

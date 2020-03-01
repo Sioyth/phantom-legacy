@@ -10,6 +10,7 @@
 
 Cube* m_cube[10];
 
+//-----------------------------------------------------------------------------
 DefaultScene::DefaultScene()
 {
 
@@ -57,7 +58,7 @@ DefaultScene::DefaultScene()
 	float j = 0;
 	float l = 0;
 
-	int size = 20;
+	int size = 10;
 
 	for (int k = 0; k < size; k++)
 	{
@@ -101,6 +102,7 @@ DefaultScene::DefaultScene()
 	m_camera.SetPerspectiveView();
 }
 
+//-----------------------------------------------------------------------------
 void DefaultScene::Update()
 {
 	// -------------------------------------------# Update Game Objects
@@ -112,6 +114,7 @@ void DefaultScene::Update()
 	}
 }
 
+//-----------------------------------------------------------------------------
 void DefaultScene::Render()
 {
 	// -------------------------------------------# Render Game Objects
@@ -131,5 +134,4 @@ void DefaultScene::Render()
 		m_grid.Render();
 	}
 
-	//m_skyBox.Render();
 }

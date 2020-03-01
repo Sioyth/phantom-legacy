@@ -31,7 +31,6 @@ namespace Physics
 	static physx::PxDefaultCpuDispatcher* m_dispatcher;
 	static physx::PxDefaultErrorCallback m_errorCallback;
 
-
 	// -- 
 
 	static float m_pickDepth;

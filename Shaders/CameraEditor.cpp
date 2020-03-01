@@ -8,6 +8,7 @@
 #include "SceneManager.h"
 #include "Interface.h"
 
+//-----------------------------------------------------------------------------
 CameraEditor::CameraEditor()
 {
 
@@ -27,11 +28,13 @@ CameraEditor::CameraEditor()
 	
 }
 
+//-----------------------------------------------------------------------------
 void CameraEditor::Create()
 {
 	m_material.BindUniform("cameraPosition");
 }
 
+//-----------------------------------------------------------------------------
 void CameraEditor::Update()
 {
 	static bool picked = true;
@@ -72,6 +75,7 @@ void CameraEditor::Update()
 	CalulateLookAt();
 }
 
+//-----------------------------------------------------------------------------
 void CameraEditor::CameraMovement()
 {
 	m_isMoving = true;
@@ -131,6 +135,7 @@ void CameraEditor::CameraMovement()
 	}
 }
 
+//-----------------------------------------------------------------------------
 void CameraEditor::MousePicking()
 {
 	if (!Interface::Instance()->IsMouseOverUI())
