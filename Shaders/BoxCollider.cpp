@@ -1,5 +1,6 @@
 #include "BoxCollider.h"
 #include "Debug.h"
+#include <gtc/random.hpp>
 
 //-----------------------------------------------------------------------------
 BoxCollider::BoxCollider(GameObject& obj)
@@ -11,7 +12,7 @@ BoxCollider::BoxCollider(GameObject& obj)
 
 	physx::PxScene* scene;
 	PxGetPhysics().getScenes(&scene, 1);
-	physx::PxMaterial* material = PxGetPhysics().createMaterial(0.5f, 0.5f, 0.6f);
+	physx::PxMaterial* material = PxGetPhysics().createMaterial(0.5f, 0.5f, 0.0f);
 
 	physx::PxReal density = 1.0f;
 	physx::PxQuat quaternion(physx::PxIDENTITY);
@@ -24,7 +25,7 @@ BoxCollider::BoxCollider(GameObject& obj)
 	m_dynamic->userData = m_gameObject;
 
 	m_dynamic->userData;
-
+	
 	scene->addActor(*m_actor);
 }
 

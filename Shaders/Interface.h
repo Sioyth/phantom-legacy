@@ -29,6 +29,8 @@ private:
 	void ToolBar();
 	void Inspector();
 
+	void Ball();
+
 private:
 
 	bool m_click;

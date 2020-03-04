@@ -17,6 +17,8 @@ public:
 	void CameraMovement();
 	void MousePicking();
 
+	glm::vec3 GetForwardVector();
+
 private:
 
 	GameObject* m_selectedObject;

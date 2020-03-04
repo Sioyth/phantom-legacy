@@ -146,6 +146,8 @@ bool Physics::PickObject(Ray& ray, RayCastHit& hit)
 
 	m_pickDepth = distance;
 
+	Debug::Log(pickedActor->getMass());
+
 	return true;
 }
 

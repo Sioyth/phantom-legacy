@@ -13,13 +13,12 @@ SphereCollider::SphereCollider(GameObject& obj)
 	physx::PxReal density = 1.0f;
 	physx::PxQuat quaternion(physx::PxIDENTITY);
 	physx::PxTransform physxTransform(physx::PxVec3(position.x, position.y, position.z));
-	physx::PxSphereGeometry box(m_radius);
-	m_dynamic = physx::PxCreateDynamic(PxGetPhysics(), physxTransform, box, *material, density);
+	physx::PxSphereGeometry sphere(0.5f);
+	m_dynamic = physx::PxCreateDynamic(PxGetPhysics(), physxTransform, sphere, *material, density);
 
 	m_actor = m_dynamic;
 	m_actor->userData = m_gameObject;
 	m_dynamic->userData = m_gameObject;
-
 	scene->addActor(*m_actor);
 }
 
@@ -46,4 +45,16 @@ void SphereCollider::Update()
 
 	m_transform.SetMatrix(matrix);
 	m_gameObject->SetMatrix(matrix);
+}
+
+void SphereCollider::AddForce(glm::vec3 force)
+{
+	physx::PxVec3 f(force.x, force.y, force.z);
+	m_dynamic->addForce(f);
+}
+
+void SphereCollider::SetVelocity(glm::vec3 v)
+{
+	physx::PxVec3 v3(v.x, v.y, v.z);
+	m_dynamic->setLinearVelocity(v3);
 }

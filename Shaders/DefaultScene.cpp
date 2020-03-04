@@ -5,6 +5,7 @@
 
 #include "Cube.h"
 #include "Debug.h"
+#include "Ball.h"
 
 #include <gtc/random.hpp>
 
@@ -55,45 +56,54 @@ DefaultScene::DefaultScene()
 	color.z = glm::linearRand(0.0f, 1.0f);
 	glm::vec3 color2(color);
 
-	float j = 0;
-	float l = 0;
+	float xPos = 0;
+	float yPos = 0;
+	float zPos = 0;
 
-	int size = 10;
+	int size = 5;
 
-	for (int k = 0; k < size; k++)
+	for (int z = 0; z < size; z++)
 	{
-
-		//glm::vec3 tempColor = color1;
-		
-		j = 0;
-		for (int i = 0; i < size; i++)
+		xPos = 0;
+		for (int k = 0; k < size; k++)
 		{
 
-			//glm::vec3 tempColor = color1 + k/size * (color2 - color1);
-			glm::vec3 tempColor = color1 + (k + i) / 36.0f * (color2 - color1);
-			//glm::vec3 tempColor = color1 + sqrt((k - size/2 + 0.5f) * (k - size / 2 + 0.5f) + (i - size / 2 + 0.5f) * (i - size / 2 + 0.5f)) / size * (color2 - color1);
+			//glm::vec3 tempColor = color1;
 
-			j = j + 1.0f;
-			m_cube[i] = new Cube;
-			m_cube[i]->SetPosition(glm::vec3(l, j, 0.0f));
-			/*if (i == 9)
-				m_cube[i]->SetPosition(glm::vec3(0.0f, 30, 0.0f));*/
-			m_cube[i]->Create();
+			yPos = 0.5f;
+			for (int i = 0; i < size; i++)
+			{
 
-			/*Debug::Log(glm::ballRand(1.0f));
+				//glm::vec3 tempColor = color1 + k/ 20.0f * (color2 - color1);
+				glm::vec3 tempColor = color1 + (k + i + z) / (float)size * (color2 - color1);
+				//glm::vec3 tempColor = color1 + sqrt((k - size/2 + 0.5f) * (k - size / 2 + 0.5f) + (i - size / 2 + 0.5f) * (i - size / 2 + 0.5f)) / size * (color2 - color1);
 
-			glm::vec3 color;
-			color.x = glm::linearRand(0.0f, 1.0f);
-			color.y = glm::linearRand(0.0f, 1.0f);
-			color.z = glm::linearRand(0.0f, 1.0f);*/
-			
-			m_cube[i]->SetColor(tempColor);
-			m_gameObjects.push_back(m_cube[i]);
+				
+				m_cube[i] = new Cube;
+				m_cube[i]->SetPosition(glm::vec3(xPos, yPos, zPos));
+				/*if (i == 9)
+					m_cube[i]->SetPosition(glm::vec3(0.0f, 30, 0.0f));*/
+				m_cube[i]->Create();
 
+
+				/*Debug::Log(glm::ballRand(1.0f));
+
+				glm::vec3 color;
+				color.x = glm::linearRand(0.0f, 1.0f);
+				color.y = glm::linearRand(0.0f, 1.0f);
+				color.z = glm::linearRand(0.0f, 1.0f);*/
+
+				m_cube[i]->SetColor(tempColor);
+				m_gameObjects.push_back(m_cube[i]);
+
+				yPos ++;
+			}
+
+
+			xPos ++;
 		}
 
-
-		l += 1.0f;
+		zPos ++;
 	}
 	
 
@@ -101,16 +111,31 @@ DefaultScene::DefaultScene()
 
 	m_camera.SetPerspectiveView();
 }
-
+bool spaceDown = false;
 //-----------------------------------------------------------------------------
 void DefaultScene::Update()
 {
+	Debug::Log(spaceDown);
+	if (Input::Instance()->KeyDown(Keycode::SPACE))
+	{
+		if (!spaceDown)
+		{
+			spaceDown = true;
+			this->PushGameObject(new Ball(m_camera, m_mass, m_vMultiplyer, m_fMultiplyer));
+		}
+	}
+	else
+	{
+		spaceDown = false;
+	}
+
 	// -------------------------------------------# Update Game Objects
 	m_camera.Update();
 
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		(*m_gameObjects[i]).Update();
+		(*m_gameObjects[i]).Render();
 	}
 }
 
@@ -119,10 +144,10 @@ void DefaultScene::Render()
 {
 	// -------------------------------------------# Render Game Objects
 
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	/*for (int i = 0; i < m_gameObjects.size(); i++)
 	{
-		(*m_gameObjects[i]).Render();
-	}
+		
+	}*/
 
 	if (m_isPlaneActive)
 	{

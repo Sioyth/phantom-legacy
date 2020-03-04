@@ -114,8 +114,10 @@ void Interface::DrawUi()
 	Inspector();
 	ToolBar();
 
+	Ball();
+
 	// FOR DEBUG ONLY/ ALSO USED AS CODE REFERENCE FOR IMGUII
-	//ImGui::ShowDemoWindow(); 
+    ImGui::ShowDemoWindow(); 
 }
 
 bool Interface::IsMouseOverUI()
@@ -435,6 +437,35 @@ void Interface::Inspector()
 		ImGui::End();
 
 	}
+}
+
+void Interface::Ball()
+{
+	ImGui::Begin("Ball");
+	{
+		
+		static float mass = SceneManager::Instance()->GetCurrentScene().GetMass();
+		if (ImGui::SliderFloat("Mass", &mass, 1.0f, 20.0f, "ratio = %.3f"))
+		{
+			SceneManager::Instance()->GetCurrentScene().SetMass(mass);
+		}
+		//ImGui::SameLine();
+
+		static float force = SceneManager::Instance()->GetCurrentScene().GetForceMultiplyer();
+		if (ImGui::SliderFloat("Force", &force, 1.0f, 1000.0f, "ratio = %.3f"))
+		{
+			SceneManager::Instance()->GetCurrentScene().SetForceMultiplyer(force);
+		}
+
+		static float velocity = SceneManager::Instance()->GetCurrentScene().GetVelocityMultiplyer();
+		if (ImGui::SliderFloat("Velocity", &velocity, 1.0f, 50.0f, "ratio = %.3f"))
+		{
+			SceneManager::Instance()->GetCurrentScene().SetVelocityMultiplyer(velocity);
+		}
+
+		ImGui::End();
+	}
+	
 }
 
 

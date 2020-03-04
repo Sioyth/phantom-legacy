@@ -40,8 +40,11 @@ void CameraEditor::Update()
 	static bool picked = true;
 	m_material.SendUniformData("cameraPosition", m_transform.GetPosition());
 
-	Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
-	SceneManager::Instance()->GetCurrentScene().PickMove(ray);
+	if (picked)
+	{
+		Ray ray = Ray(m_transform.GetPosition(), m_projectionMatrix, m_viewMatrix);
+		SceneManager::Instance()->GetCurrentScene().PickMove(ray);
+	}
 
 	if (Input::Instance()->GetMouseButtonDown(1))
 	{
@@ -57,7 +60,6 @@ void CameraEditor::Update()
 		
 		if (!picked)
 		{
-			Debug::Log("Picked!");
 			MousePicking();
 			picked = true;
 		}
@@ -155,6 +157,11 @@ void CameraEditor::MousePicking()
 	m_selectedObject->SetIsSelected(true);
 
 	SceneManager::Instance()->GetCurrentScene().SetSelectedObject(m_selectedObject);
+}
+
+glm::vec3 CameraEditor::GetForwardVector()
+{
+	return m_forward;
 }
 
 

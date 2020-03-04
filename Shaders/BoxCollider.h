@@ -11,6 +11,8 @@ public:
 
 	void Update();
 
+	inline void SetMass(float m) { m_dynamic->setMass(m); }
+
 private:
 
 	glm::vec3 m_dimensions;

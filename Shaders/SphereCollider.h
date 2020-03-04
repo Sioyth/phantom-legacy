@@ -9,7 +9,9 @@ public:
 	SphereCollider(GameObject& obj);
 
 	void Update();
-
+	void AddForce(glm::vec3 force);
+	void SetVelocity(glm::vec3 v);
+	inline void SetMass(float m) { m_dynamic->setMass(m); }
 
 private:
 

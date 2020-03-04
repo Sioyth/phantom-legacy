@@ -35,12 +35,25 @@ public:
 	void SetSelectedObject(GameObject* selected);
 	GameObject* GetSelectedGameObject();
 
+
+	inline float GetMass() { return m_mass; }
+	inline float GetForceMultiplyer() { return m_fMultiplyer; }
+	inline float GetVelocityMultiplyer() { return m_vMultiplyer; }
+
+	inline void SetMass(float m) { m_mass = m; }
+	inline void SetForceMultiplyer(float f) { m_fMultiplyer = f; }
+	inline void SetVelocityMultiplyer(float v) { m_vMultiplyer = v; }
+
 protected:
 
 	bool m_isEditing;
 	bool m_isRunning;
 	bool m_isGridActive;
 	bool m_isPlaneActive;
+	
+	float m_mass = 1.0f;
+	float m_fMultiplyer = 100.0f;
+	float m_vMultiplyer = 5.0f;
 
 	GameObject* m_selectedObject;
 	std::vector<GameObject*> m_gameObjects;

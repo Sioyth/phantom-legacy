@@ -1,15 +1,16 @@
 #pragma once
 #include "Transform.h"
-#include "Component.h"
+#include "TempComponent.h"
 #include "GameObject.h"
 
 #include <PxPhysicsAPI.h>
 
-class Collider : public Component
+class Collider : public TempComponent
 {
 public:
 
 	void Update() = 0;
+
 
 protected:
 
