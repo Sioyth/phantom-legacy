@@ -60,7 +60,7 @@ DefaultScene::DefaultScene()
 	float yPos = 0;
 	float zPos = 0;
 
-	int size = 5;
+	int size = 4;
 
 	for (int z = 0; z < size; z++)
 	{
@@ -76,7 +76,10 @@ DefaultScene::DefaultScene()
 
 				//glm::vec3 tempColor = color1 + k/ 20.0f * (color2 - color1);
 				glm::vec3 tempColor = color1 + (k + i + z) / (float)size * (color2 - color1);
-				//glm::vec3 tempColor = color1 + sqrt((k - size/2 + 0.5f) * (k - size / 2 + 0.5f) + (i - size / 2 + 0.5f) * (i - size / 2 + 0.5f)) / size * (color2 - color1);
+				//glm::vec3 tempColor = color1 + sqrt(
+					/*(k - size / 2 + 0.5f) * (k - size / 2 + 0.5f) +
+					(i - size / 2 + 0.5f) * (i - size / 2 + 0.5f) + 
+					(z - size / 2 + 0.5f) * (z - size / 2 + 0.5f)) / size * (color2 - color1);*/
 
 				
 				m_cube[i] = new Cube;

@@ -52,8 +52,8 @@ protected:
 	bool m_isPlaneActive;
 	
 	float m_mass = 1.0f;
-	float m_fMultiplyer = 100.0f;
-	float m_vMultiplyer = 5.0f;
+	float m_fMultiplyer = 500.0f;
+	float m_vMultiplyer = 15.0f;
 
 	GameObject* m_selectedObject;
 	std::vector<GameObject*> m_gameObjects;
